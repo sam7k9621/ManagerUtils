@@ -1,9 +1,0 @@
-<use name="root"/> <!-- Required for Header inclusion --->
-<use name="ManagerUtils/Common"/>
-<use name="ManagerUtils/Maths"/>
-<use name="ManagerUtils/SysUtils"/>
-<flags CXXFLAGS="-g"/>
-
-<export>
-   <lib name="1"/>
-</export>
