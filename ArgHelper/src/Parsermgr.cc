@@ -1,6 +1,7 @@
 #include "ManagerUtils/ArgHelper/interface/Parsermgr.hpp"
 #include <boost/exception/diagnostic_information.hpp>
 #include <boost/lexical_cast.hpp>
+#include <iostream>
 
 namespace opt = boost::program_options;
 using namespace std;

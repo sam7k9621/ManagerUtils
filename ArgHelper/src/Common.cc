@@ -7,11 +7,6 @@ using namespace boost::property_tree;
 *   Operator overloading
 *******************************************************************************/
 
-string operator/( const string& x , const string& y )
-{
-  return x+"/"+y;
-}
-
 
 /*******************************************************************************
 *   Global variable

@@ -7,12 +7,11 @@
 #include <vector>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-
+#include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
 /*******************************************************************************
 *   Operator overloading, defined in src/Common.cc
 *******************************************************************************/
 
-extern std::string operator/( const std::string&, const std::string& );
 
 /*******************************************************************************
 *   Global variable, defined in src/Common.cc
