@@ -3,7 +3,7 @@
 
 #include <map>
 #include <string>
-
+#include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
 namespace dra{
 
     class Pathmgr{

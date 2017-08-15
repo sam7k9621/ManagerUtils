@@ -1,11 +1,10 @@
 #ifndef PARSERMGR_HPP
 #define PARSERMGR_HPP
 
-#include "ManagerUtils/ArgHelper/interface/Common.hpp"
-#include "ManagerUtils/ArgHelper/interface/Readmgr.hpp"
-#include "ManagerUtils/ArgHelper/interface/Pathmgr.hpp"
 #include <boost/program_options.hpp>
 #include <initializer_list>
+#include <string>
+#include <vector>
 
 namespace dra{
 
@@ -26,7 +25,7 @@ namespace dra{
             int ParseOptions(int argc, char* argv[]);
             bool CheckOption(const std::string&);
            
-            string OptName(const std::string&);
+            std::string OptName(const std::string&);
             std::vector<std::string> GetNamelist(){
                 return namelist;
             }
