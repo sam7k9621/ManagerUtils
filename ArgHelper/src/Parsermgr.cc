@@ -10,13 +10,13 @@ namespace dra{
 
     Parsermgr::Parsermgr()
     {
-        desc.add_options()
+        _desc.add_options()
         ( "help,h", "print help options and exit program" )
       ;
     }
     
     Parsermgr& Parsermgr::AddOptions(const opt::options_description& de){
-        desc.add(de);
+        _desc.add(de);
         return *this;
     }
     
@@ -24,17 +24,17 @@ namespace dra{
     
     
         try {
-            opt::store( opt::parse_command_line( argc, argv, desc ), vm );
-            opt::notify( vm );
+            opt::store( opt::parse_command_line( argc, argv, _desc ), _vm );
+            opt::notify( _vm );
         } catch( boost::exception& e ){
             cerr << "Error parsing command!" << endl;
             cerr << boost::diagnostic_information( e );
-            cerr << desc <<endl;
+            cerr << _desc <<endl;
             return FAIL_PARSER;
         }
     
-        if (vm.count("help")){
-            cout<<desc<<endl;
+        if (_vm.count("help")){
+            cout<<_desc<<endl;
             return HELP_PARSER;
         }
         
@@ -44,41 +44,81 @@ namespace dra{
     }
     
     bool Parsermgr::CheckOption(const string& option){
-        return vm.count(option);    
+        return _vm.count(option);    
     }
     
-    void Parsermgr::AddFileName(const string& opt){
-        if(CheckOption(opt)){
-            namelist.push_back(opt);
-        }
-    }
-    
-    string Parsermgr::OptName(const string& opt){
-        string ans = "";
+    string Parsermgr::OptName(){
         
-        if( ans == "" ){
-            try {
-                ans = GetOption<string>( opt );
-          } catch( ... ){
-          }
-        }
+        vector<string> taglist;
+
+        for( const auto& opt : _namelist){
+            
+            string ans = "";
     
-        if( ans == "" ){
-            try {
-                ans = boost::lexical_cast<string>( GetOption<int>( opt ) );
-          } catch( ... ){
-          }
-        }
+            if( ans == "" ){
+                try {
+                    ans = GetOption<string>( opt );
+              } catch( ... ){
+              }
+            }
     
-        if( ans == "" ){
-            try {
-                ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
-          } catch( ... ){
-          }
-        }
+            if( ans == "" ){
+                try {
+                    ans = boost::lexical_cast<string>( GetOption<int>( opt ) );
+              } catch( ... ){
+              }
+            }
     
+            if( ans == "" ){
+                try {
+                    ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
+              } catch( ... ){
+              }
+            }
+       
+            taglist.push_back(ans);
+        }
+        
+        for( const auto& opt : _cutlist){
+
+             string ans = "";
+        
+            if( ans == "" ){
+                try {
+                    ans = GetOption<string>( opt );
+              } catch( ... ){
+              }
+            }
+    
+            if( ans == "" ){
+                try {
+                    ans = boost::lexical_cast<string>( GetOption<int>( opt ) );
+              } catch( ... ){
+              }
+            }
+    
+            if( ans == "" ){
+                try {
+                    ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
+              } catch( ... ){
+              }
+            }
+            
+            taglist.push_back(opt + ans);
+        }
+
+        return CustomName(taglist);
+    }
+
+    string Parsermgr::CustomName(const vector<string>& taglist){
+        
+        string ans = "";
+        for(const auto& name : taglist){
+            
+            ans += ("_" + name);
+        }
+
         return ans;
-    
     }
 }
 
