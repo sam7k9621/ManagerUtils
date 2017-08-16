@@ -26,32 +26,8 @@ namespace mgr {
 void
 SaveToPDF( TCanvas* c, const string& filename )
 {
-  // Saving to a temporary file /tmp/XXXXXX<filename>.pdf
-  // Forcing postfix to be '.pdf'
-  const string temppdf = "/tmp/" + RandomFileName( 6, "", false ) + "_" + Basename( filename ) + ".pdf";
-
-  c->SaveAs( temppdf.c_str() );
-
   CheckPath( filename );
-
-  // Command found at
-  // http://tex.stackexchange.com/questions/66522/xelatex-rotating-my-figures-in-beamer
-  const string cmd = boost::str( boost::format(
-      "gs"
-      "  -sDEVICE=pdfwrite"
-      "  -dCompatibilityLevel=1.4"
-      "  -dPDFSETTINGS=/screen"
-      "  -dNOPAUSE"
-      "  -dQUIET"
-      "  -dBATCH"
-      "  -sOutputFile=%s"
-      "  %s"
-      ) % filename % temppdf );
-
-  system( cmd.c_str() );
-  system( ( "rm "+ temppdf ).c_str() );
-
-  cout << "Saving TCanvas " << c->GetName() << " to " << filename << endl;
+  c->SaveAs(filename.c_str());
 }
 
 /******************************************************************************/

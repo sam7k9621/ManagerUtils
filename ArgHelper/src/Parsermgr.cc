@@ -104,7 +104,7 @@ namespace dra{
               }
             }
             
-            taglist.push_back(opt + ans);
+            taglist.push_back(opt + "_" + ans);
         }
 
         return CustomName(taglist);
