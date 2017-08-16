@@ -25,12 +25,14 @@ namespace dra{
             int ParseOptions(int argc, char* argv[]);
             bool CheckOption(const std::string&);
            
-            std::string OptName(const std::string&);
+            std::string OptName();
+            std::string CustomName(const std::vector<std::string>&);
             std::vector<std::string> GetNamelist(){
-                return namelist;
+                return _namelist;
             }
 
-            void AddFileName(const std::string&);
+            template <typename T>
+            void AddCutName(std::initializer_list<T>);
 
             template <typename T>
             void SetFileName(std::initializer_list<T>);
@@ -39,9 +41,10 @@ namespace dra{
             T GetOption(const std::string&);
 
         private:
-            boost::program_options::variables_map vm;
-            boost::program_options::options_description desc;
-            std::vector<std::string> namelist;
+            boost::program_options::variables_map _vm;
+            boost::program_options::options_description _desc;
+            std::vector<std::string> _namelist;
+            std::vector<std::string> _cutlist;
     };
 
 }
