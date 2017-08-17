@@ -69,6 +69,16 @@ SetSinglePad( TVirtualPad* pad )
   pad->SetTopMargin( 1 - PLOT_Y_MAX );
 }
 
+/******************************************************************************/
+
+void
+SetSinglePadWithPalette( TVirtualPad* pad )
+{
+  pad->SetLeftMargin( PLOT_X_MIN );
+  pad->SetBottomMargin( PLOT_Y_MIN );
+  pad->SetTopMargin( 1 - PLOT_Y_MAX );
+}
+
 /*******************************************************************************
 *   New Legend settings
 *******************************************************************************/
@@ -97,7 +107,7 @@ NewTextBox( const float x_min,
             const float x_max,
             const float y_max )
 {
-  TPaveText* ans = new TPaveText( x_min, y_min, x_max, y_max );
+  TPaveText* ans = new TPaveText( x_min, y_min, x_max, y_max, "NDC" );
 
   ans->SetTextFont( FONT_TYPE );
   ans->SetTextSize( TEXT_FONT_SIZE );

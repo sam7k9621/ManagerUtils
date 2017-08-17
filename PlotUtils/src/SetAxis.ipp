@@ -48,5 +48,12 @@ mgr::SetBottomPlotAxis( T* plot )
   plot->GetYaxis()->SetTitleOffset( 1.2 );
 }
 
+template<class T>
+void
+mgr::SetNormToUnity( T* plot )
+{
+  Double_t norm = plot->GetEntries();
+  plot->Scale(1/norm);
+}
 
 #endif/* end of include guard: MANAGERUTILS_PLOTUTILS_SETAXIS_IPP */

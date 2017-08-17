@@ -25,6 +25,10 @@ template<class T>
 void
 SetBottomPlotAxis( T* plot );
 
+template<class T>
+void 
+SetNormToUnity( T* plot );
+
 };
 
 #include "ManagerUtils/PlotUtils/src/SetAxis.ipp"

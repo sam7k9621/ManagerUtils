@@ -22,6 +22,7 @@ extern TCanvas* NewCanvas();
 extern TPad*    NewTopPad();
 extern TPad*    NewBottomPad();
 extern void     SetSinglePad( TVirtualPad* );
+extern void     SetSinglePadWithPalette( TVirtualPad* );
 
 /*******************************************************************************
 *   * New Legend
