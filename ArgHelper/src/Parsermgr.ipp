@@ -18,7 +18,9 @@ template <typename T>
 void dra::Parsermgr::SetFileName(initializer_list<T> list){
 
     for(const auto& name : list){
-        _namelist.push_back(name);
+        if(CheckOption(name)){
+            _namelist.push_back(name);
+        }
     }
 }
 

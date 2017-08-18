@@ -103,8 +103,11 @@ namespace dra{
               } catch( ... ){
               }
             }
-            
-            taglist.push_back(opt + "_" + ans);
+           
+            if( ans == "" )
+                taglist.push_back(opt);
+            else
+                taglist.push_back(opt + "_" + ans);
         }
 
         return CustomName(taglist);

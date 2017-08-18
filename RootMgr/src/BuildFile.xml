@@ -1,9 +1,0 @@
-<use name="root"/>
-<use name="roofit"/>
-<use name="ManagerUtils/Common" />
-
-<flags CXXFLAGS="-g" />
-
-<export>
-   <lib name="1"/>
-</export>
