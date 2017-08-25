@@ -25,7 +25,7 @@ log*
 *.dat
 *.pdf
 *.db
-
+*.orig
 
 # Specific file exclusion
 # [relative/path/to/file]
