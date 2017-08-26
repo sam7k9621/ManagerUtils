@@ -24,12 +24,12 @@
 *                    by default.
 *******************************************************************************/
 extern double KSTest(
-  RooAbsData&      dataset,
-  RooAbsPdf&       pdf,
-  RooRealVar&      var,
-  const RooCmdArg& cut = RooCmdArg::none(),
-  double           gen = 10,
-  unsigned         bin = 1000
-  );
+    RooAbsData&      dataset,
+    RooAbsPdf&       pdf,
+    RooRealVar&      var,
+    const RooCmdArg& cut = RooCmdArg::none(),
+    double           gen = 10,
+    unsigned         bin = 1000
+);
 
 #endif/* end of include guard: MANAGERUTILS_MATHS_ROOFITEXT_HPP */

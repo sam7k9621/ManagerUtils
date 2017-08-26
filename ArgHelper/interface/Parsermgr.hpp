@@ -6,39 +6,38 @@
 #include <string>
 #include <vector>
 
-namespace dra{
+namespace dra {
 
-    class Parsermgr 
-    {
+    class Parsermgr {
 
         public:
-            enum PARSING_STATUS{
+            enum PARSING_STATUS {
                 FAIL_PARSER,
                 HELP_PARSER,
                 PASS_PARSER
             };
-            
-            Parsermgr();
-            ~Parsermgr(){}
 
-            Parsermgr& AddOptions(const boost::program_options::options_description&);
-            int ParseOptions(int argc, char* argv[]);
-            bool CheckOption(const std::string&);
-           
+            Parsermgr();
+            ~Parsermgr() {}
+
+            Parsermgr& AddOptions( const boost::program_options::options_description& );
+            int ParseOptions( int argc, char* argv[] );
+            bool CheckOption( const std::string& );
+
             std::string OptName();
-            std::string CustomName(const std::vector<std::string>&);
-            std::vector<std::string> GetNamelist(){
+            std::string CustomName( const std::vector<std::string>& );
+            std::vector<std::string> GetNamelist() {
                 return _namelist;
             }
 
             template <typename T>
-            void AddCutName(std::initializer_list<T>);
+            void AddCutName( std::initializer_list<T> );
 
             template <typename T>
-            void SetFileName(std::initializer_list<T>);
+            void SetFileName( std::initializer_list<T> );
 
             template <typename T>
-            T GetOption(const std::string&);
+            T GetOption( const std::string& );
 
         private:
             boost::program_options::variables_map _vm;

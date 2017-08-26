@@ -11,14 +11,12 @@
 #include <cmath>
 
 namespace mgr {
-Parameter
-Poisson::Minos( const double obs, const double confidencelevel )
-{
-  gsl_function poisson;
-  poisson.function = &mgr::stat::PoissonNLL;
-  poisson.params   = const_cast<double*>(&obs);
-
-  return MakeMinos( &poisson, obs, mgr::gsl::epsilon, 2*obs+1, confidencelevel );
-}
+    Parameter
+    Poisson::Minos( const double obs, const double confidencelevel ) {
+        gsl_function poisson;
+        poisson.function = &mgr::stat::PoissonNLL;
+        poisson.params   = const_cast<double*>( &obs );
+        return MakeMinos( &poisson, obs, mgr::gsl::epsilon, 2 * obs + 1, confidencelevel );
+    }
 
 }/* mgr */

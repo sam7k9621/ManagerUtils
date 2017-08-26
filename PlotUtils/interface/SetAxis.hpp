@@ -11,23 +11,23 @@
 
 #include "TGaxis.h"
 
-namespace mgr{
+namespace mgr {
 
-template<class T>
-void
-SetAxis( T* plot );
+    template<class T>
+    void
+    SetAxis( T* plot );
 
-template<class T>
-void
-SetTopPlotAxis( T* plot );
+    template<class T>
+    void
+    SetTopPlotAxis( T* plot );
 
-template<class T>
-void
-SetBottomPlotAxis( T* plot );
+    template<class T>
+    void
+    SetBottomPlotAxis( T* plot );
 
-template<class T>
-void 
-SetNormToUnity( T* plot );
+    template<class T>
+    void
+    SetNormToUnity( T* plot );
 
 };
 

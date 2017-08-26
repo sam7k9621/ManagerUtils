@@ -13,23 +13,22 @@
 
 namespace mgr {
 
-class LatexMgr : public TLatex
-{
+    class LatexMgr : public TLatex {
 
-public:
-  LatexMgr();
-  virtual
-  ~LatexMgr ();
+        public:
+            LatexMgr();
+            virtual
+            ~LatexMgr ();
 
-  LatexMgr& WriteLine( const std::string& );
-  LatexMgr& SetOrigin( const double, const double );
-  LatexMgr& SetOrigin( const double, const double, const Short_t );
+            LatexMgr& WriteLine( const std::string& );
+            LatexMgr& SetOrigin( const double, const double );
+            LatexMgr& SetOrigin( const double, const double, const Short_t );
 
-private:
-  unsigned _linecount;
-  double   _origin_x;
-  double   _origin_y;
-};
+        private:
+            unsigned _linecount;
+            double   _origin_x;
+            double   _origin_y;
+    };
 
 } /* mgr */
 

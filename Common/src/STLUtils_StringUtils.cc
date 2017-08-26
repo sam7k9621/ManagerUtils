@@ -14,14 +14,12 @@ namespace fs = boost::filesystem ;
 
 /******************************************************************************/
 
-std::string operator/( const std::string& x , const std::string& y )
-{
-  return (fs::path(x)/y).string();
+std::string operator/( const std::string& x , const std::string& y ) {
+    return ( fs::path( x ) / y ).string();
 }
 
 /******************************************************************************/
 
-std::string operator*( const std::string& x , const std::string& y )
-{
-  return x + "." + y ;
+std::string operator*( const std::string& x , const std::string& y ) {
+    return x + "." + y ;
 }

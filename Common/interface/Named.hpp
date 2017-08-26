@@ -10,31 +10,29 @@
 
 #include <string>
 
-namespace mgr
-{
+namespace mgr {
 
-class Named// Only virtual for the sake of Inheritance Do not overload
-{
-public:
-  Named( const std::string& );
-  virtual
-  ~Named ();
+    class Named { // Only virtual for the sake of Inheritance Do not overload
+        public:
+            Named( const std::string& );
+            virtual
+            ~Named ();
 
-  // Basic access functions
-  virtual const std::string& Name() const final;
+            // Basic access functions
+            virtual const std::string& Name() const final;
 
-  virtual const std::string& LatexName() const final;
-  virtual const std::string& RootName()  const final;
+            virtual const std::string& LatexName() const final;
+            virtual const std::string& RootName()  const final;
 
-  // Setting functions
-  virtual void SetLatexName( const std::string& x ) final;
-  virtual void SetRootName( const std::string& x ) final;
+            // Setting functions
+            virtual void SetLatexName( const std::string& x ) final;
+            virtual void SetRootName( const std::string& x ) final;
 
-private:
-  const std::string _name;
-  std::string _latexname;
-  std::string _rootname;
-};
+        private:
+            const std::string _name;
+            std::string _latexname;
+            std::string _rootname;
+    };
 
 }
 

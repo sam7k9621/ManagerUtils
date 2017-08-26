@@ -10,9 +10,8 @@
 
 using namespace boost::python;
 
-BOOST_PYTHON_MODULE(pluginPathUtils)
-{
-   def( "GetEnv"          , mgr::GetEnv );
-   def( "ConvertToAbsPath", mgr::ConvertToAbsPath );
-   def( "CMSSWSrc"        , mgr::CMSSWSrc );
+BOOST_PYTHON_MODULE( pluginPathUtils ) {
+    def( "GetEnv"          , mgr::GetEnv );
+    def( "ConvertToAbsPath", mgr::ConvertToAbsPath );
+    def( "CMSSWSrc"        , mgr::CMSSWSrc );
 }

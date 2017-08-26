@@ -10,8 +10,7 @@
 
 using namespace boost::python;
 
-BOOST_PYTHON_MODULE( pluginTimeUtils )
-{
-   def( "CurrentDateTime", mgr::CurrentDateTime );
-   def( "SleepMillSec",    mgr::SleepMillSec );
+BOOST_PYTHON_MODULE( pluginTimeUtils ) {
+    def( "CurrentDateTime", mgr::CurrentDateTime );
+    def( "SleepMillSec",    mgr::SleepMillSec );
 }

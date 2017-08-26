@@ -9,18 +9,19 @@
 
 #include <iostream>
 using namespace std;
-int main(int argc, char* argv[]) {
+int main( int argc, char* argv[] ) {
+    for( int i = 1 ; i < argc ; i++ ) {
+        // cout << "Globbing: " << argv[i] << endl;
+        for( const auto& file : mgr::Glob( argv[i] ) ) {
+            if( mgr::IsRemotePath( file ) ) {
+                cout << mgr::GetRemotePath( file ) << endl;
+            }
 
-  for( int i = 1 ; i < argc ; i++ ){
-    // cout << "Globbing: " << argv[i] << endl;
-    for( const auto& file : mgr::Glob( argv[i]) ){
-      if( mgr::IsRemotePath(file) ){
-        cout << mgr::GetRemotePath(file) << endl;
-      }else {
-        cout << file << endl;
-      }
+            else {
+                cout << file << endl;
+            }
+        }
     }
-  }
 
-  return 0;
+    return 0;
 }

@@ -13,17 +13,17 @@
 
 namespace mgr {
 
-/*******************************************************************************
-*   Single Entry function
-*******************************************************************************/
-template<typename OBJTYPE, typename ARGTYPE>
-std::vector<OBJTYPE> MakeVector( ARGTYPE first );
+    /*******************************************************************************
+    *   Single Entry function
+    *******************************************************************************/
+    template<typename OBJTYPE, typename ARGTYPE>
+    std::vector<OBJTYPE> MakeVector( ARGTYPE first );
 
-/*******************************************************************************
-*   Multi entry argument input
-*******************************************************************************/
-template<typename OBJTYPE, typename ARGTYPE, typename ... VARTYPE>
-std::vector<OBJTYPE> MakeVector( ARGTYPE first, VARTYPE ... arg );
+    /*******************************************************************************
+    *   Multi entry argument input
+    *******************************************************************************/
+    template<typename OBJTYPE, typename ARGTYPE, typename ... VARTYPE>
+    std::vector<OBJTYPE> MakeVector( ARGTYPE first, VARTYPE ... arg );
 
 };/* mgr */
 

@@ -14,84 +14,75 @@
 
 namespace mgr {
 
-void
-SetFrame( RooPlot* frame )
-{
-  // Must set
-  SetSinglePad( gPad );// Using global pad settings
-
-  // Common Axis settings
-  SetAxis( frame );// see PlotObj.cc
-  frame->SetTitle( "" );
-}
-
-/******************************************************************************/
-
-TGraphAsymmErrors*
-MakeCurveError(
-  TGraph* errorplot,
-  TGraph* centralplot
-  )
-{
-  std::map<double, std::pair<double, double> > fiterr;
-
-  for( int i = 0; i < errorplot->GetN(); ++i ){
-    const double x = errorplot->GetX()[i];
-    const double y = errorplot->GetY()[i];
-    if( !fiterr.count( x ) ){
-      fiterr[x] = std::make_pair( 1e10, -1e10 );
+    void
+    SetFrame( RooPlot* frame ) {
+        // Must set
+        SetSinglePad( gPad );// Using global pad settings
+        // Common Axis settings
+        SetAxis( frame );// see PlotObj.cc
+        frame->SetTitle( "" );
     }
-    fiterr.at( x ).first  = std::min( fiterr.at( x ).first, y  );
-    fiterr.at( x ).second = std::max( fiterr.at( x ).second, y );
-  }
 
-  TGraphAsymmErrors* ans = new TGraphAsymmErrors( fiterr.size() );
+    /******************************************************************************/
 
-  size_t i = 0;
+    TGraphAsymmErrors*
+    MakeCurveError(
+        TGraph* errorplot,
+        TGraph* centralplot
+    ) {
+        std::map<double, std::pair<double, double> > fiterr;
 
-  for( const auto& fiterrval : fiterr ){
-    const double x   = fiterrval.first;
-    const double y   = centralplot->Eval( x );
-    const double ylo = fiterrval.second.first;
-    const double yhi = fiterrval.second.second;
-    ans->SetPoint( i, x, y );
-    ans->SetPointError( i, 0, 0, y-ylo, yhi-y );
-    ++i;
-  }
+        for( int i = 0; i < errorplot->GetN(); ++i ) {
+            const double x = errorplot->GetX()[i];
+            const double y = errorplot->GetY()[i];
 
-  return ans;
-}
+            if( !fiterr.count( x ) ) {
+                fiterr[x] = std::make_pair( 1e10, -1e10 );
+            }
 
-TGraph*
-PlotFitErrorOn(
-  RooPlot*         frame,
-  RooAbsPdf*       pdf,
-  RooFitResult*    fitres,
-  const RooCmdArg& arg1,
-  const RooCmdArg& arg2,
-  const RooCmdArg& arg3
-  )
-{
+            fiterr.at( x ).first  = std::min( fiterr.at( x ).first, y  );
+            fiterr.at( x ).second = std::max( fiterr.at( x ).second, y );
+        }
 
-  TGraph* fit = PlotOn(
-    frame, pdf,
-    RooFit::Invisible(),
-    arg1, arg2, arg3
-    );
+        TGraphAsymmErrors* ans = new TGraphAsymmErrors( fiterr.size() );
+        size_t i = 0;
 
-  TGraph* fiterr = PlotOn(
-    frame, pdf,
-    RooFit::VisualizeError( *fitres, 1, kFALSE ),
-    RooFit::Invisible(),
-    arg1, arg2, arg3
-    );
+        for( const auto& fiterrval : fiterr ) {
+            const double x   = fiterrval.first;
+            const double y   = centralplot->Eval( x );
+            const double ylo = fiterrval.second.first;
+            const double yhi = fiterrval.second.second;
+            ans->SetPoint( i, x, y );
+            ans->SetPointError( i, 0, 0, y - ylo, yhi - y );
+            ++i;
+        }
 
-  TGraphAsymmErrors* ans = MakeCurveError( fiterr, fit );
+        return ans;
+    }
 
-
-  frame->addObject( ans, "L3" );
-
-  return ans;
-}
+    TGraph*
+    PlotFitErrorOn(
+        RooPlot*         frame,
+        RooAbsPdf*       pdf,
+        RooFitResult*    fitres,
+        const RooCmdArg& arg1,
+        const RooCmdArg& arg2,
+        const RooCmdArg& arg3
+    ) {
+        TGraph* fit = PlotOn(
+                          frame, pdf,
+                          RooFit::Invisible(),
+                          arg1, arg2, arg3
+                      );
+        TGraph* fiterr = PlotOn(
+                             frame, pdf,
+                             RooFit::VisualizeError( *fitres, 1, kFALSE ),
+                             RooFit::Invisible(),
+                             arg1, arg2, arg3
+                         );
+        TGraphAsymmErrors* ans = MakeCurveError( fiterr, fit );
+        frame->addObject( ans, "L3" );
+        return ans;
+    }
 
 };

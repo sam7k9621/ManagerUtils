@@ -12,17 +12,17 @@
 
 namespace mgr {
 
-/*******************************************************************************
-*   SeedRandomTime()
-*   * Seeding number generator by time of data
-*******************************************************************************/
-extern void SeedRandomTime();
+    /*******************************************************************************
+    *   SeedRandomTime()
+    *   * Seeding number generator by time of data
+    *******************************************************************************/
+    extern void SeedRandomTime();
 
-/*******************************************************************************
-*   RandomString()
-*   * Returning a randomly generated alpha-numerical string
-*******************************************************************************/
-extern std::string RandomString( const unsigned length );
+    /*******************************************************************************
+    *   RandomString()
+    *   * Returning a randomly generated alpha-numerical string
+    *******************************************************************************/
+    extern std::string RandomString( const unsigned length );
 
 } /* mgr */
 

@@ -11,15 +11,15 @@
 #include "TCanvas.h"
 
 namespace mgr {
-/*******************************************************************************
-*   SaveToPDF - saving TCanvas to PDF file, invokes PDF correction ghostscript
-*******************************************************************************/
-void SaveToPDF( TCanvas*, const std::string& );
+    /*******************************************************************************
+    *   SaveToPDF - saving TCanvas to PDF file, invokes PDF correction ghostscript
+    *******************************************************************************/
+    void SaveToPDF( TCanvas*, const std::string& );
 
-/*******************************************************************************
-*   SaveToRoot - saving TCanvas to ROOT File
-*******************************************************************************/
-void SaveToROOT( TCanvas*, const std::string& filename, const std::string& objname );
+    /*******************************************************************************
+    *   SaveToRoot - saving TCanvas to ROOT File
+    *******************************************************************************/
+    void SaveToROOT( TCanvas*, const std::string& filename, const std::string& objname );
 
 }
 

@@ -7,25 +7,25 @@
 #include <string>
 #include <vector>
 
-namespace dra{
+namespace dra {
 
-    class Readmgr{
+    class Readmgr {
         public:
-            Readmgr(const std::string&);
+            Readmgr( const std::string& );
 
-            virtual ~Readmgr(){}
-        
-            boost::property_tree::ptree GetSubTree(const std::string&);
+            virtual ~Readmgr() {}
 
-            template<typename T>
-            T GetSingleData(const std::string&);
+            boost::property_tree::ptree GetSubTree( const std::string& );
 
             template<typename T>
-            std::vector<T> GetListData(const std::string&);
+            T GetSingleData( const std::string& );
+
+            template<typename T>
+            std::vector<T> GetListData( const std::string& );
 
         private:
             boost::property_tree::ptree root;
-    
+
     };
 
 }

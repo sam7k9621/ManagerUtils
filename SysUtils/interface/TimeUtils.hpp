@@ -11,16 +11,16 @@
 #include <string>
 
 namespace mgr {
-/*******************************************************************************
-*   ** CurrentDateTime
-*   Return current date and time as std::string
-*******************************************************************************/
-extern std::string CurrentDateTime();
+    /*******************************************************************************
+    *   ** CurrentDateTime
+    *   Return current date and time as std::string
+    *******************************************************************************/
+    extern std::string CurrentDateTime();
 
-/*******************************************************************************
-*   ** Sleep Thead for set number of MilliSeconds
-*******************************************************************************/
-extern void SleepMillSec( const unsigned );
+    /*******************************************************************************
+    *   ** Sleep Thead for set number of MilliSeconds
+    *******************************************************************************/
+    extern void SleepMillSec( const unsigned );
 
 }/* mgr */
 

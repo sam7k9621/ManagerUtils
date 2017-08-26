@@ -16,85 +16,84 @@
 
 namespace mgr {
 
-namespace gsl {
-/*******************************************************************************
-*   Common GSL settings constants
-*******************************************************************************/
-extern const double epsilon;
-extern const unsigned max_iteration;
+    namespace gsl {
+        /*******************************************************************************
+        *   Common GSL settings constants
+        *******************************************************************************/
+        extern const double epsilon;
+        extern const unsigned max_iteration;
 
-/*******************************************************************************
-*   GSL iterator solver
-*******************************************************************************/
-extern void IterateSolver( gsl_multiroot_fsolver* solver );
-extern void IterateSolver( gsl_root_fsolver* solver );
-extern void IterateSolver( gsl_min_fminimizer* solver );
-extern void IterateSolver( gsl_multimin_fminimizer* solver );
+        /*******************************************************************************
+        *   GSL iterator solver
+        *******************************************************************************/
+        extern void IterateSolver( gsl_multiroot_fsolver* solver );
+        extern void IterateSolver( gsl_root_fsolver* solver );
+        extern void IterateSolver( gsl_min_fminimizer* solver );
+        extern void IterateSolver( gsl_multimin_fminimizer* solver );
 
-/*******************************************************************************
-*   Solving a one dimension gsl_function func at func(x) = a
-*******************************************************************************/
-extern double Solve1D(
-  gsl_function* function,
-  double        yval,
-  double        xmin,
-  double        ymax
-);
+        /*******************************************************************************
+        *   Solving a one dimension gsl_function func at func(x) = a
+        *******************************************************************************/
+        extern double Solve1D(
+            gsl_function* function,
+            double        yval,
+            double        xmin,
+            double        ymax
+        );
 
-/*******************************************************************************
-*   Multi variable functions
-*   Using same wrapper as gsl minimizer function:
-*    - double (* f) (const gsl_vector * x, void * params)
-*    - size_t n
-*    - void* params
-*******************************************************************************/
-typedef gsl_multimin_function gsl_multifunc;
+        /*******************************************************************************
+        *   Multi variable functions
+        *   Using same wrapper as gsl minimizer function:
+        *    - double (* f) (const gsl_vector * x, void * params)
+        *    - size_t n
+        *    - void* params
+        *******************************************************************************/
+        typedef gsl_multimin_function gsl_multifunc;
 
-/*******************************************************************************
-*   Handy parameter-less gsl_multi_function function pointers
-*******************************************************************************/
-double sum( const gsl_vector* x, void* params);
-double product( const gsl_vector* x, void* params);
+        /*******************************************************************************
+        *   Handy parameter-less gsl_multi_function function pointers
+        *******************************************************************************/
+        double sum( const gsl_vector* x, void* params );
+        double product( const gsl_vector* x, void* params );
 
-/*******************************************************************************
-*   Multidimension projection function
-*******************************************************************************/
-struct projected_param
-{
-  gsl_multifunc* original_func;
-  gsl_vector*    original_x;
-  size_t         varidx;
-};
+        /*******************************************************************************
+        *   Multidimension projection function
+        *******************************************************************************/
+        struct projected_param {
+            gsl_multifunc* original_func;
+            gsl_vector*    original_x;
+            size_t         varidx;
+        };
 
-extern double projected_function( double, void* );
+        extern double projected_function( double, void* );
 
-/*******************************************************************************
-*   Partial derivative - Wrapper for gsl_deriv function
-*******************************************************************************/
-extern int partial_deriv(
-  gsl_multifunc* function,
-  gsl_vector*    x,
-  size_t         varidx,
-  double         h,
-  double&        result,
-  double&        error
-  );
+        /*******************************************************************************
+        *   Partial derivative - Wrapper for gsl_deriv function
+        *******************************************************************************/
+        extern int partial_deriv(
+            gsl_multifunc* function,
+            gsl_vector*    x,
+            size_t         varidx,
+            double         h,
+            double&        result,
+            double&        error
+        );
 
-extern double partial_deriv(
-  gsl_multifunc* function,
-  gsl_vector*    x,
-  size_t         varidx,
-  double         h = epsilon
-);
+        extern double partial_deriv(
+            gsl_multifunc* function,
+            gsl_vector*    x,
+            size_t         varidx,
+            double         h = epsilon
+        );
 
-extern double partial_deriv_error(
-  gsl_multifunc* function,
-  gsl_vector*    x,
-  size_t         varidx,
-  double         h = epsilon
-);
+        extern double partial_deriv_error(
+            gsl_multifunc* function,
+            gsl_vector*    x,
+            size_t         varidx,
+            double         h = epsilon
+        );
 
-};/* gsl */
+    };/* gsl */
 
 
 }/* mgr */

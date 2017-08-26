@@ -11,20 +11,19 @@ using namespace std;
 
 namespace mgr {
 
-string
-RandomFileName( const unsigned n, const string& ext, const bool hidden  )
-{
-   string ans = RandomString( n );
+    string
+    RandomFileName( const unsigned n, const string& ext, const bool hidden  ) {
+        string ans = RandomString( n );
 
-   if( ext != "" ){
-      ans += "." + ext;
-   }
+        if( ext != "" ) {
+            ans += "." + ext;
+        }
 
-   if( hidden ){
-      ans = "." + ans;
-   }
+        if( hidden ) {
+            ans = "." + ans;
+        }
 
-   return ans;
-}
+        return ans;
+    }
 
 } /* mgr */

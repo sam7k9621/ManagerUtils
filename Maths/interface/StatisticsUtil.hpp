@@ -12,68 +12,68 @@
 
 namespace mgr {
 
-namespace stat {
+    namespace stat {
 
-/*******************************************************************************
-*   Sigma interval - Confidence level conversion.
-*******************************************************************************/
-extern double NormalCDF( const double x );
-extern double GetConfidenceLevel( const double sigmainterval );
-extern double GetSigmaInterval( const double confidencelevel );
+        /*******************************************************************************
+        *   Sigma interval - Confidence level conversion.
+        *******************************************************************************/
+        extern double NormalCDF( const double x );
+        extern double GetConfidenceLevel( const double sigmainterval );
+        extern double GetSigmaInterval( const double confidencelevel );
 
-extern const double onesigma_level;
-extern const double twosigma_level;
+        extern const double onesigma_level;
+        extern const double twosigma_level;
 
-/*******************************************************************************
-*   General purpose Minos error computation
-*******************************************************************************/
-extern double DeltaNLLFromSigma( const double sigma );
-extern double DeltaNLLFromConfidence( const double confidence );
+        /*******************************************************************************
+        *   General purpose Minos error computation
+        *******************************************************************************/
+        extern double DeltaNLLFromSigma( const double sigma );
+        extern double DeltaNLLFromConfidence( const double confidence );
 
-extern int MinosError(
-  gsl_function* nllfunction,
-  double&       guess,
-  double&       min,
-  double&       max,
-  const double  confidencelevel = onesigma_level
-  );
+        extern int MinosError(
+            gsl_function* nllfunction,
+            double&       guess,
+            double&       min,
+            double&       max,
+            const double  confidencelevel = onesigma_level
+        );
 
 
-extern int MinosError(
-  mgr::gsl::gsl_multifunc* nllfunction,
-  mgr::gsl::gsl_multifunc* varfunction,
-  gsl_vector*              initguess,
-  double&                  central,
-  double&                  min,
-  double&                  max,
-  const double             confidencelevel = onesigma_level,
-  gsl_vector*              upperguess = nullptr,
-  gsl_vector*              lowerguess = nullptr
-  );
+        extern int MinosError(
+            mgr::gsl::gsl_multifunc* nllfunction,
+            mgr::gsl::gsl_multifunc* varfunction,
+            gsl_vector*              initguess,
+            double&                  central,
+            double&                  min,
+            double&                  max,
+            const double             confidencelevel = onesigma_level,
+            gsl_vector*              upperguess = nullptr,
+            gsl_vector*              lowerguess = nullptr
+        );
 
-/*******************************************************************************
-*   Common Distribution NLLs
-*   Defined in standard gsl_function format
-*******************************************************************************/
+        /*******************************************************************************
+        *   Common Distribution NLLs
+        *   Defined in standard gsl_function format
+        *******************************************************************************/
 
-/*******************************************************************************
-*   double params[0] - mean,
-*   double params[1] - sigma
-*******************************************************************************/
-extern double GaussianNLL( double, void* params );
+        /*******************************************************************************
+        *   double params[0] - mean,
+        *   double params[1] - sigma
+        *******************************************************************************/
+        extern double GaussianNLL( double, void* params );
 
-/*******************************************************************************
-*   double param[0] - passed
-*   double param[1] - total
-*******************************************************************************/
-extern double BinomialNLL( double, void* params );
+        /*******************************************************************************
+        *   double param[0] - passed
+        *   double param[1] - total
+        *******************************************************************************/
+        extern double BinomialNLL( double, void* params );
 
-/*******************************************************************************
-*   double param[0] - observed
-*******************************************************************************/
-extern double PoissonNLL( double, void* params );
+        /*******************************************************************************
+        *   double param[0] - observed
+        *******************************************************************************/
+        extern double PoissonNLL( double, void* params );
 
-}/* stat */
+    }/* stat */
 
 }/* mgr */
 

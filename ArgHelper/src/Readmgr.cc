@@ -4,14 +4,14 @@
 using namespace std;
 namespace pt = boost::property_tree;
 
-namespace dra{
+namespace dra {
 
-    Readmgr::Readmgr(const string& file){
-        ReadFile(file,root);
+    Readmgr::Readmgr( const string& file ) {
+        ReadFile( file, root );
     }
 
-    pt::ptree Readmgr::GetSubTree(const string& t){
-        return root.get_child(t);
-    } 
+    pt::ptree Readmgr::GetSubTree( const string& t ) {
+        return root.get_child( t );
+    }
 
 }
