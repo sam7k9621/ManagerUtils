@@ -26,7 +26,7 @@ log*
 *.pdf
 *.db
 *.orig
-
+.nfs0000001d0136a2150000000b
 # Specific file exclusion
 # [relative/path/to/file]
 .remote-sync.json
