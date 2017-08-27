@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace dra {
+namespace mgr {
 
     /*******************************************************************************
     *   Constructor and Destructor

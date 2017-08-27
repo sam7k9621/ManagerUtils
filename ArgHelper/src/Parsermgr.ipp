@@ -7,15 +7,17 @@
 namespace opt = boost::program_options;
 using namespace std;
 
+namespace mgr{
+
 template <typename T>
-T dra::Parsermgr::GetOption(const string& op){
+T Parsermgr::GetOption(const string& op){
     return _vm[op].as<T>();
 }
 
 
 //http://stackoverflow.com/questions/1657883/variable-number-of-arguments-in-c
 template <typename T>
-void dra::Parsermgr::SetFileName(initializer_list<T> list){
+void Parsermgr::SetFileName(initializer_list<T> list){
 
     for(const auto& name : list){
         if(CheckOption(name)){
@@ -25,7 +27,7 @@ void dra::Parsermgr::SetFileName(initializer_list<T> list){
 }
 
 template <typename T>
-void dra::Parsermgr::AddCutName(initializer_list<T> list){
+void Parsermgr::AddCutName(initializer_list<T> list){
     
     for(const auto& name : list){
         if(CheckOption(name)){
@@ -34,4 +36,5 @@ void dra::Parsermgr::AddCutName(initializer_list<T> list){
     }
 }
 
+}
 #endif

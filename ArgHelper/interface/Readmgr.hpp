@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace dra {
+namespace mgr {
 
     class Readmgr {
         public:

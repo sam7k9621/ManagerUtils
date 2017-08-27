@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
-namespace dra {
+namespace mgr {
 
     class Pathmgr {
         public:

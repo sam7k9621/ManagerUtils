@@ -5,13 +5,15 @@
 using namespace std;
 using namespace boost::property_tree;
 
+namespace mgr{
+
 template <typename T>
-T dra::GetSingle(const string& tag, const ptree& root ){
+T GetSingle(const string& tag, const ptree& root ){
     return root.get<T>(tag);
 }
 
 template <typename T>
-vector<T> dra::GetList(const string& tag, const ptree& root){
+vector<T> GetList(const string& tag, const ptree& root){
     vector<T> ans;
     for (auto& n : root.get_child(tag)){
         ans.push_back(n.second.get_value<T>());
@@ -19,5 +21,5 @@ vector<T> dra::GetList(const string& tag, const ptree& root){
     return ans;
 }
 
-
+}
 #endif

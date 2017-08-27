@@ -7,7 +7,7 @@
 using namespace std;
 using namespace boost::property_tree;
 
-namespace dra{
+namespace mgr{
 
 
     template<typename T>

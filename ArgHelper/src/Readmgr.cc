@@ -4,7 +4,7 @@
 using namespace std;
 namespace pt = boost::property_tree;
 
-namespace dra {
+namespace mgr {
 
     Readmgr::Readmgr( const string& file ) {
         ReadFile( file, root );
