@@ -1,7 +1,6 @@
 #ifndef READMGR_IPP
 #define READMGR_IPP
 
-#include "ManagerUtils/ArgHelper/interface/Readmgr.hpp"
 #include "ManagerUtils/ArgHelper/interface/Common.hpp"
 
 using namespace std;

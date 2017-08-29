@@ -1,7 +1,6 @@
 #ifndef COMMON_IPP
 #define COMMON_IPP
 
-#include "ManagerUtils/ArgHelper/interface/Common.hpp"
 using namespace std;
 using namespace boost::property_tree;
 
