@@ -27,7 +27,7 @@ RootObjMgr<T>::AddObj( T* obj )
   const std::string store      = MakeStoreName( obj->GetName() );
 
   _objmap.erase( store ); // deleting existing instance if already exist
-  _objmap[store] = std::unique_ptr<T>( obj );
+  _objmap[store] = std::make_shared<T>( *obj );
 }
 
 /******************************************************************************/

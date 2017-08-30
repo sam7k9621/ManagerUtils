@@ -61,7 +61,6 @@ HistMgr::AddHist(
   const double  x_upper
   )
 {
- 
     string aliasname = _tag + "_" + label;
     
     TH1D* hist = new TH1D( aliasname.c_str(), _tag.c_str(), bin_size, x_lower, x_upper );

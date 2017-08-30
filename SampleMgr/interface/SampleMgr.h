@@ -15,29 +15,28 @@ namespace mgr{
 /*******************************************************************************
 *  Class initialization 
 *******************************************************************************/
-            SampleMgr(TChain* );
+            SampleMgr();
+            SampleMgr(TChain*);
             ~SampleMgr();
-            void SetIndex(const int&);
-
+            void SetIndex(const int& i){ _idx = i; }
+            void SetTChain(TChain*);
 /*******************************************************************************
 *  Return file info
 *******************************************************************************/
-            int GetEntries();
-            void GetEntry(const int&);
     
-            int    Vsize();
-            int    Lsize();
-            int    Jsize();
-            int    Gsize();
-            int    Lep_Type();
-            int    RunNO();
-            int    LumiNO();
+            int    Vsize(){ return _vtx.Size; }
+            int    Lsize(){ return _lep.Size; }
+            int    Jsize(){ return _jet.Size; }
+            int    Gsize(){ return _gen.Size; }
+            int    Lep_Type(){ return _lep.LeptonType[_idx]; }
+            int    RunNo(){ return _evt.RunNo; }
+            int    LumiNo(){ return _evt.LumiNo; }
 
 /*******************************************************************************
 *   Common calculation
 *******************************************************************************/
             double RelIsoR04();
-            TLorentzVector GetMET(const TLorentzVector);
+            TLorentzVector GetMET(const TLorentzVector&);
             double  Phi_mpi_pi(double);
             bool isIsoLepton(const int&, const int&);
             TLorentzVector getLorentzVector(const std::string&, const int&);
@@ -45,7 +44,7 @@ namespace mgr{
 /*******************************************************************************
 *   Vertex & HLT selection
 *******************************************************************************/
-            bool passHLT(std::vector<int>) ;    
+            bool passHLT(const std::vector<int>&) ;    
             bool IsFake();
             bool IsOfflinePV();
             bool passNdof();
@@ -55,9 +54,9 @@ namespace mgr{
 /*******************************************************************************
 *   Muon selection
 *******************************************************************************/
-            bool passMuPt(double);
-            bool passMuEta(double);
-            bool passMuRelIsoR04(double);
+            bool passMuPt(const double&);
+            bool passMuEta(const double&);
+            bool passMuRelIsoR04(const double&);
             bool MuInnerTrackDxy_PV();
             bool MuInnerTrackDz();
             bool MuNMuonhits();
@@ -71,16 +70,16 @@ namespace mgr{
 /*******************************************************************************
 * Electron selection
 *******************************************************************************/
-            bool passElPt(double);
-            bool passElEta(double);
+            bool passElPt(const double&);
+            bool passElEta(const double&);
             bool passElIDLoose();
             bool passElIDTight();
 
 /*******************************************************************************
 * Jet selection
 *******************************************************************************/
-            bool passJetPt(double);
-            bool passJetEta(double);
+            bool passJetPt(const double&);
+            bool passJetEta(const double&);
             bool JetNConstituents();
             bool JetNEF();
             bool JetNHF();
@@ -89,30 +88,32 @@ namespace mgr{
             bool JetCEF();
 
             //b-tagging
-            bool JetCSVM();
+            bool JetCSVM(const double&);
 
 /*******************************************************************************
 *   MC Truth
 *******************************************************************************/
             int     MatchGenlevel(const float&, const float&);
-            int     GetDirectMother(const int&);
+            //if doesn't match return -1
+            int     GetGenLep(const int&);
+            int     GetGenJet(const int&);
+            int     GetDirectMother(int);
             int     GetGenPdgID(const int&);
             int     GetLepCharge(const int&);
-            int     DeltaR_jet(const int&);
-            int     DeltaR_lep(const int&);
             int     GetDirectMotherPdgID(const int&);
-            void    MCTruthBJet(std::vector<int>&);
+            bool    MCTruthBJet(std::vector<int>&);
             bool    HasCommonMo(const int&, const int&, const int&);
 
         private:
             
             int _idx;
-            TChain* _ch;
             VertexInfo _vtx;
             LeptonInfo _lep;
             EvtInfo    _evt;
             JetInfo    _jet;
             GenInfo    _gen;
 
-    }
+    };
 }
+
+#endif

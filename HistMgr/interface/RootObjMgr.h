@@ -33,7 +33,7 @@ public:
   // C++ style iterators for looping objects (independent of the leading string)easiler
   // Notice that the dereferencing of the iterator will return an instance of  T*
   // so use loops only like : "for( const auto obj : objmgr )" (not the lack of referencing)
-  typedef std::map<std::string, std::unique_ptr<T> > ObjContainer;
+  typedef std::map<std::string, std::shared_ptr<T> > ObjContainer;
   class iterator;
   class const_iterator;
 
