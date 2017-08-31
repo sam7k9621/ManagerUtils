@@ -20,38 +20,17 @@ namespace mgr{
             ~SampleMgr();
             void SetIndex( const int& i ){ _idx = i; }
             void SetTChain( TChain* );
+
             /*******************************************************************************
             *  Return file info
             *******************************************************************************/
-
-            int Vsize()
-            {
-                return _vtx.Size;
-            }
-            int Lsize()
-            {
-                return _lep.Size;
-            }
-            int Jsize()
-            {
-                return _jet.Size;
-            }
-            int Gsize()
-            {
-                return _gen.Size;
-            }
-            int Lep_Type()
-            {
-                return _lep.LeptonType[ _idx ];
-            }
-            int RunNo()
-            {
-                return _evt.RunNo;
-            }
-            int LumiNo()
-            {
-                return _evt.LumiNo;
-            }
+            int Vsize()   { return _vtx.Size; }
+            int Lsize()   { return _lep.Size; }
+            int Jsize()   { return _jet.Size; }
+            int Gsize()   { return _gen.Size; }
+            int Lep_Type(){ return _lep.LeptonType[ _idx ]; }
+            int RunNo()   { return _evt.RunNo; }
+            int LumiNo()  { return _evt.LumiNo; }
 
             /*******************************************************************************
             *   Common calculation
@@ -63,8 +42,9 @@ namespace mgr{
             TLorentzVector getLorentzVector( const std::string&, const int& );
 
             /*******************************************************************************
-            *   Vertex & HLT selection
-            *******************************************************************************/
+             *   Vertex & HLT selection
+             *
+             * ******************************************************************************/
             bool passHLT( const std::vector<int>& );
             bool IsFake();
             bool IsOfflinePV();
@@ -74,6 +54,7 @@ namespace mgr{
 
             /*******************************************************************************
             *   Muon selection
+
             *******************************************************************************/
             bool passMuPt( const double& );
             bool passMuEta( const double& );
