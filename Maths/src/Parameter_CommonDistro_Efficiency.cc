@@ -5,29 +5,30 @@
 *  Author      : Yi-Mu "Enoch" Chen [ ensc@hep1.phys.ntu.edu.tw ]
 *
 *******************************************************************************/
-#include "ManagerUtils/Maths/interface/Parameter/CommonDistro.hpp"
 #include "ManagerUtils/Maths/interface/Parameter/Arithmetic.hpp"
+#include "ManagerUtils/Maths/interface/Parameter/CommonDistro.hpp"
 #include "ManagerUtils/Maths/interface/StatisticsUtil.hpp"
 #include "TEfficiency.h"
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   Minos error from calling StatisticsUtil defined functions
     *******************************************************************************/
     Parameter
-    Efficiency::Minos( const double passed,  const double total, const double confidencelevel ) {
-        double params[] = {passed, total};
+    Efficiency::Minos( const double passed, const double total, const double confidencelevel )
+    {
+        double params[] = { passed, total };
         gsl_function binomial;
         binomial.function = &mgr::stat::BinomialNLL;
         binomial.params   = params;
         return MakeMinos(
-                   &binomial,
-                   passed / total,
-                   ( mgr::gsl::epsilon ) * ( mgr::gsl::epsilon ), // Must be very small...
-                   1 - ( mgr::gsl::epsilon ) * ( mgr::gsl::epsilon ),
-                   confidencelevel
-               );
+            &binomial,
+            passed / total,
+            (mgr::gsl::epsilon)*( mgr::gsl::epsilon ),            // Must be very small...
+            1 - (mgr::gsl::epsilon)*( mgr::gsl::epsilon ),
+            confidencelevel
+            );
     }
 
     /*******************************************************************************
@@ -44,22 +45,23 @@ namespace mgr {
         bool   confidencemethod,
         double alpha,
         double beta
-    ) {
+        )
+    {
         const double central = ( passed + alpha - 1. ) / ( total + alpha + beta - 2. );
         const double err_up  = TEfficiency::Bayesian(
-                                   total, passed,
-                                   confidencelevel,
-                                   alpha, beta,
-                                   true,// For upper boundary
-                                   confidencemethod
-                               ) - central;
+            total, passed,
+            confidencelevel,
+            alpha, beta,
+            true,                       // For upper boundary
+            confidencemethod
+            ) - central;
         const double err_down = central - TEfficiency::Bayesian(
-                                    total, passed,
-                                    confidencelevel,
-                                    alpha, beta,
-                                    false,// For lower boundary
-                                    confidencemethod
-                                );
+            total, passed,
+            confidencelevel,
+            alpha, beta,
+            false,                        // For lower boundary
+            confidencemethod
+            );
         return Parameter( central, err_up, err_down );
     }
 

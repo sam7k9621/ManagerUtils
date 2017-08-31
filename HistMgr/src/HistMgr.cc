@@ -12,8 +12,8 @@ using namespace mgr;
 /*******************************************************************************
 *   Constructor/Destructor
 *******************************************************************************/
-HistMgr::HistMgr( const string& tag ) : 
-    _tag(tag)
+HistMgr::HistMgr( const string& tag ) :
+    _tag( tag )
 {
 }
 
@@ -29,7 +29,7 @@ HistMgr::~HistMgr()
 TH1D*
 HistMgr::Hist( const string& name )
 {
-  return _histmgr.GetObj( name );
+    return _histmgr.GetObj( name );
 }
 
 /******************************************************************************/
@@ -37,7 +37,7 @@ HistMgr::Hist( const string& name )
 const TH1D*
 HistMgr::Hist( const string& name ) const
 {
-  return _histmgr.GetObj( name );
+    return _histmgr.GetObj( name );
 }
 
 /******************************************************************************/
@@ -45,7 +45,7 @@ HistMgr::Hist( const string& name ) const
 vector<string>
 HistMgr::AvailableHistList() const
 {
-  return _histmgr.ObjNameList();
+    return _histmgr.ObjNameList();
 }
 
 /*******************************************************************************
@@ -53,21 +53,21 @@ HistMgr::AvailableHistList() const
 *******************************************************************************/
 void
 HistMgr::AddHist(
-  const string& label,
-  const string& xtitle,
-  const string& ytitle,
-  const int     bin_size,
-  const double  x_lower,
-  const double  x_upper
-  )
+    const string& label,
+    const string& xtitle,
+    const string& ytitle,
+    const int     bin_size,
+    const double  x_lower,
+    const double  x_upper
+    )
 {
     string aliasname = _tag + "_" + label;
-    
+
     TH1D* hist = new TH1D( aliasname.c_str(), _tag.c_str(), bin_size, x_lower, x_upper );
-    hist->SetStats(false);
-    hist->SetTitle("");
-    hist->GetXaxis()->SetTitle(xtitle.c_str());
-    hist->GetYaxis()->SetTitle(ytitle.c_str());
+    hist->SetStats( false );
+    hist->SetTitle( "" );
+    hist->GetXaxis()->SetTitle( xtitle.c_str() );
+    hist->GetYaxis()->SetTitle( ytitle.c_str() );
     _histmgr.AddObj( hist );
 }
 
@@ -77,16 +77,16 @@ HistMgr::AddHist(
 void
 HistMgr::Scale( const double x )
 {
-  for( auto hist : _histmgr ){
-    for( int i = 0; i < hist->GetSize(); ++i ){
-      double bincontent = hist->GetBinContent( i );
-      double binerror   = hist->GetBinError( i );
-      bincontent *= x;
-      binerror   *= x;
-      hist->SetBinContent( i, bincontent );
-      hist->SetBinError( i, binerror );
+    for( auto hist : _histmgr ){
+        for( int i = 0; i < hist->GetSize(); ++i ){
+            double bincontent = hist->GetBinContent( i );
+            double binerror   = hist->GetBinError( i );
+            bincontent *= x;
+            binerror   *= x;
+            hist->SetBinContent( i, bincontent );
+            hist->SetBinError( i, binerror );
+        }
     }
-  }
 }
 
 /******************************************************************************/
@@ -94,8 +94,8 @@ HistMgr::Scale( const double x )
 void
 HistMgr::SetColor( const Color_t x )
 {
-  SetLineColor( x );
-  SetFillColor( x );
+    SetLineColor( x );
+    SetFillColor( x );
 }
 
 /******************************************************************************/
@@ -103,9 +103,9 @@ HistMgr::SetColor( const Color_t x )
 void
 HistMgr::SetLineColor( const Color_t x )
 {
-  for( auto hist : _histmgr ){
-    hist->SetLineColor( x );
-  }
+    for( auto hist : _histmgr ){
+        hist->SetLineColor( x );
+    }
 }
 
 /******************************************************************************/
@@ -113,9 +113,9 @@ HistMgr::SetLineColor( const Color_t x )
 void
 HistMgr::SetFillColor( const Color_t x )
 {
-  for( auto hist : _histmgr ){
-    hist->SetFillColor( x );
-  }
+    for( auto hist : _histmgr ){
+        hist->SetFillColor( x );
+    }
 }
 
 /******************************************************************************/
@@ -123,9 +123,9 @@ HistMgr::SetFillColor( const Color_t x )
 void
 HistMgr::SetFillStyle( const Style_t x )
 {
-  for( auto hist : _histmgr ){
-    hist->SetFillStyle( x );
-  }
+    for( auto hist : _histmgr ){
+        hist->SetFillStyle( x );
+    }
 }
 
 /*******************************************************************************
@@ -134,19 +134,19 @@ HistMgr::SetFillStyle( const Style_t x )
 void
 HistMgr::LoadFromFile( const std::string& filename )
 {
-  TFile* histfile = TFile::Open( filename.c_str(), "READ" );
+    TFile* histfile = TFile::Open( filename.c_str(), "READ" );
 
-  for( auto hist : _histmgr ){
-    const string histrootname = hist->GetName();
-    TH1D* histinfile          = (TH1D*)( histfile->Get( histrootname.c_str() ) );
+    for( auto hist : _histmgr ){
+        const string histrootname = hist->GetName();
+        TH1D* histinfile          = (TH1D*)( histfile->Get( histrootname.c_str() ) );
 
-    for( int i = 1; i < hist->GetSize(); ++i ){
-      hist->SetBinContent( i, histinfile->GetBinContent( i ) );
-      hist->SetBinError( i, histinfile->GetBinError( i ) );
+        for( int i = 1; i < hist->GetSize(); ++i ){
+            hist->SetBinContent( i, histinfile->GetBinContent( i ) );
+            hist->SetBinError( i, histinfile->GetBinError( i ) );
+        }
     }
-  }
 
-  delete histfile;
+    delete histfile;
 }
 
 /******************************************************************************/
@@ -154,13 +154,13 @@ HistMgr::LoadFromFile( const std::string& filename )
 void
 HistMgr::SaveToFile( const std::string& filename )
 {
-  TFile* histfile = TFile::Open( filename.c_str(), "UPDATE" );
+    TFile* histfile = TFile::Open( filename.c_str(), "UPDATE" );
 
-  for( const auto hist : _histmgr ){
-    hist->Write();
-  }
+    for( const auto hist : _histmgr ){
+        hist->Write();
+    }
 
-  delete histfile;
+    delete histfile;
 }
 
 /*******************************************************************************
@@ -170,16 +170,17 @@ HistMgr::SaveToFile( const std::string& filename )
 string
 HistMgr::GetXUnit( const TH1D* x )
 {
-  static const std::regex re( ".*\\ \\[(.*)\\]" );
+    static const std::regex re( ".*\\ \\[(.*)\\]" );
 
-  const string title = x->GetXaxis()->GetTitle();
-  std::smatch matchresults;
+    const string title = x->GetXaxis()->GetTitle();
+    std::smatch matchresults;
 
-  std::regex_match( title, matchresults, re );
-  if( matchresults.size() != 2 ){
-    return "";
-  } else {
-    return matchresults[1];
-  }
+    std::regex_match( title, matchresults, re );
+
+    if( matchresults.size() != 2 ){
+        return "";
+    }
+    else{
+        return matchresults[ 1 ];
+    }
 }
-

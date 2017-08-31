@@ -14,7 +14,7 @@
 #include "TGraph.h"
 #include "TGraphAsymmErrors.h"
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   ** PlotOn
     *   Wrapper class for a RooFit Object plotOn function. Returns the generated
@@ -22,15 +22,16 @@ namespace mgr {
     *******************************************************************************/
     template<class T>
     TGraph*
-    PlotOn( RooPlot* frame,
-            T* rooobj,
+    PlotOn( RooPlot*         frame,
+            T*               rooobj,
             const RooCmdArg& arg1 = RooCmdArg::none(),
             const RooCmdArg& arg2 = RooCmdArg::none(),
             const RooCmdArg& arg3 = RooCmdArg::none(),
             const RooCmdArg& arg4 = RooCmdArg::none(),
-            const RooCmdArg& arg5 = RooCmdArg::none() ) {
+            const RooCmdArg& arg5 = RooCmdArg::none() )
+    {
         rooobj->plotOn( frame, arg1, arg2, arg3, arg4, arg5 );
-        return ( TGraph* )frame->getObject( frame->numItems() - 1 );
+        return (TGraph*)frame->getObject( frame->numItems() - 1 );
     }
 
     /*******************************************************************************
@@ -47,16 +48,16 @@ namespace mgr {
     extern TGraphAsymmErrors* MakeCurveError(
         TGraph* errorplot,
         TGraph* centralplot
-    );
+        );
 
     extern TGraph* PlotFitErrorOn(
-        RooPlot*      frame,
-        RooAbsPdf*    pdf,
-        RooFitResult* fitres,
+        RooPlot*         frame,
+        RooAbsPdf*       pdf,
+        RooFitResult*    fitres,
         const RooCmdArg& arg1 = RooCmdArg::none(),
         const RooCmdArg& arg2 = RooCmdArg::none(),
         const RooCmdArg& arg3 = RooCmdArg::none()
-    );
+        );
 
 };/* plt */
 

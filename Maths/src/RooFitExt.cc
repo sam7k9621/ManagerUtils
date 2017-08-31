@@ -23,7 +23,8 @@ KSTest(
     const RooCmdArg& cut,
     double           gen,
     unsigned         bin
-) {
+    )
+{
     RooDataSet* pdfset    = pdf.generate( RooArgSet( var ), dataset.sumEntries() * gen );
     RooAbsData* pdfsubset = pdfset->reduce( RooFit::SelectVars( RooArgSet( var ) ), cut );
     TH1* pdfhist          = pdfsubset->createHistogram( "pdfhist", var, RooFit::Binning( bin ) );

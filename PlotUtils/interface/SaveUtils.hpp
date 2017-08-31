@@ -10,7 +10,7 @@
 
 #include "TCanvas.h"
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   SaveToPDF - saving TCanvas to PDF file, invokes PDF correction ghostscript
     *******************************************************************************/

@@ -8,7 +8,7 @@
 #ifndef MANAGERUTILS_PLOTUTILS_DRAWCMS_HPP
 #define MANAGERUTILS_PLOTUTILS_DRAWCMS_HPP
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   ** DrawCMSLabel
     *   Drawing the CMS Preliminary/Simulation label on top left of canvas
@@ -22,11 +22,11 @@ namespace mgr {
     extern void DrawCMSLabelOuter( int tag = PRELIMINARY );
 
     /*******************************************************************************
-       ** DrawLuminosity
+    ** DrawLuminosity
        Drawing the energy scale and luminosity information on top right of canvas
     *******************************************************************************/
     extern void DrawLuminosity( double luminosity );
 
 };
 
-#endif /* end of include guard: MANAGERUTILS_PLOTUTILS_DRAWCMS_HPP */
+#endif/* end of include guard: MANAGERUTILS_PLOTUTILS_DRAWCMS_HPP */

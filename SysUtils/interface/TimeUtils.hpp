@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   ** CurrentDateTime
     *   Return current date and time as std::string

@@ -9,15 +9,16 @@
 
 #include <iostream>
 using namespace std;
-int main( int argc, char* argv[] ) {
-    for( int i = 1 ; i < argc ; i++ ) {
+int
+main( int argc, char* argv[] )
+{
+    for( int i = 1; i < argc; i++ ){
         // cout << "Globbing: " << argv[i] << endl;
-        for( const auto& file : mgr::Glob( argv[i] ) ) {
-            if( mgr::IsRemotePath( file ) ) {
+        for( const auto& file : mgr::Glob( argv[ i ] ) ){
+            if( mgr::IsRemotePath( file ) ){
                 cout << mgr::GetRemotePath( file ) << endl;
             }
-
-            else {
+            else{
                 cout << file << endl;
             }
         }

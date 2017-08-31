@@ -9,21 +9,22 @@
 #include <string>
 using namespace std;
 
-namespace mgr {
+namespace mgr{
 
     string
-    RandomFileName( const unsigned n, const string& ext, const bool hidden  ) {
+    RandomFileName( const unsigned n, const string& ext, const bool hidden )
+    {
         string ans = RandomString( n );
 
-        if( ext != "" ) {
+        if( ext != "" ){
             ans += "." + ext;
         }
 
-        if( hidden ) {
+        if( hidden ){
             ans = "." + ans;
         }
 
         return ans;
     }
 
-} /* mgr */
+}/* mgr */

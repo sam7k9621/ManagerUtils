@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   Single Entry function

@@ -19,4 +19,4 @@
 #include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
 
 
-#endif /* end of include guard: MANAGERUTILS_COMMON_STLUTILS_HPP */
+#endif/* end of include guard: MANAGERUTILS_COMMON_STLUTILS_HPP */

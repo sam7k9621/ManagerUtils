@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   SeedRandomTime()
@@ -24,7 +24,7 @@ namespace mgr {
     *******************************************************************************/
     extern std::string RandomString( const unsigned length );
 
-} /* mgr */
+}/* mgr */
 
 
 #endif/* end of include guard: MANAGERUTILS_COMMON_RANDOM_HPP */

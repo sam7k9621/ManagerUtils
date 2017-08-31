@@ -11,26 +11,22 @@
 
 #include "TGaxis.h"
 
-namespace mgr {
+namespace mgr{
 
     template<class T>
-    void
-    SetAxis( T* plot );
+    void SetAxis( T* plot );
 
     template<class T>
-    void
-    SetTopPlotAxis( T* plot );
+    void SetTopPlotAxis( T* plot );
 
     template<class T>
-    void
-    SetBottomPlotAxis( T* plot );
+    void SetBottomPlotAxis( T* plot );
 
     template<class T>
-    void
-    SetNormToUnity( T* plot );
+    void SetNormToUnity( T* plot );
 
 };
 
 #include "ManagerUtils/PlotUtils/src/SetAxis.ipp"
 
-#endif /* end of include guard: MANAGERUTILS_PLOTUTILS_SETAXIS_HPP */
+#endif/* end of include guard: MANAGERUTILS_PLOTUTILS_SETAXIS_HPP */

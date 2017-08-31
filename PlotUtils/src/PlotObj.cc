@@ -14,7 +14,7 @@
 #include "TPad.h"
 #include "TPaveText.h"
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   Pad settings functions
@@ -22,7 +22,8 @@ namespace mgr {
     static const float TOP_BOTTOM_SEP = 0.3;
 
     TCanvas*
-    NewCanvas() {
+    NewCanvas()
+    {
         TCanvas* c = new TCanvas( "c", "c", DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT );
         c->SetTicks( 1, 1 );
         return c;
@@ -31,7 +32,8 @@ namespace mgr {
     /******************************************************************************/
 
     TPad*
-    NewTopPad() {
+    NewTopPad()
+    {
         TPad* pad = new TPad( "toppad", "", 0, TOP_BOTTOM_SEP, 1., 1.0 );
         pad->SetTicks( 1, 1 );
         pad->SetBottomMargin( 0.05 );
@@ -44,7 +46,8 @@ namespace mgr {
     /******************************************************************************/
 
     TPad*
-    NewBottomPad() {
+    NewBottomPad()
+    {
         TPad* pad = new TPad( "botpad", "", 0, 0.00, 1, TOP_BOTTOM_SEP );
         pad->SetTicks( 1, 1 );
         pad->SetTopMargin( 0.025 );
@@ -57,7 +60,8 @@ namespace mgr {
     /******************************************************************************/
 
     void
-    SetSinglePad( TVirtualPad* pad ) {
+    SetSinglePad( TVirtualPad* pad )
+    {
         pad->SetLeftMargin( PLOT_X_MIN );
         pad->SetRightMargin( 1 - PLOT_X_MAX );
         pad->SetBottomMargin( PLOT_Y_MIN );
@@ -67,7 +71,8 @@ namespace mgr {
     /******************************************************************************/
 
     void
-    SetSinglePadWithPalette( TVirtualPad* pad ) {
+    SetSinglePadWithPalette( TVirtualPad* pad )
+    {
         pad->SetLeftMargin( PLOT_X_MIN );
         pad->SetBottomMargin( PLOT_Y_MIN );
         pad->SetTopMargin( 1 - PLOT_Y_MAX );
@@ -80,7 +85,8 @@ namespace mgr {
     NewLegend( const float x_min,
                const float y_min,
                const float x_max,
-               const float y_max ) {
+               const float y_max )
+    {
         TLegend* ans = new TLegend( x_min, y_min, x_max, y_max );
         // Setting up default values
         ans->SetBorderSize( 0 );
@@ -96,7 +102,8 @@ namespace mgr {
     NewTextBox( const float x_min,
                 const float y_min,
                 const float x_max,
-                const float y_max ) {
+                const float y_max )
+    {
         TPaveText* ans = new TPaveText( x_min, y_min, x_max, y_max, "NDC" );
         ans->SetTextFont( FONT_TYPE );
         ans->SetTextSize( TEXT_FONT_SIZE );
@@ -112,12 +119,13 @@ namespace mgr {
         TH1D*        num,
         TH1D*        den,
         const double cen
-    ) {
-        TH1D* ans = ( TH1D* )( num->Clone() );
+        )
+    {
+        TH1D* ans = (TH1D*)( num->Clone() );
         ans->Divide( den );
 
-        for( int i = 0; i < num->GetNcells(); ++i ) {
-            if( num->GetBinContent( i ) == 0 && den->GetBinContent( i ) == 0 ) {
+        for( int i = 0; i < num->GetNcells(); ++i ){
+            if( num->GetBinContent( i ) == 0 && den->GetBinContent( i ) == 0 ){
                 ans->SetBinContent( i, cen );
             }
         }
@@ -132,19 +140,19 @@ namespace mgr {
     DividedGraphSimple(
         TGraph* num,
         TGraph* den
-    ) {
+        )
+    {
         TGraph* ans = new TGraph( num->GetN() );
 
-        for( int i = 0; i < num->GetN(); ++i ) {
-            const double origx = num->GetX()[i];
-            const double origy = num->GetY()[i];
+        for( int i = 0; i < num->GetN(); ++i ){
+            const double origx = num->GetX()[ i ];
+            const double origy = num->GetY()[ i ];
             const double deny  = den->Eval( origx );
 
-            if( fabs( deny ) > 0.0000001 ) {
+            if( fabs( deny ) > 0.0000001 ){
                 ans->SetPoint( i, origx, origy / deny );
             }
-
-            else {
+            else{
                 ans->SetPoint( i, origx, 1 );
             }
         }
@@ -159,19 +167,20 @@ namespace mgr {
     DividedGraph(
         TGraphAsymmErrors* num,
         TGraph*            den
-    ) {
+        )
+    {
         TGraphAsymmErrors* ans = new TGraphAsymmErrors( num->GetN() );
 
-        for( int i = 0; i < num->GetN(); ++i ) {
-            const double origx  = num->GetX()[i];
-            const double origy  = num->GetY()[i];
+        for( int i = 0; i < num->GetN(); ++i ){
+            const double origx  = num->GetX()[ i ];
+            const double origy  = num->GetY()[ i ];
             const double xerrlo = num->GetErrorXlow( i );
             const double xerrhi = num->GetErrorXhigh( i );
             const double yerrlo = num->GetErrorYlow( i );
             const double yerrhi = num->GetErrorYhigh( i );
-            const double deny = den->Eval( origx );
+            const double deny   = den->Eval( origx );
 
-            if( deny > 0.0000001 ) {
+            if( deny > 0.0000001 ){
                 ans->SetPoint( i, origx, origy / deny );
                 ans->SetPointError(
                     i,
@@ -179,10 +188,9 @@ namespace mgr {
                     xerrhi,
                     yerrlo / deny,
                     yerrhi / deny
-                );
+                    );
             }
-
-            else {
+            else{
                 ans->SetPoint( i, origx, 1 );
                 ans->SetPointError(
                     i,
@@ -190,7 +198,7 @@ namespace mgr {
                     xerrhi,
                     0,
                     0
-                );
+                    );
             }
         }
 
@@ -204,14 +212,15 @@ namespace mgr {
     PullGraph(
         TGraph*            numgraph,
         TGraphAsymmErrors* dengraph
-    ) {
+        )
+    {
         TGraphAsymmErrors* ans = new TGraphAsymmErrors( dengraph->GetN() );
 
-        for( int i = 0; i < dengraph->GetN(); ++i ) {
-            const double x    = dengraph->GetX()[i];
-            const double y    = dengraph->GetY()[i];
+        for( int i = 0; i < dengraph->GetN(); ++i ){
+            const double x    = dengraph->GetX()[ i ];
+            const double y    = dengraph->GetY()[ i ];
             const double numy = numgraph->Eval( x );
-            const double pull = y == 0   ? 0 :
+            const double pull = y == 0 ? 0 :
                                 numy > y ? ( numy - y ) / dengraph->GetErrorYhigh( i ) :
                                 ( numy - y ) / dengraph->GetErrorYlow( i );
             ans->SetPoint( i, x, pull );
@@ -220,7 +229,7 @@ namespace mgr {
                 dengraph->GetErrorX( i ),
                 dengraph->GetErrorX( i ),
                 0, 0// No y error
-            );
+                );
         }
 
         return ans;

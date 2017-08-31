@@ -10,9 +10,9 @@
 
 #include "ManagerUtils/Maths/interface/GSLUtil.hpp"
 
-namespace mgr {
+namespace mgr{
 
-    namespace stat {
+    namespace stat{
 
         /*******************************************************************************
         *   Sigma interval - Confidence level conversion.
@@ -36,7 +36,7 @@ namespace mgr {
             double&       min,
             double&       max,
             const double  confidencelevel = onesigma_level
-        );
+            );
 
 
         extern int MinosError(
@@ -49,7 +49,7 @@ namespace mgr {
             const double             confidencelevel = onesigma_level,
             gsl_vector*              upperguess = nullptr,
             gsl_vector*              lowerguess = nullptr
-        );
+            );
 
         /*******************************************************************************
         *   Common Distribution NLLs

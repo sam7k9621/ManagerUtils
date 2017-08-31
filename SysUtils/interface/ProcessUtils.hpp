@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   * GetCMDOutput( x )
     *   Storing the stdout/stderr of a shell command <x> to return string. Notice
@@ -43,7 +43,7 @@ namespace mgr {
         const std::string& process_tag,
         const std::string& exclude = "",
         const unsigned     waitmills = 100
-    );
+        );
 
 }/* mgr */
 

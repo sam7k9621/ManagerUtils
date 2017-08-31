@@ -16,4 +16,4 @@
 
 #include "ManagerUtils/Maths/interface/Parameter/CommonDistro.hpp"
 
-#endif /* end of include guard: MANAGERUTILS_MATHS_PARAMETER_HPP */
+#endif/* end of include guard: MANAGERUTILS_MATHS_PARAMETER_HPP */

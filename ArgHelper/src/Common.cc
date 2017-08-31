@@ -16,24 +16,26 @@ using namespace boost::property_tree;
 *   Common function
 *******************************************************************************/
 
-namespace mgr {
+namespace mgr{
 
-    void ReadFile( const string& file, ptree& root ) {
+    void
+    ReadFile( const string& file, ptree& root )
+    {
         read_json( file, root );
     }
 
-    string SubPackagePath( const string& package, const string& sub ) {
+    string
+    SubPackagePath( const string& package, const string& sub )
+    {
         return mgr::PackagePath( package ) / sub;
     }
 
-    //https://ubuntuforums.org/archive/index.php/t-895400.html
-    string PackagePath( const string& package ) {
+    // https://ubuntuforums.org/archive/index.php/t-895400.html
+    string
+    PackagePath( const string& package )
+    {
         string base = getenv( "CMSSW_BASE" );
         return ( base / "src" ) / package;
     }
 
 }
-
-
-
-

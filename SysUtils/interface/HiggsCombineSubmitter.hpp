@@ -11,21 +11,22 @@
 #include <string>
 #include <vector>
 
-namespace mgr {
+namespace mgr{
 
     class CombineRequest;// see below for details
 
     class HiggsCombineSubmitter {
         public:
+
             HiggsCombineSubmitter( const std::string& config_file );
-            virtual
-            ~HiggsCombineSubmitter();
+            virtual ~HiggsCombineSubmitter();
 
             int              SubmitDataCard( const CombineRequest& ) const;
             std::string      MakeScripts( const CombineRequest& ) const;
             std::vector<int> SubmitParallel( const std::vector<CombineRequest>& ) const;
 
         private:
+
             std::string _scram_arch;
             std::string _store_path;
             std::string _cmssw_version;
@@ -38,7 +39,7 @@ namespace mgr {
             std::string temp_scriptname(
                 const int          masspoint,
                 const std::string& combine_method
-            ) const;
+                ) const;
 
             std::string MakeHybridNewScript( const CombineRequest& ) const;
             std::string MakeAsymptoticScript( const CombineRequest& ) const;
@@ -48,8 +49,9 @@ namespace mgr {
             static const std::string higgs_subdir;
     };
 
-    class CombineRequest { // Pure data class for submission management
+    class CombineRequest {// Pure data class for submission management
         public:
+
             CombineRequest(
                 const std::string& _cardfile,
                 const std::string& _storefile,
@@ -57,7 +59,7 @@ namespace mgr {
                 const std::string& _combine_method,
                 const std::string& _additional_options = "",
                 const std::string& _logfile = "/dev/null"
-            );// Constructor with default arguments
+                );// Constructor with default arguments
             ~CombineRequest();
 
             std::string cardfile;

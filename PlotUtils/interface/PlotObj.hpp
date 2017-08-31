@@ -9,12 +9,12 @@
 #define MANAGERUTILS_PLOTUTILS_PLOTOBJ_HPP
 
 #include "TCanvas.h"
+#include "TH1D.h"
 #include "TLegend.h"
 #include "TPad.h"
-#include "TH1D.h"
 #include "TPaveText.h"
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   * New Pad - default settings for new padding in top and botom pads
     *******************************************************************************/
@@ -43,7 +43,7 @@ namespace mgr {
         const float ymin,
         const float xmax,
         const float ymax
-    );
+        );
 
     /*******************************************************************************
     *   * Divide Histogram objects
@@ -52,10 +52,10 @@ namespace mgr {
     *   histogram. Sets the bins where both are empty to a set value (default to 1)
     *******************************************************************************/
     extern TH1D* DivideHist(
-        TH1D* num,
-        TH1D* den,
+        TH1D*        num,
+        TH1D*        den,
         const double cen = 1.
-    );
+        );
 
     /*******************************************************************************
     *   * Divide TGraphAsymmErrors
@@ -78,17 +78,17 @@ namespace mgr {
     extern TGraph* DividedGraphSimple(
         TGraph* num,
         TGraph* den
-    );
+        );
 
     extern TGraphAsymmErrors* DividedGraph(
         TGraphAsymmErrors* num,
         TGraph*            den
-    );
+        );
 
     extern TGraphAsymmErrors* PullGraph(
         TGraph*            numgraph,
         TGraphAsymmErrors* dengraph
-    );
+        );
 
 };
 

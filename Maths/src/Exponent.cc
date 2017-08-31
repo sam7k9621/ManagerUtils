@@ -7,11 +7,12 @@
 *******************************************************************************/
 
 int
-Power( int base, unsigned exp ) {
+Power( int base, unsigned exp )
+{
     int result = 1;
 
-    while( exp ) {
-        if( exp & 1 ) {
+    while( exp ){
+        if( exp & 1 ){
             result *= base;
         }
 

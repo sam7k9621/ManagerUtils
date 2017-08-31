@@ -1,13 +1,13 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-//http://stackoverflow.com/questions/1433204/how-do-i-use-extern-to-share-variables-between-source-files-in-c
+// http://stackoverflow.com/questions/1433204/how-do-i-use-extern-to-share-variables-between-source-files-in-c
 
+#include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 #include <string>
 #include <vector>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
-#include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
 /*******************************************************************************
 *   Operator overloading, defined in src/Common.cc
 *******************************************************************************/
@@ -17,7 +17,7 @@
 *   Global variable, defined in src/Common.cc
 *******************************************************************************/
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   Common variable, defined in src/Common.cc
     *******************************************************************************/
@@ -25,7 +25,7 @@ namespace mgr {
     /*******************************************************************************
     *   Common function, defined in src/Common.cc
     *******************************************************************************/
-    extern void ReadFile( const std::string&  , boost::property_tree::ptree& );
+    extern void        ReadFile( const std::string&, boost::property_tree::ptree& );
     extern std::string SubPackagePath( const std::string&, const std::string& );
     extern std::string PackagePath( const std::string& );
 

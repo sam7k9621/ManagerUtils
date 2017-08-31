@@ -11,26 +11,27 @@
 #include "TLatex.h"
 #include <string>
 
-namespace mgr {
+namespace mgr{
 
     class LatexMgr : public TLatex {
 
         public:
+
             LatexMgr();
-            virtual
-            ~LatexMgr ();
+            virtual ~LatexMgr ();
 
             LatexMgr& WriteLine( const std::string& );
             LatexMgr& SetOrigin( const double, const double );
             LatexMgr& SetOrigin( const double, const double, const Short_t );
 
         private:
+
             unsigned _linecount;
-            double   _origin_x;
-            double   _origin_y;
+            double _origin_x;
+            double _origin_y;
     };
 
-} /* mgr */
+}/* mgr */
 
 
 #endif/* end of include guard: MANAGERUTILS_PLOTUTILS_LATEXMGR_HPP */

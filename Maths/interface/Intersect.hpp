@@ -20,6 +20,6 @@ bool Intersect(
     const double p3x, const double p3y,
     const double p4x, const double p4y,
     double& intx, double& inty
-);
+    );
 
 #endif/* end of include guard: MANAGERUTILS_MATHS_INTERSECT_HPP */

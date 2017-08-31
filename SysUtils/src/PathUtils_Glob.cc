@@ -5,16 +5,16 @@
 *  Author      : Yi-Mu "Enoch" Chen [ ensc@hep1.phys.ntu.edu.tw ]
 *
 *******************************************************************************/
-#include "ManagerUtils/SysUtils/interface/PathUtils/Glob.hpp"
-#include "ManagerUtils/SysUtils/interface/PathUtils/CommonPath.hpp"
-#include "ManagerUtils/SysUtils/interface/ProcessUtils.hpp"
 #include "ManagerUtils/Common/interface/STLUtils.hpp"
+#include "ManagerUtils/SysUtils/interface/PathUtils/CommonPath.hpp"
+#include "ManagerUtils/SysUtils/interface/PathUtils/Glob.hpp"
+#include "ManagerUtils/SysUtils/interface/ProcessUtils.hpp"
 
 #include <algorithm>
+#include <iostream>
 #include <regex>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/format.hpp>
@@ -22,18 +22,18 @@
 
 using namespace std;
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   Master functions
     *******************************************************************************/
     vector<string>
-    Glob( const string& path ) {
-        if( IsRemotePath( path ) ) {
+    Glob( const string& path )
+    {
+        if( IsRemotePath( path ) ){
             return GlobRemote( path );
         }
-
-        else {
+        else{
             return GlobLocal( path );
         }
     }
@@ -42,7 +42,8 @@ namespace mgr {
     *   Local Globbing powered by POSIX <glob.h>
     *******************************************************************************/
     vector<string>
-    GlobLocal( const string& path ) {
+    GlobLocal( const string& path )
+    {
         glob_t glob_result;
         glob( path.c_str(), GLOB_TILDE, NULL, &glob_result );
         vector<string> ret( glob_result.gl_pathv, glob_result.gl_pathv + glob_result.gl_pathc );
@@ -53,7 +54,8 @@ namespace mgr {
     /******************************************************************************/
 
     vector<string>
-    GlobRemote( const string& fullpath ) {
+    GlobRemote( const string& fullpath )
+    {
         vector<string> ans;
         const string remoteurl  = GetServerURL( fullpath );
         const string remotepath = GetRemotePath( fullpath );
@@ -67,12 +69,12 @@ namespace mgr {
         tokens.front() = '/' + tokens.front();
 
         // Truncated intermediate directory that don't require globbing.
-        for( unsigned index = 1; index < tokens.size(); ++index  ) {
-            const string prev = tokens[index - 1];
-            const string pres = tokens[index];
+        for( unsigned index = 1; index < tokens.size(); ++index ){
+            const string prev = tokens[ index - 1 ];
+            const string pres = tokens[ index ];
 
-            if( GlobToRegex( prev ) == prev && GlobToRegex( pres ) == pres ) {
-                tokens[index - 1] = prev / pres;
+            if( GlobToRegex( prev ) == prev && GlobToRegex( pres ) == pres ){
+                tokens[ index - 1 ] = prev / pres;
                 tokens.erase( tokens.begin() + index );
                 --index;
             }
@@ -80,13 +82,13 @@ namespace mgr {
 
         // Preparing vector for BFS searching
         vector<std::pair<std::string, unsigned> > querylist;
-        querylist.emplace_back( tokens.front(), 1 );   // pushing first element int
+        querylist.emplace_back( tokens.front(), 1 );// pushing first element int
 
-        for( unsigned i = 0; i < querylist.size(); ++i  ) {
-            const string querydir     = querylist[i].first;
-            const unsigned querydepth = querylist[i].second;
+        for( unsigned i = 0; i < querylist.size(); ++i ){
+            const string querydir     = querylist[ i ].first;
+            const unsigned querydepth = querylist[ i ].second;
 
-            if( querydepth >= tokens.size() ) {
+            if( querydepth >= tokens.size() ){
                 continue;
             }
 
@@ -100,8 +102,8 @@ namespace mgr {
             const string globpattern = querydir + '/' + tokens.at( querydepth );
             std::regex globregex( GlobToRegex( globpattern ) );
 
-            for( const auto& out : outlist ) {
-                if( std::regex_match( out, globregex ) ) {
+            for( const auto& out : outlist ){
+                if( std::regex_match( out, globregex ) ){
                     querylist.emplace_back( out, querydepth + 1 );
                 }
             }
@@ -109,9 +111,9 @@ namespace mgr {
 
         std::regex finalglob( GlobToRegex( remotepath ) );
 
-        for( const auto& querypair : querylist ) {
-            if( std::regex_match( querypair.first, finalglob ) ) {
-                const std::string fullfilepath = str( boost::format( "root://%s/%s" ) % remoteurl % querypair.first  );
+        for( const auto& querypair : querylist ){
+            if( std::regex_match( querypair.first, finalglob ) ){
+                const std::string fullfilepath = str( boost::format( "root://%s/%s" ) % remoteurl % querypair.first );
                 ans.push_back( fullfilepath );
             }
         }
@@ -124,7 +126,8 @@ namespace mgr {
     *   Glob - regex translation function
     *******************************************************************************/
     std::string
-    GlobToRegex( const std::string& query ) {
+    GlobToRegex( const std::string& query )
+    {
         static const std::regex starmatch( "\\*" );
         static const std::string starrep( ".*" );
         static const std::regex qmmatch( "\\?" );
@@ -138,14 +141,14 @@ namespace mgr {
     *   IsRemotePath
     *******************************************************************************/
     bool
-    IsRemotePath( const std::string& path ) {
+    IsRemotePath( const std::string& path )
+    {
         static const std::string remoteprefix = "root://";
 
-        if( std::mismatch( remoteprefix.begin(), remoteprefix.end(), path.begin() ).first == remoteprefix.end() ) {
+        if( std::mismatch( remoteprefix.begin(), remoteprefix.end(), path.begin() ).first == remoteprefix.end() ){
             return true;
         }
-
-        else {
+        else{
             return false;
         }
     }
@@ -154,22 +157,21 @@ namespace mgr {
     *   Remote Helper functions
     *******************************************************************************/
     std::string
-    GetServerURL( const std::string& remotepath ) {
+    GetServerURL( const std::string& remotepath )
+    {
         static const std::regex urlregex( "root:\\/\\/([a-z.0-9]+)\\/\\/.*" );
         std::smatch urlmatch;
 
-        if( std::regex_match( remotepath, urlmatch, urlregex ) ) {
-            if( urlmatch.size() == 2 ) {
-                return urlmatch[1].str();
+        if( std::regex_match( remotepath, urlmatch, urlregex ) ){
+            if( urlmatch.size() == 2 ){
+                return urlmatch[ 1 ].str();
             }
-
-            else {
+            else{
                 throw std::invalid_argument( "Input contains more than one url!" );
                 return "";
             }
         }
-
-        else {
+        else{
             throw std::invalid_argument( "Input does not contain valid server url!" );
             return "";
         }
@@ -178,25 +180,24 @@ namespace mgr {
     /******************************************************************************/
 
     std::string
-    GetRemotePath( const std::string& remotepath ) {
+    GetRemotePath( const std::string& remotepath )
+    {
         static const std::regex pathregex( "root:\\/\\/[a-z.0-9]+\\/(\\/.+)" );
         std::smatch pathmatch;
 
-        if( std::regex_match( remotepath, pathmatch, pathregex ) ) {
-            if( pathmatch.size() == 2 ) {
-                return pathmatch[1].str();
+        if( std::regex_match( remotepath, pathmatch, pathregex ) ){
+            if( pathmatch.size() == 2 ){
+                return pathmatch[ 1 ].str();
             }
-
-            else {
+            else{
                 throw std::invalid_argument( "Input doesn't give a remote path!" );
                 return "";
             }
         }
-
-        else {
+        else{
             throw std::invalid_argument( "Input doesn't give a remote path!" );
             return "";
         }
     }
 
-} /* mgr */
+}/* mgr */

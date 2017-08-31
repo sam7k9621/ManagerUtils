@@ -23,12 +23,13 @@ using namespace std;
 
 #define MAX_BUFFER 65536
 
-namespace mgr {
+namespace mgr{
 
     /******************************************************************************/
 
     unsigned
-    NumOfThreads() {
+    NumOfThreads()
+    {
         return std::thread::hardware_concurrency();
     }
 
@@ -36,16 +37,17 @@ namespace mgr {
     *   Getting command line ouputs
     *******************************************************************************/
     string
-    GetCMDOutput( const std::string& cmd ) {
+    GetCMDOutput( const std::string& cmd )
+    {
         static unsigned callcount = 0;
         // Main reference
         // http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c-using-posix
-        char buffer[MAX_BUFFER];
+        char buffer[ MAX_BUFFER ];
         std::string result = "";
         FILE* pipe         = popen( cmd.c_str(), "r" );
         ++callcount;
 
-        if( !pipe ) {
+        if( !pipe ){
             // Error message generation
             // http://stackoverflow.com/questions/25188891/why-is-my-popen-failing
             cerr << "PIPE error: " << strerror( errno ) << endl;
@@ -55,8 +57,8 @@ namespace mgr {
             throw std::runtime_error( "popen() failed!" );
         }
 
-        while( !feof( pipe ) ) {
-            if( fgets( buffer, MAX_BUFFER, pipe ) != NULL ) {
+        while( !feof( pipe ) ){
+            if( fgets( buffer, MAX_BUFFER, pipe ) != NULL ){
                 result += buffer;
             }
         }
@@ -68,26 +70,29 @@ namespace mgr {
     /******************************************************************************/
 
     string
-    GetCMDSTDOutput( const string& cmd ) {
+    GetCMDSTDOutput( const string& cmd )
+    {
         return GetCMDOutput( cmd + " 2> /dev/null" );
     }
 
     /******************************************************************************/
 
     string
-    GetCMDERROutput( const string& cmd ) {
+    GetCMDERROutput( const string& cmd )
+    {
         return GetCMDOutput( cmd + " > /dev/null  2>&1 " );
     }
 
     /******************************************************************************/
 
     int
-    HasProcess( const string& x, const string& exclude ) {
+    HasProcess( const string& x, const string& exclude )
+    {
         string cmd = "ps -U ${USER} ";
         cmd += " | awk '{print $4}' ";
         cmd += " | grep " + x;
 
-        if( exclude != "" ) {
+        if( exclude != "" ){
             cmd += "| grep --invert-match  " + exclude;
         }
 
@@ -99,12 +104,13 @@ namespace mgr {
     /******************************************************************************/
 
     void
-    WaitProcess( const string& x, const string& exclude, const unsigned sleeptime ) {
-        while( 1 ) {
+    WaitProcess( const string& x, const string& exclude, const unsigned sleeptime )
+    {
+        while( 1 ){
             const int proc_count     = HasProcess( x, exclude );
             const string time_string = CurrentDateTime();
 
-            if( proc_count == 0 ) {
+            if( proc_count == 0 ){
                 break;
             }
 
@@ -117,4 +123,4 @@ namespace mgr {
     }
 
 
-} /* mgr */
+}/* mgr */

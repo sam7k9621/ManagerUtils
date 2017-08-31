@@ -13,4 +13,4 @@
 *******************************************************************************/
 extern int Power( int base, unsigned exp );
 
-#endif /* end of include guard: MANAGERUTILS_MATHS_EXPONENT_HPP */
+#endif/* end of include guard: MANAGERUTILS_MATHS_EXPONENT_HPP */

@@ -13,7 +13,7 @@
 #include "TH1.h"
 #include <vector>
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   * GetYMax - getting y axis maximum (including error) for a histogram
     *******************************************************************************/
@@ -31,15 +31,16 @@ namespace mgr {
     *   ** GetYmax( const vector<TGraph*>& )
     *   ** GetYmin( const veoctr<TGraph*>& ) Getting ymax and ymin of multiple graphs
     *******************************************************************************/
-    extern double GetYmax( const std::vector<TGraph*>&  );
-    extern double GetYmin( const std::vector<TGraph*>&  );
+    extern double GetYmax( const std::vector<TGraph*>& );
+    extern double GetYmin( const std::vector<TGraph*>& );
 
     /*******************************************************************************
     *   Variadic interface
     *******************************************************************************/
     template<typename ... TS>
     double
-    GetYmin( TGraph* x, TS ... arg ) {
+    GetYmin( TGraph* x, TS ... arg )
+    {
         return GetYmin( MakeVector<TGraph*>( x, arg ... ) );
     }
 
@@ -47,7 +48,8 @@ namespace mgr {
 
     template<typename ... TS>
     double
-    GetYmax( TGraph* x, TS ... arg ) {
+    GetYmax( TGraph* x, TS ... arg )
+    {
         return GetYmax( MakeVector<TGraph*>( x, arg ... ) );
     }
 
@@ -55,7 +57,8 @@ namespace mgr {
 
     template<typename ... TS>
     double
-    GetYmax( TH1* x, TS ... arg ) {
+    GetYmax( TH1* x, TS ... arg )
+    {
         return GetYmax( MakeVector<TH1*>( x, arg ... ) );
     }
 

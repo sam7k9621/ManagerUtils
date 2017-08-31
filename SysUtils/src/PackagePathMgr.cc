@@ -5,9 +5,9 @@
 *  Author      : Yi-Mu "Enoch" Chen [ ensc@hep1.phys.ntu.edu.tw ]
 *
 *******************************************************************************/
+#include "ManagerUtils/Common/interface/STLUtils.hpp"
 #include "ManagerUtils/SysUtils/interface/PackagePathMgr.hpp"
 #include "ManagerUtils/SysUtils/interface/PathUtils.hpp"
-#include "ManagerUtils/Common/interface/STLUtils.hpp"
 
 #include <boost/filesystem.hpp>
 #include <cstdlib>
@@ -16,7 +16,7 @@
 using namespace std;
 namespace fs = boost::filesystem;
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   Constructor and Destructor
@@ -27,15 +27,17 @@ namespace mgr {
         const std::string& settings_dir,
         const std::string& results_dir,
         const std::string& samples_dir
-    ) :
+        ) :
         _package_name( package ),
         _sub_package_name( sub_package ),
         _settings_dir( settings_dir ),
         _results_dir( results_dir ),
-        _samples_dir( samples_dir ) {
+        _samples_dir( samples_dir )
+    {
     }
 
-    PackagePathMgr::~PackagePathMgr() {
+    PackagePathMgr::~PackagePathMgr()
+    {
     }
 
 
@@ -43,7 +45,8 @@ namespace mgr {
     *   Public functions
     *******************************************************************************/
     string
-    PackagePathMgr::PackageDir() const {
+    PackagePathMgr::PackageDir() const
+    {
         return PackagePath( _package_name );
         ;
     }
@@ -51,36 +54,41 @@ namespace mgr {
     /******************************************************************************/
 
     string
-    PackagePathMgr::SubPackageDir() const {
+    PackagePathMgr::SubPackageDir() const
+    {
         return SubPackagePath( _package_name, _sub_package_name );
     }
 
     /******************************************************************************/
 
     string
-    PackagePathMgr::SubDir( const string& x ) const {
-        return SubPackageDir() / x ;
+    PackagePathMgr::SubDir( const string& x ) const
+    {
+        return SubPackageDir() / x;
     }
 
     /******************************************************************************/
 
     string
-    PackagePathMgr::SettingsDir() const {
+    PackagePathMgr::SettingsDir() const
+    {
         return SubDir( _settings_dir );
     }
 
     /******************************************************************************/
 
     string
-    PackagePathMgr::ResultsDir() const {
+    PackagePathMgr::ResultsDir() const
+    {
         return SubDir( _results_dir );
     }
 
     /******************************************************************************/
 
     string
-    PackagePathMgr::SamplesDir() const {
+    PackagePathMgr::SamplesDir() const
+    {
         return SubDir( _samples_dir );
     }
 
-} /* mgr */
+}/* mgr */

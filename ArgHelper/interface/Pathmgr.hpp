@@ -1,22 +1,22 @@
 #ifndef PATHMGR_HPP
 #define PATHMGR_HPP
 
+#include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
 #include <map>
 #include <string>
-#include "ManagerUtils/Common/interface/STLUtils/StringUtils.hpp"
-namespace mgr {
+namespace mgr{
 
     class Pathmgr {
         public:
+
             Pathmgr(
                 const std::string& package,
                 const std::string& sub_package,
                 const std::string& settings_dir = "settings",
                 const std::string& results_dir = "results",
                 const std::string& datas_dir = "data"
-            );
-            virtual
-            ~Pathmgr ();
+                );
+            virtual ~Pathmgr ();
 
             // Instance functions for getting file names
             std::string PackageDir()    const;
@@ -29,6 +29,7 @@ namespace mgr {
             std::string SubDir( const std::string& ) const;
 
         private:
+
             const std::string _package_name;
             const std::string _sub_package_name;
             const std::string _settings_dir;

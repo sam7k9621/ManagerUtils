@@ -22,9 +22,9 @@
 #include "THStack.h"
 #include "TLegend.h"
 #include "TLine.h"
+#include "TMultiGraph.h"
 #include "TPad.h"
 #include "TPaveText.h"
-#include "TMultiGraph.h"
 
 /*******************************************************************************
 *   Including custom defined functions

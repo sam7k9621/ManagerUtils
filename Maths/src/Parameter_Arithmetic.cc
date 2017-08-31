@@ -16,7 +16,7 @@
 
 using namespace std;
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   General Interfacing functions with MakeMinos functions
@@ -28,7 +28,8 @@ namespace mgr {
         const double  min,
         const double  max,
         const double  confidencelevel
-    ) {
+        )
+    {
         double central    = initguess;
         double lowerbound = min;
         double upperbound = max;
@@ -46,7 +47,8 @@ namespace mgr {
         const double             confidencelevel,
         gsl_vector*              upperguess,
         gsl_vector*              lowerguess
-    ) {
+        )
+    {
         double central;
         double upperbound;
         double lowerbound;
@@ -60,7 +62,7 @@ namespace mgr {
             confidencelevel,
             upperguess,
             lowerguess
-        );
+            );
         return Parameter( central, upperbound - central, central - lowerbound );
     }
 
@@ -69,7 +71,8 @@ namespace mgr {
     *   Approximate Loglikelihood functions and first derivative.
     *******************************************************************************/
     double
-    LinearVarianceNLL( double x, const Parameter& parm ) {
+    LinearVarianceNLL( double x, const Parameter& parm )
+    {
         static const double maxrelerror = sqrt( 10. );
         static const double minprod     = sqrt( mgr::gsl::epsilon );
         // Getting values
@@ -80,29 +83,31 @@ namespace mgr {
         const double efflower = std::max( parm.AbsLowerError(), parm.AbsUpperError() / maxrelerror );
         // product of errors must be a small finite value
         const double sigsq   = std::max( effupper * efflower, minprod );
-        const double sigdiff = effupper -  efflower;
+        const double sigdiff = effupper - efflower;
         const double relasym = std::min( sigdiff / sigsq, 3.2 );
         // Original definition as followed
         const double num = ( x - central ) * ( x - central );
         const double de  = sigsq * ( 1 + ( x - central ) * relasym );
-        const double ans = 0.5  * num / de;
+        const double ans = 0.5 * num / de;
         return ans;
     }
 
     /*******************************************************************************
     *   Hidden method for Making a master uncorrelated member functions
     *******************************************************************************/
-    struct uncorrelatedparam {
+    struct uncorrelatedparam
+    {
         const vector<Parameter>* listptr;
         double                   ( * nll )( double, const Parameter& );
     };
 
     static double
-    UncorrelatedNLL( const gsl_vector* x, void* param ) {
-        uncorrelatedparam* p = ( uncorrelatedparam* )param;
+    UncorrelatedNLL( const gsl_vector* x, void* param )
+    {
+        uncorrelatedparam* p = (uncorrelatedparam*)param;
         double ans           = 0;
 
-        for( size_t i = 0; i < p->listptr->size(); ++i ) {
+        for( size_t i = 0; i < p->listptr->size(); ++i ){
             const Parameter& thisp = p->listptr->at( i );
             const double thisx     = gsl_vector_get( x, i );
             ans += p->nll( thisx, thisp );
@@ -118,8 +123,9 @@ namespace mgr {
     SumUncorrelated(
         const vector<Parameter>& paramlist,
         const double confidencelevel,
-        double ( * nll )( double, const Parameter& )
-    ) {
+        double ( *nll )( double, const Parameter& )
+        )
+    {
         const unsigned dim = paramlist.size();
         mgr::gsl::gsl_multifunc masternll;
         uncorrelatedparam param = { &paramlist, nll };
@@ -134,7 +140,7 @@ namespace mgr {
         gsl_vector* upperguess = gsl_vector_alloc( dim );
         gsl_vector* lowerguess = gsl_vector_alloc( dim );
 
-        for( size_t i = 0; i < paramlist.size(); ++i ) {
+        for( size_t i = 0; i < paramlist.size(); ++i ){
             const Parameter& p = paramlist.at( i );
             gsl_vector_set( initguess,  i, p.CentralValue() );
             gsl_vector_set( upperguess, i, p.CentralValue() + p.AbsUpperError() / 1.5 );
@@ -143,13 +149,13 @@ namespace mgr {
 
         // Calling MinosError function for acutal computation
         Parameter ans = MakeMinos(
-                            &masternll,
-                            &varfunction,
-                            initguess,
-                            confidencelevel,
-                            upperguess,
-                            lowerguess
-                        );
+            &masternll,
+            &varfunction,
+            initguess,
+            confidencelevel,
+            upperguess,
+            lowerguess
+            );
         // Releaing gsl vector calls
         gsl_vector_free( initguess );
         gsl_vector_free( upperguess );
@@ -163,14 +169,15 @@ namespace mgr {
     ProdUncorrelated(
         const std::vector<Parameter>& paramlist,
         const double confidencelevel,
-        double ( * nll )( double, const Parameter& )
-    ) {
+        double ( *nll )( double, const Parameter& )
+        )
+    {
         const unsigned dim = paramlist.size();
         // Getting normalized version of list
         double prod = 1.;
         vector<Parameter> normlist;
 
-        for( const auto& p : paramlist ) {
+        for( const auto& p : paramlist ){
             prod *= p.CentralValue();
             normlist.push_back( p.NormParam() );
         }
@@ -188,8 +195,8 @@ namespace mgr {
         gsl_vector* upperguess = gsl_vector_alloc( dim );
         gsl_vector* lowerguess = gsl_vector_alloc( dim );
 
-        for( size_t i = 0; i < normlist.size(); ++i ) {
-            const Parameter& p  = normlist.at( i );
+        for( size_t i = 0; i < normlist.size(); ++i ){
+            const Parameter& p = normlist.at( i );
             gsl_vector_set( initguess,  i, p.CentralValue() );
             gsl_vector_set( upperguess, i, p.CentralValue() + p.AbsUpperError() / 1.2 );
             gsl_vector_set( lowerguess, i, p.CentralValue() - p.AbsLowerError() / 1.2 );
@@ -197,13 +204,13 @@ namespace mgr {
 
         // Calling MinosError function for acutal computation
         Parameter ans = MakeMinos(
-                            &masternll,
-                            &varfunction,
-                            initguess,
-                            confidencelevel,
-                            upperguess,
-                            lowerguess
-                        );
+            &masternll,
+            &varfunction,
+            initguess,
+            confidencelevel,
+            upperguess,
+            lowerguess
+            );
         // Releaing gsl vector calls
         gsl_vector_free( initguess );
         gsl_vector_free( upperguess );

@@ -6,45 +6,46 @@
 #include "TH1D.h"
 #include <string>
 
-namespace mgr {
+namespace mgr{
 
-class HistMgr 
-{
-public:
-  HistMgr( const std::string& );  // Must have unique name
-  virtual
-  ~HistMgr ();
+    class HistMgr {
+        public:
 
-  TH1D*       Hist( const std::string& );
-  const TH1D* Hist( const std::string& ) const;
+            HistMgr( const std::string& );// Must have unique name
+            virtual ~HistMgr ();
 
-  std::vector<std::string> AvailableHistList() const;
-  void                     Scale( const double );
-  void                     SetColor( const Color_t );
-  void                     SetLineColor( const Color_t );
-  void                     SetFillColor( const Color_t );
-  void                     SetFillStyle( const Style_t );
+            TH1D*       Hist( const std::string& );
+            const TH1D* Hist( const std::string& ) const;
 
-  void LoadFromFile( const std::string& );
-  void SaveToFile( const std::string& );
+            std::vector<std::string> AvailableHistList() const;
+            void                     Scale( const double );
+            void                     SetColor( const Color_t );
+            void                     SetLineColor( const Color_t );
+            void                     SetFillColor( const Color_t );
+            void                     SetFillStyle( const Style_t );
 
-  // Static functions for helping with title creation
-  static std::string GetXUnit( const TH1D* );
+            void LoadFromFile( const std::string& );
+            void SaveToFile( const std::string& );
 
-protected:
-  void AddHist(
-    const std::string&, 
-    const std::string&, 
-    const std::string&, 
-    const int         ,
-    const double      , 
-    const double       
-    );
+            // Static functions for helping with title creation
+            static std::string GetXUnit( const TH1D* );
 
-private:
-  std::string _tag;
-  RootObjMgr<TH1D> _histmgr;
-};
+        protected:
+
+            void AddHist(
+                const std::string&,
+                const std::string&,
+                const std::string&,
+                const int,
+                const double,
+                const double
+                );
+
+        private:
+
+            std::string _tag;
+            RootObjMgr<TH1D> _histmgr;
+    };
 
 };
 

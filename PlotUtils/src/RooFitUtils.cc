@@ -12,10 +12,11 @@
 #include <iostream>
 #include <map>
 
-namespace mgr {
+namespace mgr{
 
     void
-    SetFrame( RooPlot* frame ) {
+    SetFrame( RooPlot* frame )
+    {
         // Must set
         SetSinglePad( gPad );// Using global pad settings
         // Common Axis settings
@@ -29,25 +30,26 @@ namespace mgr {
     MakeCurveError(
         TGraph* errorplot,
         TGraph* centralplot
-    ) {
+        )
+    {
         std::map<double, std::pair<double, double> > fiterr;
 
-        for( int i = 0; i < errorplot->GetN(); ++i ) {
-            const double x = errorplot->GetX()[i];
-            const double y = errorplot->GetY()[i];
+        for( int i = 0; i < errorplot->GetN(); ++i ){
+            const double x = errorplot->GetX()[ i ];
+            const double y = errorplot->GetY()[ i ];
 
-            if( !fiterr.count( x ) ) {
-                fiterr[x] = std::make_pair( 1e10, -1e10 );
+            if( !fiterr.count( x ) ){
+                fiterr[ x ] = std::make_pair( 1e10, -1e10 );
             }
 
-            fiterr.at( x ).first  = std::min( fiterr.at( x ).first, y  );
+            fiterr.at( x ).first  = std::min( fiterr.at( x ).first, y );
             fiterr.at( x ).second = std::max( fiterr.at( x ).second, y );
         }
 
         TGraphAsymmErrors* ans = new TGraphAsymmErrors( fiterr.size() );
-        size_t i = 0;
+        size_t i               = 0;
 
-        for( const auto& fiterrval : fiterr ) {
+        for( const auto& fiterrval : fiterr ){
             const double x   = fiterrval.first;
             const double y   = centralplot->Eval( x );
             const double ylo = fiterrval.second.first;
@@ -68,18 +70,19 @@ namespace mgr {
         const RooCmdArg& arg1,
         const RooCmdArg& arg2,
         const RooCmdArg& arg3
-    ) {
+        )
+    {
         TGraph* fit = PlotOn(
-                          frame, pdf,
-                          RooFit::Invisible(),
-                          arg1, arg2, arg3
-                      );
+            frame, pdf,
+            RooFit::Invisible(),
+            arg1, arg2, arg3
+            );
         TGraph* fiterr = PlotOn(
-                             frame, pdf,
-                             RooFit::VisualizeError( *fitres, 1, kFALSE ),
-                             RooFit::Invisible(),
-                             arg1, arg2, arg3
-                         );
+            frame, pdf,
+            RooFit::VisualizeError( *fitres, 1, kFALSE ),
+            RooFit::Invisible(),
+            arg1, arg2, arg3
+            );
         TGraphAsymmErrors* ans = MakeCurveError( fiterr, fit );
         frame->addObject( ans, "L3" );
         return ans;

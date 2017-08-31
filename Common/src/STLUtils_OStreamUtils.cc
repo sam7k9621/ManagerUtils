@@ -9,15 +9,16 @@
 
 #include <ostream>
 
-namespace mgr {
+namespace mgr{
 
     /*******************************************************************************
     *   Clear line implementation
     *******************************************************************************/
 
     std::ostream&
-    operator<<( std::ostream& os, const clearline& ) {
-        for( size_t i = 0; i < 255; ++i ) {
+    operator<<( std::ostream& os, const clearline& )
+    {
+        for( size_t i = 0; i < 255; ++i ){
             os << "\b \b" << std::flush;
         }
 
@@ -30,13 +31,14 @@ namespace mgr {
     *******************************************************************************/
     seperator::seperator( const char x, const size_t m ) :
         token( x ),
-        n( m ) {}
+        n( m ){}
 
-    seperator::~seperator() {}
+    seperator::~seperator(){}
 
     std::ostream&
-    operator<<( std::ostream& os, const seperator& x ) {
-        for( size_t i = 0; i < x.n; ++i ) {
+    operator<<( std::ostream& os, const seperator& x )
+    {
+        for( size_t i = 0; i < x.n; ++i ){
             os << x.token << std::flush;
         }
 

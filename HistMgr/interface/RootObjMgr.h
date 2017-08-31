@@ -6,48 +6,60 @@
 #include <string>
 #include <vector>
 
-namespace mgr
-{
+namespace mgr{
 
-template<typename T>
-class RootObjMgr
-{
+    template<typename T>
+    class RootObjMgr {
 
-public:
-  RootObjMgr ();
-  virtual
-  ~RootObjMgr ();
+        public:
 
-  RootObjMgr( const RootObjMgr& )            = delete;
-  RootObjMgr& operator=( const RootObjMgr& ) = delete;
+            RootObjMgr ();
+            virtual ~RootObjMgr ();
 
-  // Common objects for single object accessing
-  void                     AddObj( T* );
-  void                     RemoveObj( const std::string& );
-  T*                       GetObj( const std::string& );
-  const T*                 GetObj( const std::string& ) const;
-  std::vector<std::string> ObjNameList() const;
-  std::vector<T*>          GetObjContains( const std::string& );
+            RootObjMgr( const RootObjMgr& )            = delete;
+            RootObjMgr& operator=( const RootObjMgr& ) = delete;
+
+            // Common objects for single object accessing
+            void                     AddObj( T* );
+            void                     RemoveObj( const std::string& );
+            T*                       GetObj( const std::string& );
+            const T*                 GetObj( const std::string& ) const;
+            std::vector<std::string> ObjNameList() const;
+            std::vector<T*>          GetObjContains( const std::string& );
 
 
-  // C++ style iterators for looping objects (independent of the leading string)easiler
-  // Notice that the dereferencing of the iterator will return an instance of  T*
-  // so use loops only like : "for( const auto obj : objmgr )" (not the lack of referencing)
-  typedef std::map<std::string, std::shared_ptr<T> > ObjContainer;
-  class iterator;
-  class const_iterator;
+            // C++ style iterators for looping objects (independent of the leading string)easiler
+            // Notice that the dereferencing of the iterator will return an instance of  T*
+            // so use loops only like : "for( const auto obj : objmgr )" (not the lack of referencing)
+            typedef std::map<std::string, std::shared_ptr<T> > ObjContainer;
+            class iterator;
+            class const_iterator;
 
-  inline iterator begin(){ return _objmap.begin(); }
-  inline iterator end()  { return _objmap.end();   }
-  inline const_iterator begin() const { return _objmap.begin();}
-  inline const_iterator end()   const { return _objmap.end();  }
+            inline iterator begin()
+            {
+                return _objmap.begin();
+            }
+            inline iterator end()
+            {
+                return _objmap.end();
+            }
+            inline const_iterator begin() const
+            {
+                return _objmap.begin();
+            }
+            inline const_iterator end()   const
+            {
+                return _objmap.end();
+            }
 
-protected:
-  std::string MakeStoreName( const std::string& ) const;
+        protected:
 
-private:
-  ObjContainer _objmap;
-};
+            std::string MakeStoreName( const std::string& ) const;
+
+        private:
+
+            ObjContainer _objmap;
+    };
 
 }/* mgr */
 

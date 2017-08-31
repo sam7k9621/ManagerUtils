@@ -14,15 +14,15 @@ using namespace std;
 using namespace mgr;
 
 void
-AddTest( const vector<Parameter>& list ) {
-    for( size_t i = 0; i < list.size(); ++i ) {
-        cout << list[i].CentralValue();
+AddTest( const vector<Parameter>& list )
+{
+    for( size_t i = 0; i < list.size(); ++i ){
+        cout << list[ i ].CentralValue();
 
-        if( i != list.size() - 1 ) {
+        if( i != list.size() - 1 ){
             cout << "+";
         }
-
-        else {
+        else{
             cout << " & ";
         }
     }
@@ -33,16 +33,17 @@ AddTest( const vector<Parameter>& list ) {
 
 
 void
-ProdTest( const vector<double> chain ) {
+ProdTest( const vector<double> chain )
+{
     Parameter original  = Poisson::Minos( chain.front() );
     Parameter finalpass = Poisson::Minos( chain.back() );
     vector<Parameter> prodlist;
     prodlist.push_back( original );
     cout << chain.front() << flush;
 
-    for( size_t i = 0; i < chain.size() - 1; ++i ) {
-        cout << boost::format( "\\times\\frac{%lg}{%lg}" ) % chain[i + 1] % chain[i] << flush;
-        prodlist.push_back( Efficiency::Minos( chain[i + 1], chain[i] ) );
+    for( size_t i = 0; i < chain.size() - 1; ++i ){
+        cout << boost::format( "\\times\\frac{%lg}{%lg}" ) % chain[ i + 1 ] % chain[ i ] << flush;
+        prodlist.push_back( Efficiency::Minos( chain[ i + 1 ], chain[ i ] ) );
     }
 
     cout << "&" << flush;
@@ -51,7 +52,8 @@ ProdTest( const vector<double> chain ) {
 }
 
 int
-main( int argc, char const* argv[] ) {
+main( int argc, char const* argv[] )
+{
     cout << ">>>> Addition testing: Sum to 100" << endl;
     {
         Parameter a = Poisson::Minos( 10 );
@@ -64,14 +66,14 @@ main( int argc, char const* argv[] ) {
         Parameter h = Poisson::Minos( 80 );
         Parameter i = Poisson::Minos( 90 );
         cout << "Direct value: " << FloatingPoint( Poisson::Minos( 100 ), 4 ) << endl;
-        AddTest( {e, e} );
-        AddTest( {d, f} );
-        AddTest( {c, g} );
-        AddTest( {b, h} );
-        AddTest( {a, i} );
-        AddTest( {a, c, c, c} );
-        AddTest( {b, b, b, b, b} );
-        AddTest( {a, a, a, a, a, a, a, a, a, a} );
+        AddTest( { e, e } );
+        AddTest( { d, f } );
+        AddTest( { c, g } );
+        AddTest( { b, h } );
+        AddTest( { a, i } );
+        AddTest( { a, c, c, c } );
+        AddTest( { b, b, b, b, b } );
+        AddTest( { a, a, a, a, a, a, a, a, a, a } );
         cout << endl;
     }
     cout << ">>>> Addition testing: Sum to 1000" << endl;
@@ -86,33 +88,33 @@ main( int argc, char const* argv[] ) {
         Parameter h = Poisson::Minos( 800 );
         Parameter i = Poisson::Minos( 900 );
         cout << "Direct value: " << FloatingPoint( Poisson::Minos( 1000 ), 4 ) << endl;
-        AddTest( {e, e} );
-        AddTest( {d, f} );
-        AddTest( {c, g} );
-        AddTest( {b, h} );
-        AddTest( {a, i} );
-        AddTest( {a, c, c, c} );
-        AddTest( {b, b, b, b, b} );
-        AddTest( {a, a, a, a, a, a, a, a, a, a} );
+        AddTest( { e, e } );
+        AddTest( { d, f } );
+        AddTest( { c, g } );
+        AddTest( { b, h } );
+        AddTest( { a, i } );
+        AddTest( { a, c, c, c } );
+        AddTest( { b, b, b, b, b } );
+        AddTest( { a, a, a, a, a, a, a, a, a, a } );
         cout << endl;
     }
     cout << ">>>> Addition testing: Partial addition to 100" << endl;
     {
         Parameter a = Poisson::Minos( 20 );
         cout << "Direct value: " << FloatingPoint( Poisson::Minos( 100 ), 4 ) << endl;
-        cout << "(20+20+20+20+20) & " << FloatingPoint( Sum( a, a, a, a, a ), 4  ) << endl;
-        cout << "(20+20)+(20+20+20) & " << FloatingPoint( Sum( Sum( a, a ), Sum( a, a, a ) ), 4  ) << endl;
-        cout << "(20+20)+(20+20)+20 & " << FloatingPoint( Sum( Sum( a, a ), Sum( a, a ), a ), 4  ) << endl;
-        cout << "(((20+20)+20)+20)+20 )& " << FloatingPoint( Sum( Sum( Sum( Sum( a, a ), a ), a ), a ), 4  ) << endl;
+        cout << "(20+20+20+20+20) & " << FloatingPoint( Sum( a, a, a, a, a ), 4 ) << endl;
+        cout << "(20+20)+(20+20+20) & " << FloatingPoint( Sum( Sum( a, a ), Sum( a, a, a ) ), 4 ) << endl;
+        cout << "(20+20)+(20+20)+20 & " << FloatingPoint( Sum( Sum( a, a ), Sum( a, a ), a ), 4 ) << endl;
+        cout << "(((20+20)+20)+20)+20 )& " << FloatingPoint( Sum( Sum( Sum( Sum( a, a ), a ), a ), a ), 4 ) << endl;
         cout << endl;
     }
     cout << ">>>> Product testing: Product to 50" << endl;
     {
         cout << "Direct value : " << FloatingPoint( Poisson::Minos( 50 ), 4 ) << endl;
-        ProdTest( {100, 50} );
-        ProdTest( {100, 75, 50} );
-        ProdTest( {100, 75, 60, 50} );
-        ProdTest( {200, 100, 75, 60, 50} );
+        ProdTest( { 100, 50 } );
+        ProdTest( { 100, 75, 50 } );
+        ProdTest( { 100, 75, 60, 50 } );
+        ProdTest( { 200, 100, 75, 60, 50 } );
         cout << endl;
     }
     cout << ">>> Product test: Partial product " << endl;
@@ -123,10 +125,10 @@ main( int argc, char const* argv[] ) {
         Parameter e3 = Efficiency::Minos( 60, 75 );
         Parameter e4 = Efficiency::Minos( 50, 60 );
         cout << "Direct value: " << FloatingPoint( Poisson::Minos( 50 ), 4 ) << endl;
-        cout << "(a*b*c*d*e)" << FloatingPoint( Prod( a, e1, e2, e3, e4 ), 4  ) << endl;
-        cout << "(a*b)*(c*d*e)" << FloatingPoint( Prod( Prod( a, e1 ), Prod( e2, e3, e4 ) ), 4  ) << endl;
-        cout << "(a*b)*(c*d)*e" << FloatingPoint( Prod( Prod( a, e1 ), Prod( e2, e3 ), e4 ), 4  ) << endl;
-        cout << "((((a*b)*c)*d)*e)" << FloatingPoint( Prod( Prod( Prod( Prod( a, e1 ), e2 ), e3 ), e4 ), 4  ) << endl;
+        cout << "(a*b*c*d*e)" << FloatingPoint( Prod( a, e1, e2, e3, e4 ), 4 ) << endl;
+        cout << "(a*b)*(c*d*e)" << FloatingPoint( Prod( Prod( a, e1 ), Prod( e2, e3, e4 ) ), 4 ) << endl;
+        cout << "(a*b)*(c*d)*e" << FloatingPoint( Prod( Prod( a, e1 ), Prod( e2, e3 ), e4 ), 4 ) << endl;
+        cout << "((((a*b)*c)*d)*e)" << FloatingPoint( Prod( Prod( Prod( Prod( a, e1 ), e2 ), e3 ), e4 ), 4 ) << endl;
     }
     cout << "\n>>> Another product test: Scale factor tests" << endl;
     {
@@ -172,19 +174,19 @@ main( int argc, char const* argv[] ) {
     cout << "\n>>> Product test " << endl;
     {
         Parameter results = Prod(
-                                Parameter( 1, 0.0107266, 0.0107266 ),
-                                Parameter( 1, 0.0329748, 0.0279871 ),
-                                Parameter( 1,         0,  0.170623 ),
-                                Parameter( 1,  0.133084,   0.13232 ),
-                                Parameter( 1, 0.0243757, 0.0240791 ),
-                                Parameter( 1, 0.0257803, 0.0254051 ),
-                                Parameter( 1, 0.0249153, 0.0249153 ),
-                                Parameter( 1,  0.163553,  0.163553 ),
-                                Parameter( 1, 0.0547323, 0.0542217 ),
-                                Parameter( 1,     0.046,     0.046 ),
-                                Parameter( 1,      0.03,      0.03 )
-                            );
-        cout << FloatingPoint( results , 3 ) << endl;
+            Parameter( 1, 0.0107266, 0.0107266 ),
+            Parameter( 1, 0.0329748, 0.0279871 ),
+            Parameter( 1,         0,  0.170623 ),
+            Parameter( 1,  0.133084,   0.13232 ),
+            Parameter( 1, 0.0243757, 0.0240791 ),
+            Parameter( 1, 0.0257803, 0.0254051 ),
+            Parameter( 1, 0.0249153, 0.0249153 ),
+            Parameter( 1,  0.163553,  0.163553 ),
+            Parameter( 1, 0.0547323, 0.0542217 ),
+            Parameter( 1,     0.046,     0.046 ),
+            Parameter( 1,      0.03,      0.03 )
+            );
+        cout << FloatingPoint( results, 3 ) << endl;
     }
     cout << "\n>>> Product test" << endl;
     {

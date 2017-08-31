@@ -8,15 +8,15 @@
 #ifndef MANAGERUTILS_MATHS_GSLSETTINGS_HPP
 #define MANAGERUTILS_MATHS_GSLSETTINGS_HPP
 
+#include <gsl/gsl_min.h>
 #include <gsl/gsl_multimin.h>
 #include <gsl/gsl_multiroots.h>
 #include <gsl/gsl_roots.h>
 #include <gsl/gsl_vector.h>
-#include <gsl/gsl_min.h>
 
-namespace mgr {
+namespace mgr{
 
-    namespace gsl {
+    namespace gsl{
         /*******************************************************************************
         *   Common GSL settings constants
         *******************************************************************************/
@@ -39,7 +39,7 @@ namespace mgr {
             double        yval,
             double        xmin,
             double        ymax
-        );
+            );
 
         /*******************************************************************************
         *   Multi variable functions
@@ -59,7 +59,8 @@ namespace mgr {
         /*******************************************************************************
         *   Multidimension projection function
         *******************************************************************************/
-        struct projected_param {
+        struct projected_param
+        {
             gsl_multifunc* original_func;
             gsl_vector*    original_x;
             size_t         varidx;
@@ -77,21 +78,21 @@ namespace mgr {
             double         h,
             double&        result,
             double&        error
-        );
+            );
 
         extern double partial_deriv(
             gsl_multifunc* function,
             gsl_vector*    x,
             size_t         varidx,
             double         h = epsilon
-        );
+            );
 
         extern double partial_deriv_error(
             gsl_multifunc* function,
             gsl_vector*    x,
             size_t         varidx,
             double         h = epsilon
-        );
+            );
 
     };/* gsl */
 

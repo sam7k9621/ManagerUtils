@@ -10,40 +10,45 @@
 
 using namespace std;
 
-namespace mgr {
+namespace mgr{
     /*******************************************************************************
     *   Constructor and Destructor
     *******************************************************************************/
     Named::Named( const string& x ) :
         _name( x ),
         _latexname( "" ),
-        _rootname( "" ) {
+        _rootname( "" )
+    {
     }
 
     /******************************************************************************/
 
-    Named::~Named() {
+    Named::~Named()
+    {
     }
 
     /*******************************************************************************
     *   Basic access functions
     *******************************************************************************/
     const std::string&
-    Named::Name() const {
+    Named::Name() const
+    {
         return _name;
     }
 
     /******************************************************************************/
 
     const std::string&
-    Named::LatexName() const {
+    Named::LatexName() const
+    {
         return _latexname;
     }
 
     /******************************************************************************/
 
     const std::string&
-    Named::RootName() const {
+    Named::RootName() const
+    {
         return _rootname;
     }
 
@@ -53,14 +58,16 @@ namespace mgr {
     *******************************************************************************/
 
     void
-    Named::SetLatexName( const string& x ) {
+    Named::SetLatexName( const string& x )
+    {
         _latexname = x;
     }
 
     /******************************************************************************/
 
     void
-    Named::SetRootName( const string& x ) {
+    Named::SetRootName( const string& x )
+    {
         _rootname = x;
     }
 
