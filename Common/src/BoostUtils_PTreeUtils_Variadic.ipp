@@ -13,37 +13,37 @@
 
 /******************************************************************************/
 
-template<typename ... TS>
+template < typename ... TS >
 extern std::string
 mgr::MakeQueryString( const std::string& x, TS ... args )
 {
-  return mgr::MakeQueryString( mgr::MakeVector<std::string>( x, args ... ) );
+    return mgr::MakeQueryString( mgr::MakeVector < std::string > ( x, args ... ) );
 }
 
 /******************************************************************************/
 
-template<typename ... TS>
+template < typename ... TS >
 extern bool
 mgr::CheckQuery( const boost::property_tree::ptree& tree, const std::string& x, TS ... args )
 {
-  return mgr::CheckQuery( tree, mgr::MakeQueryString( x, args ... ) );
+    return mgr::CheckQuery( tree, mgr::MakeQueryString( x, args ... ) );
 }
 
 /******************************************************************************/
 
-template<typename T, typename ... TS>
+template < typename T, typename ... TS >
 extern T
 mgr::GetSingle( const boost::property_tree::ptree& tree, const std::string& x, TS ... args )
 {
-  return mgr::GetSingle<T>( tree, mgr::MakeQueryString( x, args ... ) );
+    return mgr::GetSingle < T > ( tree, mgr::MakeQueryString( x, args ... ) );
 }
 
 /******************************************************************************/
-template<typename T, typename ... TS>
-extern std::vector<T>
+template < typename T, typename ... TS >
+extern std::vector < T >
 mgr::GetList( const boost::property_tree::ptree& tree, const std::string& x, TS ... args )
 {
-  return mgr::GetList<T>( tree, mgr::MakeQueryString( x, args ... ) );
+    return mgr::GetList < T > ( tree, mgr::MakeQueryString( x, args ... ) );
 }
 
 /******************************************************************************/

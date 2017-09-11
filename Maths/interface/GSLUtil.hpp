@@ -15,7 +15,6 @@
 #include <gsl/gsl_vector.h>
 
 namespace mgr{
-
     namespace gsl{
         /*******************************************************************************
         *   Common GSL settings constants
@@ -93,10 +92,7 @@ namespace mgr{
             size_t         varidx,
             double         h = epsilon
             );
-
     };/* gsl */
-
-
 }/* mgr */
 
 #endif/* end of include guard: MANAGERUTILS_MATHS_GSLSETTINGS_HPP */

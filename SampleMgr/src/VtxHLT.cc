@@ -4,7 +4,6 @@
 using namespace std;
 
 namespace mgr{
-
     /*******************************************************************************
     *   Vertex selection
     *   https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookPATExampleTopQuarks

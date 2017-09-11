@@ -7,9 +7,7 @@
 #include <vector>
 
 namespace mgr{
-
     class Parsermgr {
-
         public:
 
             enum PARSING_STATUS
@@ -49,7 +47,6 @@ namespace mgr{
             std::vector<std::string> _namelist;
             std::vector<std::string> _cutlist;
     };
-
 }
 
 #include "ManagerUtils/ArgHelper/src/Parsermgr.ipp"

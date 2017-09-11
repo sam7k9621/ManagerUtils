@@ -10,7 +10,6 @@
 using namespace std;
 
 namespace mgr{
-
     string
     RandomFileName( const unsigned n, const string& ext, const bool hidden )
     {
@@ -26,5 +25,4 @@ namespace mgr{
 
         return ans;
     }
-
 }/* mgr */

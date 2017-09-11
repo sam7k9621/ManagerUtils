@@ -61,7 +61,6 @@ namespace mgr{
     {
         return GetYmax( MakeVector<TH1*>( x, arg ... ) );
     }
-
 };
 
 #endif/* end of include guard: MANAGERUTILS_PLOTUTILS_GETRANGE_HPP */

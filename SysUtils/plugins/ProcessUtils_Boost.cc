@@ -9,6 +9,7 @@
 #include <boost/python.hpp>
 
 using namespace std;
+
 /*******************************************************************************
 *   Inline function to help with function overloading in python
 *******************************************************************************/

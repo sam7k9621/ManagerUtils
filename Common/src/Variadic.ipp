@@ -10,31 +10,29 @@
 #include "ManagerUtils/Common/interface/Variadic.hpp"
 
 namespace mgr {
+    /*******************************************************************************
+    *   Single Argument response
+    *******************************************************************************/
+    template < typename OBJTYPE, typename ARGTYPE >
+    std::vector < OBJTYPE >
+    MakeVector( ARGTYPE first )
+    {
+        OBJTYPE x( first );
+        return std::vector < OBJTYPE > ( 1, x );
+    }
 
-/*******************************************************************************
-*   Single Argument response
-*******************************************************************************/
-template<typename OBJTYPE, typename ARGTYPE>
-std::vector<OBJTYPE>
-MakeVector( ARGTYPE first )
-{
-  OBJTYPE x(first);
-  return std::vector<OBJTYPE>( 1 , x );
-}
-
-/*******************************************************************************
-*   Multi Argument return value
-*******************************************************************************/
-template<typename OBJTYPE, typename ARGTYPE, typename ... VARTYPE>
-std::vector<OBJTYPE>
-MakeVector( ARGTYPE first, VARTYPE ... arg )
-{
-  std::vector<OBJTYPE> ans = MakeVector<OBJTYPE>( arg ... );
-  ans.insert( ans.begin(), OBJTYPE(first) );
-  return ans;
-}
-
-} /* mgr */
+    /*******************************************************************************
+    *   Multi Argument return value
+    *******************************************************************************/
+    template < typename OBJTYPE, typename ARGTYPE, typename ... VARTYPE >
+    std::vector < OBJTYPE >
+    MakeVector( ARGTYPE first, VARTYPE ... arg )
+    {
+        std::vector < OBJTYPE > ans = MakeVector < OBJTYPE > ( arg ... );
+        ans.insert( ans.begin(), OBJTYPE( first ) );
+        return ans;
+    }
+}/* mgr */
 
 
 

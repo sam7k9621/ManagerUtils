@@ -17,7 +17,6 @@ using namespace std;
 namespace fs = boost::filesystem;
 
 namespace mgr{
-
     /*******************************************************************************
     *   Constructor and Destructor
     *******************************************************************************/
@@ -39,7 +38,6 @@ namespace mgr{
     PackagePathMgr::~PackagePathMgr()
     {
     }
-
 
     /*******************************************************************************
     *   Public functions
@@ -90,5 +88,4 @@ namespace mgr{
     {
         return SubDir( _samples_dir );
     }
-
 }/* mgr */

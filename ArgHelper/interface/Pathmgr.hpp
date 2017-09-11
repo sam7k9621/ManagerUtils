@@ -5,7 +5,6 @@
 #include <map>
 #include <string>
 namespace mgr{
-
     class Pathmgr {
         public:
 
@@ -36,7 +35,6 @@ namespace mgr{
             const std::string _results_dir;
             const std::string _datas_dir;
     };
-
 }
 
 #endif

@@ -31,7 +31,6 @@ AddTest( const vector<Parameter>& list )
     cout << sum.CentralValue() << "&" << sum.AbsUpperError() << "&" << sum.AbsLowerError() << endl;
 }
 
-
 void
 ProdTest( const vector<double> chain )
 {

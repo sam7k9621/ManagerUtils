@@ -4,11 +4,9 @@
 using namespace std;
 
 namespace mgr{
-
     int
     SampleMgr::MatchGenlevel( const float& eta, const float& phi )
     {
-
         double deltaR = INT_MAX;
         int idx       = -1;
 
@@ -35,7 +33,7 @@ namespace mgr{
     int
     SampleMgr::GetGenJet( const int& idx )
     {
-        return MatchGenlevel( _jet.Eta[ idx ], _jet.Phi[ idx ] );
+        return MatchGenlevel( _jet.GenEta[ idx ], _jet.GenPhi[ idx ] );
     }
 
     int
@@ -85,27 +83,63 @@ namespace mgr{
     }
 
     bool
-    SampleMgr::MCTruthBJet( vector<int>& bhandle )
+    SampleMgr::MCTruthBJet()
     {
-
-        bhandle.clear();
+        _bhandle.clear();
 
         for( int i = 0; i < Gsize(); i++ ){
             if( fabs( _gen.PdgID[ i ] ) == 6 ){
-
-                if( fabs( _gen.Da1PdgID[ i ] ) == 5 ){
-                    bhandle.push_back( _gen.Da1[ i ] );
+                
+                if( fabs( _gen.Da1PdgID[i] ) == 5 ){
+                    _bhandle.push_back( _gen.Da1[i] );
                     continue;
                 }
 
-                if( fabs( _gen.Da2PdgID[ i ] ) == 5 ){
-                    bhandle.push_back( _gen.Da2[ i ] );
+                if( fabs( _gen.Da2PdgID[i] ) == 5 ){
+                    _bhandle.push_back( _gen.Da2[i] );
                 }
             }
         }
 
-        return bhandle.size() == 2;
-
+        return _bhandle.size() == 2;
     }
 
+    int
+    SampleMgr::bMatchType( const int& bidx, const int& charge )
+    {
+        int idx = GetGenJet(bidx);
+        if(idx < 0)
+            return 1<< 5;
+
+        return matchbHandle( idx, charge );
+    }
+
+    int
+    SampleMgr::matchbHandle( const int& idx, const int& charge )
+    {
+        // fake b
+        if( fabs( _gen.PdgID[ idx ] ) != 5 ){
+            return 1 << 1;
+        }
+    
+        for( const auto& i : _bhandle ){
+            if(
+                GetDirectMother( i ) == GetDirectMother( idx )
+                )
+            {
+                // correct
+                if( _gen.PdgID[ idx ] * charge < 0 ){
+                    return 1 << 0;
+                }
+                // charge swapped
+                else{
+                    return 1 << 3;
+                }
+            }
+        }
+    
+        // mistag
+        return 1 << 2;
+    }
 }
+

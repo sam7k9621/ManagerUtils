@@ -12,7 +12,6 @@
 #include <vector>
 
 namespace mgr{
-
     /*******************************************************************************
     *   Getting histogram graphically maximum point
     *******************************************************************************/
@@ -43,7 +42,6 @@ namespace mgr{
 
         return ans;
     }
-
 
     /*******************************************************************************
     *   TGraph Max and min calculations
@@ -103,6 +101,4 @@ namespace mgr{
 
         return ans;
     }
-
-
 }

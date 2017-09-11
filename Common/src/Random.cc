@@ -13,7 +13,6 @@
 
 using namespace std;
 namespace mgr{
-
     /******************************************************************************/
 
     void
@@ -41,5 +40,4 @@ namespace mgr{
 
         return ans;
     }
-
 }/* mgr */

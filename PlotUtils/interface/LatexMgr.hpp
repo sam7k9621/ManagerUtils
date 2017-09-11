@@ -12,9 +12,7 @@
 #include <string>
 
 namespace mgr{
-
     class LatexMgr : public TLatex {
-
         public:
 
             LatexMgr();
@@ -30,7 +28,6 @@ namespace mgr{
             double _origin_x;
             double _origin_y;
     };
-
 }/* mgr */
 
 

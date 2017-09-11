@@ -11,7 +11,6 @@
 #include <string>
 
 namespace mgr{
-
     class Named {// Only virtual for the sake of Inheritance Do not overload
         public:
 
@@ -34,7 +33,6 @@ namespace mgr{
             std::string _latexname;
             std::string _rootname;
     };
-
 }
 
 #endif/* end of include guard: MANAGERUTILS_COMMON_NAMED_HPP */

@@ -12,7 +12,6 @@
 #include "TGaxis.h"
 
 namespace mgr{
-
     template<class T>
     void SetAxis( T* plot );
 
@@ -24,7 +23,6 @@ namespace mgr{
 
     template<class T>
     void SetNormToUnity( T* plot );
-
 };
 
 #include "ManagerUtils/PlotUtils/src/SetAxis.ipp"

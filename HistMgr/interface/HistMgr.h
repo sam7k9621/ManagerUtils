@@ -7,15 +7,20 @@
 #include <string>
 
 namespace mgr{
-
     class HistMgr {
         public:
 
             HistMgr( const std::string& );// Must have unique name
             virtual ~HistMgr ();
 
+            HistMgr( const HistMgr& )            = delete;
+            HistMgr& operator=( const HistMgr& ) = delete;
+
             TH1D*       Hist( const std::string& );
             const TH1D* Hist( const std::string& ) const;
+
+            void         SetTag( const std::string& tag ){ _tag = tag; }
+            std::string& GetTag()                        { return _tag; }
 
             std::vector<std::string> AvailableHistList() const;
             void                     Scale( const double );
@@ -29,8 +34,6 @@ namespace mgr{
 
             // Static functions for helping with title creation
             static std::string GetXUnit( const TH1D* );
-
-        protected:
 
             void AddHist(
                 const std::string&,
@@ -46,7 +49,6 @@ namespace mgr{
             std::string _tag;
             RootObjMgr<TH1D> _histmgr;
     };
-
 };
 
 #endif/* end of include guard: MANAGERUTILS_HISTMGR_HISTMGR_HPP */

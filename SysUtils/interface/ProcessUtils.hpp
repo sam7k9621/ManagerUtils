@@ -44,7 +44,6 @@ namespace mgr{
         const std::string& exclude = "",
         const unsigned     waitmills = 100
         );
-
 }/* mgr */
 
 #endif/* end of include guard: MANAGERUTILS_SYSUTILS_PROCESSUTILS */

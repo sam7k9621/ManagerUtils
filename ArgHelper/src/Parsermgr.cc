@@ -7,7 +7,6 @@ namespace opt = boost::program_options;
 using namespace std;
 
 namespace mgr{
-
     Parsermgr::Parsermgr()
     {
         _desc.add_options()

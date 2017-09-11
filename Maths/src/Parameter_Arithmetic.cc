@@ -17,7 +17,6 @@
 using namespace std;
 
 namespace mgr{
-
     /*******************************************************************************
     *   General Interfacing functions with MakeMinos functions
     *******************************************************************************/
@@ -65,7 +64,6 @@ namespace mgr{
             );
         return Parameter( central, upperbound - central, central - lowerbound );
     }
-
 
     /*******************************************************************************
     *   Approximate Loglikelihood functions and first derivative.
@@ -217,5 +215,4 @@ namespace mgr{
         gsl_vector_free( lowerguess );
         return ans * prod;
     }
-
 }/* mgr */

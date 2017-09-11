@@ -9,7 +9,6 @@
 #include <string>
 
 namespace mgr{
-
     void
     DrawCMSLabel( int tag )
     {
@@ -64,5 +63,4 @@ namespace mgr{
         tl.SetTextAlign( BOTTOM_RIGHT );
         tl.DrawLatex( PLOT_X_MAX, PLOT_Y_MAX + ( TEXT_MARGIN / 2 ), buffer );
     }
-
 }

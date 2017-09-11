@@ -62,7 +62,6 @@ mgr::CheckQuery( const boost::property_tree::ptree& tree, const std::string& que
 *   Template specialization
 *******************************************************************************/
 namespace mgr{
-
     template<>
     Parameter
     GetSingle<Parameter>( const boost::property_tree::ptree& tree, const std::string& query )
@@ -80,5 +79,4 @@ namespace mgr{
 
         return Parameter( input[ 0 ], input[ 1 ], input[ 2 ] );
     }
-
 }/* mgr */

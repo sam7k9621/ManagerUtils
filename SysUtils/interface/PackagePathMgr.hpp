@@ -12,7 +12,6 @@
 #include <string>
 
 namespace mgr{
-
     class PackagePathMgr {
         public:
 
@@ -43,7 +42,6 @@ namespace mgr{
             const std::string _results_dir;
             const std::string _samples_dir;
     };
-
 }
 
 #endif/* end of include guard: MANAGERUTILS_SYSUTILS_FILENAMEMGR_HPP */

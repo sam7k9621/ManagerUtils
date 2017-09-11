@@ -24,7 +24,6 @@ using namespace std;
 #define MAX_BUFFER 65536
 
 namespace mgr{
-
     /******************************************************************************/
 
     unsigned
@@ -121,6 +120,4 @@ namespace mgr{
 
         cout << "All Done!" << endl;
     }
-
-
 }/* mgr */

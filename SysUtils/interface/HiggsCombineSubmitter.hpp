@@ -12,7 +12,6 @@
 #include <vector>
 
 namespace mgr{
-
     class CombineRequest;// see below for details
 
     class HiggsCombineSubmitter {
@@ -69,7 +68,6 @@ namespace mgr{
             std::string additional_options;
             std::string logfile;
     };
-
 }
 
 #endif/* end of include guard: MANAGERUTILS_SYSUTILS_HIGGSCOMBINESUBMITTER_HPP */

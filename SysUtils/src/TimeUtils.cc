@@ -16,7 +16,6 @@
 using namespace std;
 
 namespace mgr{
-
     /******************************************************************************/
 
     string
@@ -39,5 +38,4 @@ namespace mgr{
     {
         std::this_thread::sleep_for( std::chrono::milliseconds( x ) );
     }
-
 }/* mgr */

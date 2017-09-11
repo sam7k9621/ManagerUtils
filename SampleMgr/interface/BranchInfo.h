@@ -104,7 +104,6 @@ class GenInfoBranches {
             root->SetBranchAddress( "GenInfo.GrandMo1Status", &GrandMo1Status[ 0 ] );
             root->SetBranchAddress( "GenInfo.GrandMo2Status", &GrandMo2Status[ 0 ] );
         }
-
 };
 
 class EvtInfo {
@@ -247,8 +246,6 @@ class EvtInfo {
             root->Branch( "EvtInfo.TrueIT",                                    &TrueIT[ 0 ],                               "EvtInfo.TrueIT[EvtInfo.nBX]/F" );
             root->Branch( "EvtInfo.ptHat",                                     &ptHat,                                     "EvtInfo.ptHat/F" );
         }
-
-
 
         void Register( TTree* root )
         {
@@ -639,10 +636,7 @@ class LeptonInfo {
             root->Branch( ( name + ".TrgPhi" ).c_str(),                          &TrgPhi[ 0 ],                          ( name + ".TrgPhi[" + name + ".Size]/F" ).c_str() );
             root->Branch( ( name + ".TrgID" ).c_str(),                           &TrgID[ 0 ],                           ( name + ".TrgID[" + name + ".Size]/I" ).c_str() );
             root->Branch( ( name + ".isPFTau" ).c_str(),                         &isPFTau[ 0 ],                         ( name + ".isPFTau[" + name + ".Size]/I" ).c_str() );      // Add by YoungKyu
-
-
         }
-
 
         void Register( TTree* root, std::string name = "LepInfo" )
         {
@@ -790,8 +784,6 @@ class LeptonInfo {
             root->SetBranchAddress( ( name + ".TrgPhi" ).c_str(),                          &TrgPhi[ 0 ] );
             root->SetBranchAddress( ( name + ".TrgID" ).c_str(),                           &TrgID[ 0 ] );
             root->SetBranchAddress( ( name + ".isPFTau" ).c_str(),                         &isPFTau[ 0 ] );                    // Add by YoungKyu
-
-
         }
 };
 
@@ -934,8 +926,6 @@ class JetInfo {
             root->Branch( ( name + ".SubjetArea" ).c_str(),      &SubjetArea_w );
         }
 
-
-
         void Register( TTree* root, std::string name = "JetInfo" )
         {
             root->SetBranchAddress( ( name + ".Size" ).c_str(),             &Size );
@@ -1043,6 +1033,7 @@ class VertexInfo {
             root->Branch( "VertexInfo.z",              &z[ 0 ],              "VertexInfo.z[VertexInfo.Size]/F" );
             root->Branch( "VertexInfo.Rho",            &Rho[ 0 ],            "VertexInfo.Rho[VertexInfo.Size]/F" );
         }
+
         void Register( TTree* root )
         {
             root->SetBranchAddress( "VertexInfo.Size",           &Size );
@@ -1151,7 +1142,6 @@ class GenInfo {
             root->SetBranchAddress( "GenInfo.GrandMo1Status", &GrandMo1Status[ 0 ] );
             root->SetBranchAddress( "GenInfo.GrandMo2Status", &GrandMo2Status[ 0 ] );
         }
-
 };
 
 #endif

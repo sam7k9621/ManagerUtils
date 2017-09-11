@@ -11,7 +11,6 @@
 #include <string>
 
 namespace mgr{
-
     /*******************************************************************************
     *   SeedRandomTime()
     *   * Seeding number generator by time of data
@@ -23,7 +22,6 @@ namespace mgr{
     *   * Returning a randomly generated alpha-numerical string
     *******************************************************************************/
     extern std::string RandomString( const unsigned length );
-
 }/* mgr */
 
 

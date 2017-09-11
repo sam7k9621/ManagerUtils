@@ -11,7 +11,6 @@
 #include <iostream>
 
 namespace mgr{
-
     namespace gsl{
         /*******************************************************************************
         *   GSL settings constants
@@ -78,7 +77,6 @@ namespace mgr{
             } while( status == GSL_CONTINUE && iter < max_iteration );
         }
 
-
         /******************************************************************************/
 
         void
@@ -131,6 +129,7 @@ namespace mgr{
             gsl_root_fsolver_free( solver );
             return ans;
         }
+
         /*******************************************************************************
         *   Handy parameter-less gsl_multifunc
         *******************************************************************************/
@@ -212,7 +211,6 @@ namespace mgr{
             return result;
         }
 
-
         /******************************************************************************/
 
         double
@@ -227,9 +225,5 @@ namespace mgr{
             partial_deriv( function, x, varidx, h, result, error );
             return error;
         }
-
-
-
     };/* namespace gsl  */
-
 };/* namespace mgr */

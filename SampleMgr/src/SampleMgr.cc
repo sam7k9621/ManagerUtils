@@ -1,26 +1,25 @@
 #include "ManagerUtils/SampleMgr/interface/SampleMgr.h"
 
+#include <iostream>
+
 using namespace std;
 
 namespace mgr{
-
     /*******************************************************************************
     *  Class initialization
     *******************************************************************************/
-    SampleMgr::SampleMgr(){}
-    SampleMgr::SampleMgr( TChain* ch )
-    {
-        SetTChain( ch );
-    }
-    SampleMgr::~SampleMgr(){}
-    void
-    SampleMgr::SetTChain( TChain* ch )
+    SampleMgr::SampleMgr( TChain* ch ) :
+        _idx( 0 )
     {
         _vtx.Register( ch );
         _lep.Register( ch );
         _evt.Register( ch );
         _jet.Register( ch );
         _gen.Register( ch );
+    }
+
+    SampleMgr::~SampleMgr()
+    {
     }
 
     /*******************************************************************************
@@ -79,13 +78,13 @@ namespace mgr{
     }
 
     TLorentzVector
-    SampleMgr::getLorentzVector( const string& type, const int& idx )
+    SampleMgr::GetLorentzVector( const string& type, const int& idx )
     {
         if( type == "lep" ){
             return TLorentzVector( _lep.Px[ idx ], _lep.Py[ idx ], _lep.Pz[ idx ], _lep.Energy[ idx ] );
         }
         else if( type == "jet" ){
-            return TLorentzVector( _jet.Px[ idx ], _jet.Py[ idx ], _jet.Pz[ idx ], _lep.Energy[ idx ] );
+            return TLorentzVector( _jet.Px[ idx ], _jet.Py[ idx ], _jet.Pz[ idx ], _jet.Energy[ idx ] );
         }
         else{
             return TLorentzVector();

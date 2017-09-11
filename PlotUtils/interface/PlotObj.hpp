@@ -89,7 +89,6 @@ namespace mgr{
         TGraph*            numgraph,
         TGraphAsymmErrors* dengraph
         );
-
 };
 
 

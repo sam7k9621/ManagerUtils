@@ -8,6 +8,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <string>
 #include <vector>
+
 /*******************************************************************************
 *   Operator overloading, defined in src/Common.cc
 *******************************************************************************/

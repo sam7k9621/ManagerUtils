@@ -8,7 +8,6 @@
 using namespace std;
 
 namespace mgr{
-
     /*******************************************************************************
     *   Constructor and Destructor
     *******************************************************************************/
@@ -31,7 +30,6 @@ namespace mgr{
     {
     }
 
-
     string
     Pathmgr::PackageDir() const
     {
@@ -39,13 +37,11 @@ namespace mgr{
         ;
     }
 
-
     string
     Pathmgr::SubPackageDir() const
     {
         return SubPackagePath( _package_name, _sub_package_name );
     }
-
 
     string
     Pathmgr::SubDir( const string& x ) const
@@ -53,13 +49,11 @@ namespace mgr{
         return SubPackageDir() / x;
     }
 
-
     string
     Pathmgr::SettingsDir() const
     {
         return SubDir( _settings_dir );
     }
-
 
     string
     Pathmgr::ResultsDir() const
@@ -72,5 +66,4 @@ namespace mgr{
     {
         return SubDir( _datas_dir );
     }
-
 }

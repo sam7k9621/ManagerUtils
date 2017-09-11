@@ -14,9 +14,7 @@
 #include <iostream>
 
 namespace mgr{
-
     namespace stat{
-
         /*******************************************************************************
         *  Sigma interval - Confidence Level conversion functions
         *  The definition of the GSL error function:
@@ -237,7 +235,6 @@ namespace mgr{
             return 0;
         }
 
-
         /*******************************************************************************
         *   Common NLL functions
         *******************************************************************************/
@@ -277,9 +274,5 @@ namespace mgr{
             double errorlo = ( (double*)params )[ 2 ];
             return ( x - central ) * ( x - central ) / ( 2 * ( errorup * errorlo + ( errorup - errorlo ) * ( x - central ) ) );
         }
-
-
     }/* stat */
-
-
 }/* mgr */

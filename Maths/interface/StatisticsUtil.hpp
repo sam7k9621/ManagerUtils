@@ -11,9 +11,7 @@
 #include "ManagerUtils/Maths/interface/GSLUtil.hpp"
 
 namespace mgr{
-
     namespace stat{
-
         /*******************************************************************************
         *   Sigma interval - Confidence level conversion.
         *******************************************************************************/
@@ -72,9 +70,7 @@ namespace mgr{
         *   double param[0] - observed
         *******************************************************************************/
         extern double PoissonNLL( double, void* params );
-
     }/* stat */
-
 }/* mgr */
 
 #endif/* end of include guard: MANAGERUTILS_MATHS_STATISTICUTIL_HPP */

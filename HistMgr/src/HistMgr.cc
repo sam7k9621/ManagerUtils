@@ -64,8 +64,8 @@ HistMgr::AddHist(
     string aliasname = _tag + "_" + label;
 
     TH1D* hist = new TH1D( aliasname.c_str(), _tag.c_str(), bin_size, x_lower, x_upper );
+    hist->SetDirectory( 0 );
     hist->SetStats( false );
-    hist->SetTitle( "" );
     hist->GetXaxis()->SetTitle( xtitle.c_str() );
     hist->GetYaxis()->SetTitle( ytitle.c_str() );
     _histmgr.AddObj( hist );

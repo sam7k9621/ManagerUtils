@@ -19,5 +19,4 @@ namespace mgr{
         poisson.params   = const_cast<double*>( &obs );
         return MakeMinos( &poisson, obs, mgr::gsl::epsilon, 2 * obs + 1, confidencelevel );
     }
-
 }/* mgr */

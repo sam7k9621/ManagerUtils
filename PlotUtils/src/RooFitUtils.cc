@@ -13,7 +13,6 @@
 #include <map>
 
 namespace mgr{
-
     void
     SetFrame( RooPlot* frame )
     {
@@ -87,5 +86,4 @@ namespace mgr{
         frame->addObject( ans, "L3" );
         return ans;
     }
-
 };

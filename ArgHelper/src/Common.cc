@@ -17,7 +17,6 @@ using namespace boost::property_tree;
 *******************************************************************************/
 
 namespace mgr{
-
     void
     ReadFile( const string& file, ptree& root )
     {
@@ -37,5 +36,4 @@ namespace mgr{
         string base = getenv( "CMSSW_BASE" );
         return ( base / "src" ) / package;
     }
-
 }

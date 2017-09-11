@@ -15,11 +15,9 @@ namespace mgr{
             /*******************************************************************************
             *  Class initialization
             *******************************************************************************/
-            SampleMgr();
             SampleMgr( TChain* );
             ~SampleMgr();
             void SetIndex( const int& i ){ _idx = i; }
-            void SetTChain( TChain* );
 
             /*******************************************************************************
             *  Return file info
@@ -39,12 +37,11 @@ namespace mgr{
             TLorentzVector GetMET( const TLorentzVector& );
             double         Phi_mpi_pi( double );
             bool           isIsoLepton( const int&, const int& );
-            TLorentzVector getLorentzVector( const std::string&, const int& );
+            TLorentzVector GetLorentzVector( const std::string&, const int& );
 
             /*******************************************************************************
-             *   Vertex & HLT selection
-             *
-             * ******************************************************************************/
+            *   Vertex & HLT selection
+            *******************************************************************************/
             bool passHLT( const std::vector<int>& );
             bool IsFake();
             bool IsOfflinePV();
@@ -54,7 +51,6 @@ namespace mgr{
 
             /*******************************************************************************
             *   Muon selection
-
             *******************************************************************************/
             bool passMuPt( const double& );
             bool passMuEta( const double& );
@@ -100,11 +96,15 @@ namespace mgr{
             int  GetGenLep( const int& );
             int  GetGenJet( const int& );
             int  GetDirectMother( int );
+            int  GetDirectDa1(int);
+            int  GetDirectDa2(int);
             int  GetGenPdgID( const int& );
             int  GetLepCharge( const int& );
             int  GetDirectMotherPdgID( const int& );
-            bool MCTruthBJet( std::vector<int>& );
             bool HasCommonMo( const int&, const int&, const int& );
+            bool MCTruthBJet();
+            int  bMatchType( const int&, const int&);
+            int  matchbHandle(const int&, const int&);
 
         private:
 
@@ -115,6 +115,7 @@ namespace mgr{
             JetInfo _jet;
             GenInfo _gen;
 
+            std::vector<int> _bhandle;
     };
 }
 

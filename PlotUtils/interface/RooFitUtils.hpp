@@ -58,7 +58,6 @@ namespace mgr{
         const RooCmdArg& arg2 = RooCmdArg::none(),
         const RooCmdArg& arg3 = RooCmdArg::none()
         );
-
 };/* plt */
 
 

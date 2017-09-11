@@ -11,7 +11,6 @@
 #include "TEfficiency.h"
 
 namespace mgr{
-
     /*******************************************************************************
     *   Minos error from calling StatisticsUtil defined functions
     *******************************************************************************/
@@ -25,7 +24,7 @@ namespace mgr{
         return MakeMinos(
             &binomial,
             passed / total,
-            (mgr::gsl::epsilon)*( mgr::gsl::epsilon ),            // Must be very small...
+            (mgr::gsl::epsilon)*( mgr::gsl::epsilon ),// Must be very small...
             1 - (mgr::gsl::epsilon)*( mgr::gsl::epsilon ),
             confidencelevel
             );
@@ -52,17 +51,16 @@ namespace mgr{
             total, passed,
             confidencelevel,
             alpha, beta,
-            true,                       // For upper boundary
+            true,// For upper boundary
             confidencemethod
             ) - central;
         const double err_down = central - TEfficiency::Bayesian(
             total, passed,
             confidencelevel,
             alpha, beta,
-            false,                        // For lower boundary
+            false,// For lower boundary
             confidencemethod
             );
         return Parameter( central, err_up, err_down );
     }
-
 }/* mgr */

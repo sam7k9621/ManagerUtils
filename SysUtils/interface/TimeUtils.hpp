@@ -21,7 +21,6 @@ namespace mgr{
     *   ** Sleep Thead for set number of MilliSeconds
     *******************************************************************************/
     extern void SleepMillSec( const unsigned );
-
 }/* mgr */
 
 #endif/* end of include guard */

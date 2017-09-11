@@ -8,7 +8,6 @@
 #include <vector>
 
 namespace mgr{
-
     class Readmgr {
         public:
 
@@ -27,9 +26,7 @@ namespace mgr{
         private:
 
             boost::property_tree::ptree root;
-
     };
-
 }
 
 #include "ManagerUtils/ArgHelper/src/Readmgr.ipp"

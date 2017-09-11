@@ -26,7 +26,6 @@ namespace mgr{
        Drawing the energy scale and luminosity information on top right of canvas
     *******************************************************************************/
     extern void DrawLuminosity( double luminosity );
-
 };
 
 #endif/* end of include guard: MANAGERUTILS_PLOTUTILS_DRAWCMS_HPP */

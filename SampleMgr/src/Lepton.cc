@@ -3,7 +3,6 @@
 using namespace std;
 
 namespace mgr{
-
     /*******************************************************************************
     *  Muon selection info
     *  https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideMuonIdRun2#Tight_Muon
@@ -119,5 +118,4 @@ namespace mgr{
     {
         return _lep.EgammaCutBasedEleIdTIGHT[ _idx ];
     }
-
 }
