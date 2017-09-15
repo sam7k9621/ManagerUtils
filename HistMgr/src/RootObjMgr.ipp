@@ -25,10 +25,9 @@ namespace mgr {
     {
         const std::string store = MakeStoreName( obj->GetName(), obj->GetTitle() );
 
-        obj->SetTitle("");
+        obj->SetTitle( "" );
         _objmap.erase( store );// deleting existing instance if already exist
         _objmap[ store ] = std::unique_ptr < T > ( obj );
-        
     }
 
     /******************************************************************************/

@@ -89,14 +89,13 @@ namespace mgr{
 
         for( int i = 0; i < Gsize(); i++ ){
             if( fabs( _gen.PdgID[ i ] ) == 6 ){
-                
-                if( fabs( _gen.Da1PdgID[i] ) == 5 ){
-                    _bhandle.push_back( _gen.Da1[i] );
+                if( fabs( _gen.Da1PdgID[ i ] ) == 5 ){
+                    _bhandle.push_back( _gen.Da1[ i ] );
                     continue;
                 }
 
-                if( fabs( _gen.Da2PdgID[i] ) == 5 ){
-                    _bhandle.push_back( _gen.Da2[i] );
+                if( fabs( _gen.Da2PdgID[ i ] ) == 5 ){
+                    _bhandle.push_back( _gen.Da2[ i ] );
                 }
             }
         }
@@ -107,9 +106,10 @@ namespace mgr{
     int
     SampleMgr::bMatchType( const int& bidx, const int& charge )
     {
-        int idx = GetGenJet(bidx);
-        if(idx < 0)
-            return 1<< 5;
+        int idx = GetGenJet( bidx );
+        if( idx < 0 ){
+            return 1 << 5;
+        }
 
         return matchbHandle( idx, charge );
     }
@@ -121,7 +121,7 @@ namespace mgr{
         if( fabs( _gen.PdgID[ idx ] ) != 5 ){
             return 1 << 1;
         }
-    
+
         for( const auto& i : _bhandle ){
             if(
                 GetDirectMother( i ) == GetDirectMother( idx )
@@ -137,9 +137,8 @@ namespace mgr{
                 }
             }
         }
-    
+
         // mistag
         return 1 << 2;
     }
 }
-

@@ -96,15 +96,15 @@ namespace mgr{
             int  GetGenLep( const int& );
             int  GetGenJet( const int& );
             int  GetDirectMother( int );
-            int  GetDirectDa1(int);
-            int  GetDirectDa2(int);
+            int  GetDirectDa1( int );
+            int  GetDirectDa2( int );
             int  GetGenPdgID( const int& );
             int  GetLepCharge( const int& );
             int  GetDirectMotherPdgID( const int& );
             bool HasCommonMo( const int&, const int&, const int& );
             bool MCTruthBJet();
-            int  bMatchType( const int&, const int&);
-            int  matchbHandle(const int&, const int&);
+            int  bMatchType( const int&, const int& );
+            int  matchbHandle( const int&, const int& );
 
         private:
 
