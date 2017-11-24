@@ -8,6 +8,7 @@
 #include "ManagerUtils/SysUtils/interface/PathUtils.hpp"
 
 #include "TCanvas.h"
+#include "TH1.h"
 #include "TFile.h"
 
 #include <boost/format.hpp>
@@ -35,6 +36,15 @@ namespace mgr{
         CheckPath( filename );
         TFile* myfile = TFile::Open( filename.c_str(), "UPDATE" );
         c->Write( objname.c_str(), TFile::kOverwrite );
+        delete myfile;
+    }
+    
+    void
+    SaveToROOT( TH1* h, const string& filename, const string& objname )
+    {
+        CheckPath( filename );
+        TFile* myfile = TFile::Open( filename.c_str(), "UPDATE" );
+        h->Write( objname.c_str(), TFile::kOverwrite );
         delete myfile;
     }
 };

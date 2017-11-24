@@ -30,6 +30,11 @@ namespace mgr{
             int RunNo()   { return _evt.RunNo; }
             int LumiNo()  { return _evt.LumiNo; }
 
+            VertexInfo& Vtx(){ return _vtx; }
+            LeptonInfo& Lep(){ return _lep; }
+            EvtInfo&    Evt(){ return _evt; }
+            JetInfo&    Jet(){ return _jet; }
+            GenInfo&    Gen(){ return _gen; }
             /*******************************************************************************
             *   Common calculation
             *******************************************************************************/
@@ -76,6 +81,10 @@ namespace mgr{
             /*******************************************************************************
             * Jet selection
             *******************************************************************************/
+            unsigned bitcon( const float x );
+            double MakeSmeared();
+            TLorentzVector JetP4();
+
             bool passJetPt( const double& );
             bool passJetEta( const double& );
             bool JetNConstituents();

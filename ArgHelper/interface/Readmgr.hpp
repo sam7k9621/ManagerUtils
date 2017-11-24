@@ -15,6 +15,7 @@ namespace mgr{
 
             virtual ~Readmgr(){}
 
+            void ChangeJSON(const std::string&);
             boost::property_tree::ptree GetSubTree( const std::string& );
 
             template<typename T>

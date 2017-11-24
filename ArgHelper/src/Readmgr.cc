@@ -15,4 +15,10 @@ namespace mgr{
     {
         return root.get_child( t );
     }
+
+    void
+    Readmgr::ChangeJSON( const string& file )
+    {
+        ReadFile( file, root );
+    }
 }

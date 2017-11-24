@@ -836,6 +836,10 @@ class JetInfo {
         float Pz[ MAX_JETS ];// Uly 2011-04-04
         float Energy[ MAX_JETS ];// Uly 2011-04-04
 
+        float JERPt[ MAX_JETS ];
+        float JERPhi[ MAX_JETS ];
+        float JERScale[ MAX_JETS ];
+
         float pfCombinedInclusiveSecondaryVertexV2BJetTags[ MAX_JETS ];
         float Mass[ MAX_JETS ];
         float Area[ MAX_JETS ];
@@ -876,6 +880,9 @@ class JetInfo {
             root->Branch( ( name + ".Unc" ).c_str(),                                          &Unc[ 0 ],                                          ( name + ".Unc[" + name + ".Size]/F" ).c_str() );
             root->Branch( ( name + ".Eta" ).c_str(),                                          &Eta[ 0 ],                                          ( name + ".Eta[" + name + ".Size]/F" ).c_str() );
             root->Branch( ( name + ".Phi" ).c_str(),                                          &Phi[ 0 ],                                          ( name + ".Phi[" + name + ".Size]/F" ).c_str() );
+            root->Branch( ( name + ".JERPt" ).c_str(),                                        &JERPt[ 0 ],                                        ( name + ".JERPt[" + name + ".Size]/F" ).c_str() );
+            root->Branch( ( name + ".JERPhi" ).c_str(),                                       &JERPhi[ 0 ],                                       ( name + ".JERPhi[" + name + ".Size]/F" ).c_str() );
+            root->Branch( ( name + ".JERScale" ).c_str(),                                     &JERScale[ 0 ],                                     ( name + ".JERScale[" + name + ".Size]/F" ).c_str() );
             root->Branch( ( name + ".JetIDLOOSE" ).c_str(),                                   &JetIDLOOSE[ 0 ],                                   ( name + ".JetIDLOOSE[" + name + ".Size]/I" ).c_str() );// Add by Chiyi
             root->Branch( ( name + ".JetCharge" ).c_str(),                                    &JetCharge[ 0 ],                                    ( name + ".JetCharge[" + name + ".Size]/F" ).c_str() );
             root->Branch( ( name + ".QGTagsLikelihood" ).c_str(),                             &QGTagsLikelihood[ 0 ],                             ( name + ".QGTagsLikelihood[" + name + ".Size]/F" ).c_str() );
@@ -974,6 +981,10 @@ class JetInfo {
             root->SetBranchAddress( ( name + ".Pz" ).c_str(),                                           &Pz[ 0 ] );// Uly 2011-04-04
             root->SetBranchAddress( ( name + ".Energy" ).c_str(),                                       &Energy[ 0 ] );// Uly 2011-04-04
 
+            root->SetBranchAddress( ( name + ".JERPt" ).c_str(),                                        &JERPt[ 0 ] );
+            root->SetBranchAddress( ( name + ".JERPhi" ).c_str(),                                       &JERPhi[ 0 ] );
+            root->SetBranchAddress( ( name + ".JERScale" ).c_str(),                                     &JERScale[ 0 ] );
+            
             root->SetBranchAddress( ( name + ".Mass" ).c_str(),                                         &Mass[ 0 ] );
             root->SetBranchAddress( ( name + ".Area" ).c_str(),                                         &Area[ 0 ] );
             root->SetBranchAddress( ( name + ".NSubjets" ).c_str(),                                     &NSubjets[ 0 ] );

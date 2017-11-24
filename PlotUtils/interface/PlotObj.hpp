@@ -54,7 +54,7 @@ namespace mgr{
     extern TH1D* DivideHist(
         TH1D*        num,
         TH1D*        den,
-        const double cen = 1.
+        const double cen=1
         );
 
     /*******************************************************************************
