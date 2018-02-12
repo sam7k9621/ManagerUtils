@@ -68,7 +68,18 @@ HistMgr::AddHist(
     hist->SetStats( false );
     hist->GetXaxis()->SetTitle( xtitle.c_str() );
     hist->GetYaxis()->SetTitle( ytitle.c_str() );
+    hist->Sumw2();
     _histmgr.AddObj( hist );
+}
+
+void
+HistMgr::AddHist(const string& label, TH1* hist)
+{
+    string aliasname = _tag + "_" + label;
+    hist->SetNameTitle( aliasname.c_str(), _tag.c_str() );
+    hist->SetDirectory(0);
+    hist->SetStats( false );
+    hist->Sumw2();
 }
 
 /*******************************************************************************
@@ -77,16 +88,16 @@ HistMgr::AddHist(
 void
 HistMgr::Scale( const double x )
 {
-    for( auto hist : _histmgr ){
-        for( int i = 0; i < hist->GetSize(); ++i ){
-            double bincontent = hist->GetBinContent( i );
-            double binerror   = hist->GetBinError( i );
-            bincontent *= x;
-            binerror   *= x;
-            hist->SetBinContent( i, bincontent );
-            hist->SetBinError( i, binerror );
-        }
+  for( auto hist : _histmgr ){
+    for( int i = 0; i < hist->GetSize(); ++i ){
+      double bincontent = hist->GetBinContent( i );
+      double binerror   = hist->GetBinError( i );
+      bincontent *= x;
+      binerror   *= x;
+      hist->SetBinContent( i, bincontent );
+      hist->SetBinError( i, binerror );
     }
+  }
 }
 
 /******************************************************************************/

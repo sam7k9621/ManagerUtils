@@ -93,7 +93,6 @@ namespace mgr{
             bool JetCHF();
             bool JetNCH();
             bool JetCEF();
-
             // b-tagging
             bool JetCSVM( const double& );
 
