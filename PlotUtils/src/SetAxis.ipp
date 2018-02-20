@@ -50,7 +50,7 @@ template < class T >
 void
 mgr::SetNormToUnity( T* plot )
 {
-    Double_t norm = plot->GetEntries();
+    Double_t norm = plot->Integral();
     plot->Scale( 1 / norm );
 }
 

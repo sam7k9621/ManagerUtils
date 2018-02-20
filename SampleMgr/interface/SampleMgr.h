@@ -99,20 +99,11 @@ namespace mgr{
             /*******************************************************************************
             *   MC Truth
             *******************************************************************************/
-            int MatchGenlevel( const float&, const float& );
-            // if doesn't match return -1
-            int  GetGenLep( const int& );
-            int  GetGenJet( const int& );
-            int  GetDirectMother( int );
-            int  GetDirectDa1( int );
-            int  GetDirectDa2( int );
-            int  GetGenPdgID( const int& );
-            int  GetLepCharge( const int& );
-            int  GetDirectMotherPdgID( const int& );
-            bool HasCommonMo( const int&, const int&, const int& );
-            bool MCTruthBJet();
-            int  bMatchType( const int&, const int& );
-            int  matchbHandle( const int&, const int& );
+            float GetLepCharge(const int&);
+            int GetPartonID( const int&);
+            int MCTruthJet( const int&);
+            int MatchGenlevel(const float&, const float&);
+
 
         private:
 
@@ -123,7 +114,6 @@ namespace mgr{
             JetInfo _jet;
             GenInfo _gen;
 
-            std::vector<int> _bhandle;
     };
 }
 

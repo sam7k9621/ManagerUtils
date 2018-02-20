@@ -26,15 +26,15 @@ public:
   std::vector<std::string> AvailableHist2DList() const;
 
   void AddHist2D(
-    const std::string& histname,
-    const std::string& xtitle,
-    const std::string& ytitle,
-    const unsigned     xbin,
-    const double       xmin,
-    const double       xmax,
-    const unsigned     ybin,
-    const double       ymin,
-    const double       ymax
+    const std::string&,
+    const std::string&,
+    const std::string&,
+    const unsigned    , 
+    const double      , 
+    const double      , 
+    const unsigned    , 
+    const double      , 
+    const double      
     );
 
 private:

@@ -4,11 +4,30 @@
 using namespace std;
 
 namespace mgr{
+
+    float
+    SampleMgr::GetLepCharge( const int& idx )
+    {
+        return _lep.Charge[ idx ];
+    }
+
+    int
+    SampleMgr::GetPartonID( const int& idx )
+    {
+        return _gen.PdgID[ MCTruthJet(idx) ];
+    }
+
+    int
+    SampleMgr::MCTruthJet( const int& idx )
+    {
+        return MatchGenlevel( _jet.GenEta[ idx ], _jet.GenPhi[ idx ] );
+    }
+
     int
     SampleMgr::MatchGenlevel( const float& eta, const float& phi )
     {
         double deltaR = INT_MAX;
-        int idx       = -1;
+        int    idx    = -1;
 
         for( int i = 0; i < Gsize(); i++ ){
             double deta = eta - _gen.Eta[ i ];
@@ -20,125 +39,7 @@ namespace mgr{
                 idx    = i;
             }
         }
-
         return idx;
     }
 
-    int
-    SampleMgr::GetGenLep( const int& idx )
-    {
-        return MatchGenlevel( _lep.GenEta[ idx ], _lep.GenPhi[ idx ] );
-    }
-
-    int
-    SampleMgr::GetGenJet( const int& idx )
-    {
-        return MatchGenlevel( _jet.GenEta[ idx ], _jet.GenPhi[ idx ] );
-    }
-
-    int
-    SampleMgr::GetDirectMother( int idx )
-    {
-        if( _gen.Mo1[ idx ] < 0 ){
-            return -1;
-        }
-
-        while( fabs( _gen.Mo1PdgID[ idx ] ) == fabs( _gen.PdgID[ idx ] ) ){
-            idx = _gen.Mo1[ idx ];
-        }
-
-        return _gen.Mo1[ idx ];
-    }
-
-    int
-    SampleMgr::GetGenPdgID( const int& idx )
-    {
-        return _gen.PdgID[ idx ];
-    }
-
-    int
-    SampleMgr::GetLepCharge( const int& idx )
-    {
-        return _lep.Charge[ idx ];
-    }
-
-    int
-    SampleMgr::GetDirectMotherPdgID( const int& idx )
-    {
-        return GetGenPdgID( GetDirectMother( idx ) );
-    }
-
-    bool
-    SampleMgr::HasCommonMo( const int& idx1, const int& idx2, const int& pdgid )
-    {
-        if( GetDirectMother( idx1 ) != GetDirectMother( idx2 ) ){
-            return false;
-        }
-
-        if( fabs( GetDirectMotherPdgID( idx1 ) ) != pdgid ){
-            return false;
-        }
-
-        return true;
-    }
-
-    bool
-    SampleMgr::MCTruthBJet()
-    {
-        _bhandle.clear();
-
-        for( int i = 0; i < Gsize(); i++ ){
-            if( fabs( _gen.PdgID[ i ] ) == 6 ){
-                if( fabs( _gen.Da1PdgID[ i ] ) == 5 ){
-                    _bhandle.push_back( _gen.Da1[ i ] );
-                    continue;
-                }
-
-                if( fabs( _gen.Da2PdgID[ i ] ) == 5 ){
-                    _bhandle.push_back( _gen.Da2[ i ] );
-                }
-            }
-        }
-
-        return _bhandle.size() == 2;
-    }
-
-    int
-    SampleMgr::bMatchType( const int& bidx, const int& charge )
-    {
-        int idx = GetGenJet( bidx );
-        if( idx < 0 ){
-            return 1 << 5;
-        }
-
-        return matchbHandle( idx, charge );
-    }
-
-    int
-    SampleMgr::matchbHandle( const int& idx, const int& charge )
-    {
-        // fake b
-        if( fabs( _gen.PdgID[ idx ] ) != 5 ){
-            return 1 << 1;
-        }
-
-        for( const auto& i : _bhandle ){
-            if(
-                GetDirectMother( i ) == GetDirectMother( idx )
-                )
-            {
-                // correct
-                if( _gen.PdgID[ idx ] * charge < 0 ){
-                    return 1 << 0;
-                }
-                // charge swapped
-                else{
-                    return 1 << 3;
-                }
-            }
-        }
-
-        // mistag
-        return 1 << 2;
-    }
 }
