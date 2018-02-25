@@ -18,7 +18,7 @@ namespace mgr{
             };
 
             Parsermgr();
-            ~Parsermgr(){}
+            virtual ~Parsermgr(){}
 
             Parsermgr& AddOptions( const boost::program_options::options_description& );
             int        ParseOptions( int argc, char* argv[] );
