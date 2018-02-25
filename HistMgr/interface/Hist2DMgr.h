@@ -7,42 +7,39 @@
 #include <string>
 #include <vector>
 
-namespace mgr {
+namespace mgr{
+    class Hist2DMgr {
+        public:
 
-class Hist2DMgr
-{
-public:
-  Hist2DMgr( const std::string& ); // Must have unique name
-  virtual
-  ~Hist2DMgr ();
+            Hist2DMgr( const std::string& );// Must have unique name
+            virtual ~Hist2DMgr ();
 
-  // Explicitly removing copy constructor
-  Hist2DMgr( const Hist2DMgr& )            = delete;
-  Hist2DMgr& operator=( const Hist2DMgr& ) = delete;
+            // Explicitly removing copy constructor
+            Hist2DMgr( const Hist2DMgr& )            = delete;
+            Hist2DMgr& operator=( const Hist2DMgr& ) = delete;
 
-  TH2D*       Hist2D( const std::string& );
-  const TH2D* Hist2D( const std::string& ) const;
+            TH2D*       Hist2D( const std::string& );
+            const TH2D* Hist2D( const std::string& ) const;
 
-  std::vector<std::string> AvailableHist2DList() const;
+            std::vector<std::string> AvailableHist2DList() const;
 
-  void AddHist2D(
-    const std::string&,
-    const std::string&,
-    const std::string&,
-    const unsigned    , 
-    const double      , 
-    const double      , 
-    const unsigned    , 
-    const double      , 
-    const double      
-    );
+            void AddHist2D(
+                const std::string&,
+                const std::string&,
+                const std::string&,
+                const unsigned,
+                const double,
+                const double,
+                const unsigned,
+                const double,
+                const double
+                );
 
-private:
-  std::string _tag;
-  RootObjMgr<TH2D> _histmgr;
-};
+        private:
 
-
+            std::string _tag;
+            RootObjMgr<TH2D> _histmgr;
+    };
 };
 
 #endif/* end of include guard: MANAGERUTILS_ROOTMGR_HIST2DMGR_HPP */

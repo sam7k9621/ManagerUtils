@@ -22,7 +22,7 @@ namespace mgr{
     *******************************************************************************/
     void SaveToROOT( TCanvas*, const std::string& filename, const std::string& objname );
 
-    void SaveToROOT( TH1*,     const std::string& filename, const std::string& objname );
+    void SaveToROOT( TH1*, const std::string& filename, const std::string& objname );
 }
 
 

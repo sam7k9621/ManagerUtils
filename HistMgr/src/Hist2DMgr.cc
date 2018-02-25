@@ -20,7 +20,7 @@ Hist2DMgr::~Hist2DMgr()
 TH2D*
 Hist2DMgr::Hist2D( const string& name )
 {
-  return _histmgr.GetObj( name );
+    return _histmgr.GetObj( name );
 }
 
 /******************************************************************************/
@@ -28,7 +28,7 @@ Hist2DMgr::Hist2D( const string& name )
 const TH2D*
 Hist2DMgr::Hist2D( const string& name ) const
 {
-  return _histmgr.GetObj( name );
+    return _histmgr.GetObj( name );
 }
 
 /******************************************************************************/
@@ -36,35 +36,34 @@ Hist2DMgr::Hist2D( const string& name ) const
 vector<string>
 Hist2DMgr::AvailableHist2DList() const
 {
-  return _histmgr.ObjNameList();
+    return _histmgr.ObjNameList();
 }
-
 
 /*******************************************************************************
 *   TH2D declaration functions
 *******************************************************************************/
 void
 Hist2DMgr::AddHist2D(
-  const std::string& label,
-  const std::string& xtitle,
-  const std::string& ytitle,
-  const unsigned     xbin,
-  const double       xmin,
-  const double       xmax,
-  const unsigned     ybin,
-  const double       ymin,
-  const double       ymax
-  )
+    const std::string& label,
+    const std::string& xtitle,
+    const std::string& ytitle,
+    const unsigned     xbin,
+    const double       xmin,
+    const double       xmax,
+    const unsigned     ybin,
+    const double       ymin,
+    const double       ymax
+    )
 {
     string aliasname = _tag + "_" + label;
 
-    TH2D* hist = new TH2D( 
-            aliasname.c_str(), _tag.c_str(),
-            xbin, xmin, xmax,
-            ybin, ymin, ymax
-            );
-    
-    hist->SetDirectory(0);
+    TH2D* hist = new TH2D(
+        aliasname.c_str(), _tag.c_str(),
+        xbin, xmin, xmax,
+        ybin, ymin, ymax
+        );
+
+    hist->SetDirectory( 0 );
     hist->SetStats( false );
     hist->GetXaxis()->SetTitle( xtitle.c_str() );
     hist->GetYaxis()->SetTitle( ytitle.c_str() );

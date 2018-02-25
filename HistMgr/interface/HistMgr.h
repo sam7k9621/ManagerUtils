@@ -44,7 +44,7 @@ namespace mgr{
                 const double
                 );
 
-            void AddHist( const std::string&, TH1*);
+            void AddHist( const std::string&, TH1* );
 
         private:
 

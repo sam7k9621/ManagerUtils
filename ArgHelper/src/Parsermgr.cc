@@ -88,7 +88,7 @@ namespace mgr{
                 taglist.push_back( opt + "_" + ans );
             }
         }
-        
+
         for( const auto& opt : _namelist ){
             string ans = "";
 

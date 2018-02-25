@@ -7,7 +7,13 @@ namespace pt = boost::property_tree;
 namespace mgr{
     Readmgr::Readmgr( const string& file )
     {
-        ReadFile( file, root );
+        std::size_t found = file.find( "json" );
+        if( found != std::string::npos ){
+            ReadFile( file, root );
+        }
+        else{
+            printf( "Using without reading JSON\n" );
+        }
     }
 
     pt::ptree
