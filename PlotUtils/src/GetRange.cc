@@ -10,6 +10,9 @@
 #include <algorithm>
 #include <float.h>
 #include <vector>
+#include <string>
+
+#include <iostream>
 
 namespace mgr{
     /*******************************************************************************
@@ -25,7 +28,6 @@ namespace mgr{
             const double binerr  = hist->GetBinError( i );
             ans = std::max( ans, bincont + binerr );
         }
-
         return ans;
     }
 
@@ -42,7 +44,7 @@ namespace mgr{
 
         return ans;
     }
-
+    
     /*******************************************************************************
     *   TGraph Max and min calculations
     *******************************************************************************/
@@ -73,7 +75,7 @@ namespace mgr{
 
         return ans;
     }
-
+    
     /******************************************************************************/
 
     double

@@ -15,8 +15,24 @@ namespace mgr {
     }
 
     template < typename T >
-    vector < T > Readmgr::GetListData( const string &tag ){
+    T
+    Readmgr::GetSubSingleData( const string& sub, const string& tag )
+    {
+        return GetSingle< T > ( tag, GetSubTree( sub ) );
+    }
+
+    template < typename T >
+    vector < T > 
+    Readmgr::GetListData( const string &tag )
+    {
         return GetList < T > ( tag, root );
+    }
+
+    template < typename T >
+    vector< T >
+    Readmgr::GetSubListData( const string& sub, const string& tag )
+    {
+        return GetList< T > ( tag, GetSubTree( sub ) ) ;
     }
 }
 #endif

@@ -19,7 +19,6 @@ namespace mgr{
     *******************************************************************************/
     extern double GetYmax( const TH1* );
     extern double GetYmax( const std::vector<TH1*>& );
-
     /*******************************************************************************
     *   ** GetYmax( const TGraph* )
     *   ** GetYmin( const TGraph* ) Getting y max and y min of single graph

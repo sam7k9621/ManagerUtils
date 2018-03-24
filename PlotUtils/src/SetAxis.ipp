@@ -8,12 +8,15 @@
 #ifndef MANAGERUTILS_PLOTUTILS_SETAXIS_IPP
 #define MANAGERUTILS_PLOTUTILS_SETAXIS_IPP
 
+#include <string>
+
 template < class T >
 void
 mgr::SetAxis( T* plot )
 {
     // Global settings from TGaxis
     TGaxis::SetMaxDigits( 4 );
+    TGaxis::SetExponentOffset( -1000, -1000 );
 
     plot->GetXaxis()->SetLabelFont( FONT_TYPE );
     plot->GetXaxis()->SetTitleFont( FONT_TYPE );
