@@ -11,7 +11,13 @@ namespace mgr {
     T
     Parsermgr::GetOption( const string& op )
     {
-        return _vm[ op ].as < T > ( );
+        if( CheckOption( op ) ){
+            return _vm[ op ].as < T > ( );
+                
+        }
+        else{ //return a null object
+            return T();
+        }
     }
 
     // http://stackoverflow.com/questions/1657883/variable-number-of-arguments-in-c
