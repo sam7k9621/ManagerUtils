@@ -54,6 +54,36 @@ namespace mgr{
     {
         vector<string> taglist;
 
+        for( const auto& opt : _namelist ){
+            string ans = "";
+
+            if( ans == "" ){
+                try {
+                    ans = GetOption<string>( opt );
+                }
+                catch( ... ){
+                }
+            }
+
+            if( ans == "" ){
+                try {
+                    ans = boost::lexical_cast<string>( GetOption<int>( opt ) );
+                }
+                catch( ... ){
+                }
+            }
+
+            if( ans == "" ){
+                try {
+                    ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
+                }
+                catch( ... ){
+                }
+            }
+
+            taglist.push_back( ans );
+        }
+
         for( const auto& opt : _cutlist ){
             string ans = "";
 
@@ -88,37 +118,7 @@ namespace mgr{
                 taglist.push_back( opt + "_" + ans );
             }
         }
-
-        for( const auto& opt : _namelist ){
-            string ans = "";
-
-            if( ans == "" ){
-                try {
-                    ans = GetOption<string>( opt );
-                }
-                catch( ... ){
-                }
-            }
-
-            if( ans == "" ){
-                try {
-                    ans = boost::lexical_cast<string>( GetOption<int>( opt ) );
-                }
-                catch( ... ){
-                }
-            }
-
-            if( ans == "" ){
-                try {
-                    ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
-                }
-                catch( ... ){
-                }
-            }
-
-            taglist.push_back( ans );
-        }
-
+        
         return CustomName( taglist );
     }
 
