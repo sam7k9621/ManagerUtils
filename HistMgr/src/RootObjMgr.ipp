@@ -23,9 +23,13 @@ namespace mgr {
     void
     RootObjMgr < T > ::AddObj( T * obj )
     {
+                          // name                // sample_name  // sample
         const std::string store = MakeStoreName( obj->GetName(), obj->GetTitle() );
 
-        obj->SetTitle( "" );
+        if( store != obj->GetName() ){
+            obj->SetTitle( "" );
+        }
+
         _objmap.erase( store );// deleting existing instance if already exist
         _objmap[ store ] = std::unique_ptr < T > ( obj );
     }

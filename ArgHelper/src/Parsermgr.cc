@@ -133,4 +133,11 @@ namespace mgr{
 
         return ans;
     }
+
+    void
+    Parsermgr::GetOptlist(){
+        for (const auto& it : _vm) {
+            cout << it.first.c_str() << " ";
+        }
+    }
 }

@@ -8,6 +8,7 @@
 #include "TGraph.h"
 #include "TH1.h"
 #include <algorithm>
+#include <math.h>
 #include <float.h>
 #include <vector>
 #include <string>
@@ -24,9 +25,9 @@ namespace mgr{
         double ans = 0;
 
         for( int i = 1; i <= hist->GetNcells(); ++i ){
-            const double bincont = hist->GetBinContent( i );
-            const double binerr  = hist->GetBinError( i );
-            ans = std::max( ans, bincont + binerr );
+            const double bincont =  hist->GetBinContent( i ) ;
+            const double binerr  =  hist->GetBinError( i ) ;
+            ans = std::max( ans, fabs( bincont + binerr ) );
         }
         return ans;
     }
@@ -55,7 +56,7 @@ namespace mgr{
 
         for( int i = 0; i < x->GetN(); ++i ){
             const double bin = x->GetY()[ i ] + x->GetErrorYhigh( i );
-            ans = std::max( ans, bin );
+            ans = std::max( ans, fabs( bin ) );
         }
 
         return ans;

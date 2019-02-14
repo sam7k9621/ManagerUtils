@@ -12,7 +12,8 @@ Hist2DMgr::Hist2DMgr( const string& tag ) :
 }
 
 Hist2DMgr::~Hist2DMgr()
-{}
+{
+}
 
 /*******************************************************************************
 *  Histogram access functions

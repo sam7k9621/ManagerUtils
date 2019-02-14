@@ -31,6 +31,8 @@ namespace mgr{
                 return _namelist;
             }
 
+            void GetOptlist();
+
             template<typename T>
             void AddCutName( std::initializer_list<T> );
 
