@@ -108,7 +108,7 @@ RooRealVar*
 RooFitMgr::NewVar( const string& label, const double cen, const double min, const double max )
 {
     string aliasname = _tag + "_" + label;
-    
+
     if( Var( label ) ){// if already exists variable
         RooRealVar* var = Var( label );
         var->setConstant( kFALSE );

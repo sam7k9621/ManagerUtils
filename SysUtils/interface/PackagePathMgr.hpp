@@ -19,8 +19,8 @@ namespace mgr{
                 const std::string& package,
                 const std::string& sub_package,
                 const std::string& settings_dir = "settings",
-                const std::string& results_dir = "results",
-                const std::string& samples_dir = "samples"
+                const std::string& results_dir  = "results",
+                const std::string& samples_dir  = "samples"
                 );
             virtual ~PackagePathMgr ();
 

@@ -57,7 +57,7 @@ namespace mgr{
                 const int          _masspoint,
                 const std::string& _combine_method,
                 const std::string& _additional_options = "",
-                const std::string& _logfile = "/dev/null"
+                const std::string& _logfile            = "/dev/null"
                 );// Constructor with default arguments
             ~CombineRequest();
 

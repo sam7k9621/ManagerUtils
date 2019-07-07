@@ -3,9 +3,9 @@ import ROOT
 # /*******************************************************************************
 # *   Pad settings functions
 # *******************************************************************************/
-def NewCanvas():
+def NewCanvas( obj="c" ):
     ROOT.gROOT.SetBatch(ROOT.kTRUE)
-    c = ROOT.TCanvas( "c", "c", DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT )
+    c = ROOT.TCanvas( obj, obj, DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT )
     return c
 
 def NewTopPad():

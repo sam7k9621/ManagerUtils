@@ -8,10 +8,10 @@
 #include "TGraph.h"
 #include "TH1.h"
 #include <algorithm>
-#include <math.h>
 #include <float.h>
-#include <vector>
+#include <math.h>
 #include <string>
+#include <vector>
 
 #include <iostream>
 
@@ -25,10 +25,11 @@ namespace mgr{
         double ans = 0;
 
         for( int i = 1; i <= hist->GetNcells(); ++i ){
-            const double bincont =  hist->GetBinContent( i ) ;
-            const double binerr  =  hist->GetBinError( i ) ;
+            const double bincont = hist->GetBinContent( i );
+            const double binerr  = hist->GetBinError( i );
             ans = std::max( ans, fabs( bincont + binerr ) );
         }
+
         return ans;
     }
 
@@ -45,7 +46,7 @@ namespace mgr{
 
         return ans;
     }
-    
+
     /*******************************************************************************
     *   TGraph Max and min calculations
     *******************************************************************************/
@@ -76,7 +77,7 @@ namespace mgr{
 
         return ans;
     }
-    
+
     /******************************************************************************/
 
     double

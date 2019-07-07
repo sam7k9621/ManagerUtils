@@ -118,7 +118,7 @@ namespace mgr{
                 taglist.push_back( opt + "_" + ans );
             }
         }
-        
+
         return CustomName( taglist );
     }
 
@@ -135,8 +135,9 @@ namespace mgr{
     }
 
     void
-    Parsermgr::GetOptlist(){
-        for (const auto& it : _vm) {
+    Parsermgr::GetOptlist()
+    {
+        for( const auto& it : _vm ){
             cout << it.first.c_str() << " ";
         }
     }

@@ -22,11 +22,11 @@ namespace mgr{
             T GetSingleData( const std::string& );
             template<typename T>
             T GetSubSingleData( const std::string&, const std::string& );
-            
+
             template<typename T>
             std::vector<T> GetListData( const std::string& );
             template<typename T>
-            std::vector<T> GetSubListData( const std::string&, const std::string&);
+            std::vector<T> GetSubListData( const std::string&, const std::string& );
 
         private:
 

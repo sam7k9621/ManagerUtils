@@ -19,13 +19,17 @@ def SetAxis( plot ):
     y.SetLabelSize( AXIS_LABEL_FONT_SIZE )
     y.SetTitleSize( AXIS_TITLE_FONT_SIZE )
     y.SetTitleOffset( 1.2 )
+    
+    if plot.GetMaximum() >= 10000:
+        y.SetTitle( y.GetTitle() + " x 10^{3}" )
+
 
 def SetTopPlotAxis( plot ):
     SetAxis( plot )
     plot.GetXaxis().SetLabelSize( 0 )
     plot.GetXaxis().SetTitleSize( 0 )
     plot.GetYaxis().SetTitleOffset( 1.2 )
-
+    
 def SetBottomPlotAxis( plot ):
     SetAxis( plot )
     plot.GetYaxis().SetNdivisions( 503 )

@@ -121,7 +121,7 @@ namespace mgr{
     SumUncorrelated(
         const vector<Parameter>& paramlist,
         const double confidencelevel,
-        double ( *nll )( double, const Parameter& )
+        double ( * nll )( double, const Parameter& )
         )
     {
         const unsigned dim = paramlist.size();
@@ -167,7 +167,7 @@ namespace mgr{
     ProdUncorrelated(
         const std::vector<Parameter>& paramlist,
         const double confidencelevel,
-        double ( *nll )( double, const Parameter& )
+        double ( * nll )( double, const Parameter& )
         )
     {
         const unsigned dim = paramlist.size();

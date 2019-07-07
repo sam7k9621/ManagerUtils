@@ -66,7 +66,7 @@ def DivideHist( num, den, cen=0 ):
 # *******************************************************************************/
 
 def SumHist( histlst ):
-    hist = histlst.pop()
-    for h in histlst:
+    hist = histlst[0].Clone()
+    for h in histlst[1:]:
         hist.Add(h)
     return hist
