@@ -6,6 +6,7 @@
 *
 *******************************************************************************/
 #include "ManagerUtils/SysUtils/interface/PathUtils.hpp"
+#include "ManagerUtils/PlotUtils/interface/SaveUtils.hpp"
 
 #include "TCanvas.h"
 #include "TFile.h"

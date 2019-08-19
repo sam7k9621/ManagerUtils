@@ -1,6 +1,7 @@
 from ManagerUtils.PlotUtils.Constants import *
 from ROOT import TGaxis
 def SetAxis( plot ):
+    
     # Global settings from TGaxis
     TGaxis.SetMaxDigits( 4 )
     TGaxis.SetExponentOffset( -1000, -1000 )

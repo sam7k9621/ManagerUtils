@@ -5,8 +5,8 @@ import sys
 def GetHistYmax( hist ):
     ans = 0
     for i in range( hist.GetNcells() ):
-        bincont = hist.GetBinContent( i )
-        binerr  = hist.GetBinError( i )
+        bincont = abs( hist.GetBinContent( i ) )
+        binerr  = abs( hist.GetBinError( i ) )
         ans = max( ans, bincont + binerr )
     return ans
 
