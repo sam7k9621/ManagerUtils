@@ -16,12 +16,14 @@ namespace mgr{
         const std::string& sub_package,
         const std::string& settings_dir,
         const std::string& results_dir,
+        const std::string& python_dir,
         const std::string& datas_dir
         ) :
         _package_name( package ),
         _sub_package_name( sub_package ),
         _settings_dir( settings_dir ),
         _results_dir( results_dir ),
+        _python_dir( python_dir ),
         _datas_dir( datas_dir )
     {
     }
@@ -53,6 +55,12 @@ namespace mgr{
     Pathmgr::SettingsDir() const
     {
         return SubDir( _settings_dir );
+    }
+
+    string 
+    Pathmgr::PythonDir() const 
+    {
+        return SubDir( _python_dir );
     }
 
     string

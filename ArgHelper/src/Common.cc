@@ -1,7 +1,6 @@
 #include "ManagerUtils/ArgHelper/interface/Common.hpp"
 #include <stdlib.h>
 using namespace std;
-using namespace boost::property_tree;
 
 /*******************************************************************************
 *   Operator overloading
@@ -17,11 +16,6 @@ using namespace boost::property_tree;
 *******************************************************************************/
 
 namespace mgr{
-    void
-    ReadFile( const string& file, ptree& root )
-    {
-        read_json( file, root );
-    }
 
     string
     SubPackagePath( const string& package, const string& sub )

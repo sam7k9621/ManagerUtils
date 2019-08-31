@@ -2,29 +2,22 @@
 #include "ManagerUtils/ArgHelper/interface/Readmgr.hpp"
 
 using namespace std;
-namespace pt = boost::property_tree;
+using namespace edm;
 
 namespace mgr{
-    Readmgr::Readmgr( const string& file )
-    {
-        std::size_t found = file.find( "json" );
-        if( found != std::string::npos ){
-            ReadFile( file, root );
-        }
-        else{
-            printf( "Using without reading JSON\n" );
-        }
-    }
+    Readmgr::Readmgr( const string& file ):
+        _file( readPSetsFrom( file ) )
+    {}
 
-    pt::ptree
-    Readmgr::GetSubTree( const string& t )
+    ParameterSet 
+    Readmgr::GetSubPSet( const string& t )
     {
-        return root.get_child( t );
+        return _root.getParameter<ParameterSet>( t );
     }
 
     void
-    Readmgr::ChangeJSON( const string& file )
+    Readmgr::InitRoot( const string& tag )
     {
-        ReadFile( file, root );
+        _root = _file->getParameter<ParameterSet>( tag );
     }
 }

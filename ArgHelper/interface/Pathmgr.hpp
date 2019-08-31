@@ -13,6 +13,7 @@ namespace mgr{
                 const std::string& sub_package,
                 const std::string& settings_dir = "settings",
                 const std::string& results_dir  = "results",
+                const std::string& python_dir   = "python",
                 const std::string& datas_dir    = "data"
                 );
             virtual ~Pathmgr ();
@@ -22,10 +23,11 @@ namespace mgr{
             std::string SubPackageDir() const;
 
             // Default settings for sample
-            std::string SettingsDir() const;
-            std::string DatasDir() const;
-            std::string ResultsDir()  const;
             std::string SubDir( const std::string& ) const;
+            std::string SettingsDir() const;
+            std::string ResultsDir()  const;
+            std::string PythonDir()  const;
+            std::string DatasDir() const;
 
         private:
 
@@ -33,6 +35,7 @@ namespace mgr{
             const std::string _sub_package_name;
             const std::string _settings_dir;
             const std::string _results_dir;
+            const std::string _python_dir;
             const std::string _datas_dir;
     };
 }
