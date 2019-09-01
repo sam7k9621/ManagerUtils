@@ -54,12 +54,13 @@ namespace mgr {
     T *
     RootObjMgr < T > ::GetObj( const std::string& name )
     {
-        if( _objmap.count( name ) ){
+        try{
             return _objmap.at( name ).get();
         }
-        else{
+        catch( const std::out_of_range& oor ) {
+            std::cerr << "Out of Range error: " << oor.what() << '\n';
             return NULL;
-        }
+        } 
     }
 
     /******************************************************************************/
