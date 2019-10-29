@@ -2,12 +2,12 @@ namespace mgr {
     /*******************************************************************************
     *   Implementing directly as all-in-one class
     *******************************************************************************/
-    template < typename T >
-    class RootObjMgr < T > ::iterator
+    template < typename T, typename U >
+    class RootObjMgr < T, U > ::iterator
     {
         private:
 
-            typedef typename RootObjMgr < T > ::ObjContainer::iterator OrigIt;
+            typedef typename RootObjMgr < T, U > ::ObjContainer::iterator OrigIt;
             OrigIt _it;
 
         public:
@@ -63,12 +63,12 @@ namespace mgr {
     *   Constant iterator class
     *******************************************************************************/
 
-    template < typename T >
-    class RootObjMgr < T > ::const_iterator
+    template < typename T, typename U >
+    class RootObjMgr < T, U > ::const_iterator
     {
         private:
 
-            typedef typename RootObjMgr < T > ::ObjContainer::const_iterator OrigIt;
+            typedef typename RootObjMgr < T, U > ::ObjContainer::const_iterator OrigIt;
             OrigIt _it;
 
         public:

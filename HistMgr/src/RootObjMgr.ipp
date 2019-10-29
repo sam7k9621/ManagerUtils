@@ -4,24 +4,24 @@ namespace mgr {
     /*******************************************************************************
     *   Constructor and destructor
     *******************************************************************************/
-    template < typename T >
-    RootObjMgr < T > ::RootObjMgr()
+    template < typename T, typename U >
+    RootObjMgr < T, U > ::RootObjMgr()
     {
     }
 
     /******************************************************************************/
 
-    template < typename T >
-    RootObjMgr < T > ::~RootObjMgr()
+    template < typename T, typename U >
+    RootObjMgr < T, U > ::~RootObjMgr()
     {
     }
 
     /*******************************************************************************
     *   Addition and removal functions
     *******************************************************************************/
-    template < typename T >
+    template < typename T, typename U >
     void
-    RootObjMgr < T > ::AddObj( T * obj )
+    RootObjMgr < T, U > ::AddObj( T * obj )
     {
                           // name                // sample_name  // sample
         const std::string store = MakeStoreName( obj->GetName(), obj->GetTitle() );
@@ -31,14 +31,14 @@ namespace mgr {
         }
 
         _objmap.erase( store );// deleting existing instance if already exist
-        _objmap[ store ] = std::unique_ptr < T > ( obj );
+        _objmap[ store ] = U( obj );
     }
 
     /******************************************************************************/
 
-    template < typename T >
+    template < typename T, typename U >
     void
-    RootObjMgr < T > ::RemoveObj( const std::string& name )
+    RootObjMgr < T, U > ::RemoveObj( const std::string& name )
     {
         if( _objmap.count( name ) ){
             _objmap.erase( name );
@@ -50,9 +50,9 @@ namespace mgr {
     /*******************************************************************************
     *   Object access functions
     *******************************************************************************/
-    template < typename T >
+    template < typename T, typename U >
     T *
-    RootObjMgr < T > ::GetObj( const std::string& name )
+    RootObjMgr < T, U > ::GetObj( const std::string& name )
     {
         try{
             return _objmap.at( name ).get();
@@ -65,9 +65,9 @@ namespace mgr {
 
     /******************************************************************************/
 
-    template < typename T >
+    template < typename T, typename U >
     const T *
-    RootObjMgr < T > ::GetObj( const std::string& name ) const
+    RootObjMgr < T, U > ::GetObj( const std::string& name ) const
     {
         if( _objmap.count( name ) ){
             return _objmap.at( name ).get();
@@ -80,9 +80,9 @@ namespace mgr {
     /*******************************************************************************
     *   Object listing functions
     *******************************************************************************/
-    template < typename T >
+    template < typename T, typename U >
     std::vector < std::string >
-    RootObjMgr < T > ::ObjNameList() const
+    RootObjMgr < T, U > ::ObjNameList() const
     {
         std::vector < std::string > ans;
 
@@ -95,9 +95,9 @@ namespace mgr {
 
     /******************************************************************************/
 
-    template < typename T >
+    template < typename T, typename U >
     std::vector < T * >
-    RootObjMgr < T > ::GetObjContains( const std::string& substring )
+    RootObjMgr < T, U > ::GetObjContains( const std::string& substring )
     {
         std::vector < T * > ans;
 
@@ -113,9 +113,9 @@ namespace mgr {
     /*******************************************************************************
     *   Naming convention functions
     *******************************************************************************/
-    template < typename T >
+    template < typename T, typename U >
     std::string
-    RootObjMgr < T > ::MakeStoreName( const std::string& objname, const std::string& tag ) const
+    RootObjMgr < T, U > ::MakeStoreName( const std::string& objname, const std::string& tag ) const
     {
         std::regex pattern( tag + "_" );
 
