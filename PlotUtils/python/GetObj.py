@@ -1,4 +1,5 @@
 import sys
+import math
 # /*******************************************************************************
 # *   Getting histogram graphically maximum point
 # *******************************************************************************/
@@ -61,10 +62,42 @@ def DivideHist( num, den, cen=0 ):
             ans.SetBinContent( i, cen )
     return ans;
 
+def ErrorProp( x1, m1, x2, m2  ):
+    return math.sqrt( m1**2 / x2**2 + m2**2 * x1**2 /x2**4 )
+
+def DivideGraph( num, den, cen=0 ):
+    ans = num.Clone()
+    for i in range( num.GetN() ):
+        numy = num.GetY()[i]
+        numyerrlo = num.GetErrorYlow( i )
+        numyerrhi = num.GetErrorYhigh( i )
+
+        deny = den.GetY()[i]
+        denyerrlo = den.GetErrorYlow( i )
+        denyerrhi = den.GetErrorYhigh( i )
+
+        numx = num.GetX()[i]
+        xerrlo = num.GetErrorXlow( i )
+        xerrhi = num.GetErrorXhigh( i )
+
+
+        if deny:
+            ans.SetPoint( i, numx, (numy / deny) - cen )
+            ans.SetPointError( 
+                    i, xerrlo, xerrhi, 
+                    ErrorProp( numy, numyerrlo, deny, denyerrlo ),
+                    ErrorProp( numy, numyerrhi, deny, denyerrhi )
+                    )
+        else:
+            ans.SetPoint( i, numx, 0 )
+    
+    ans.SetTitle( "" )
+    return ans
+
+
 # /*******************************************************************************
 # *   TH1D summation functions
 # *******************************************************************************/
-
 def SumHist( histlst ):
     hist = histlst[0].Clone()
     for h in histlst[1:]:
