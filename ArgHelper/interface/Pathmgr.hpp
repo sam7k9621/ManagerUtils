@@ -22,6 +22,9 @@ namespace mgr{
             std::string PackageDir()    const;
             std::string SubPackageDir() const;
 
+            // Instance functions for getting hostname
+            std::string HostName();
+
             // Default settings for sample
             std::string SubDir( const std::string& ) const;
             std::string SettingsDir() const;
@@ -29,8 +32,10 @@ namespace mgr{
             std::string PythonDir()  const;
             std::string DatasDir() const;
 
+            
         private:
-
+            
+            std::string _hostname;
             const std::string _package_name;
             const std::string _sub_package_name;
             const std::string _settings_dir;

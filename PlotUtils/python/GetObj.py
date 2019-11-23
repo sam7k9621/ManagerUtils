@@ -53,6 +53,35 @@ def GetGraphlstYmin( grlst ):
 # /*******************************************************************************
 # *   TH1D division functions
 # *******************************************************************************/
+def Divide2DTeff( num, den, syst=0.01, cen=0 ):
+    ans = num.GetCopyTotalHisto()
+    ans_err = num.GetCopyTotalHisto()
+
+    xbins = ans.GetXaxis().GetNbins()
+    ybins = ans.GetYaxis().GetNbins()
+
+    for i in range( xbins+2 ):
+        for j in range( ybins+2 ):
+            nbin = num.GetGlobalBin( i, j )
+            neff = num.GetEfficiency( nbin )
+            nerr = num.GetEfficiencyErrorLow( nbin )
+
+            dbin = den.GetGlobalBin( i, j )
+            deff = den.GetEfficiency( dbin )
+            derr = den.GetEfficiencyErrorLow( dbin )
+
+            if deff != 0:
+                seff = neff / deff
+                serr = ErrorProp( neff, nerr, deff, derr )  + seff * syst
+            else:
+                seff = cen
+                serr = cen
+
+            ans.    SetBinContent( i, j, seff )
+            ans_err.SetBinContent( i, j, serr )
+
+    return (ans, ans_err)
+
 def DivideHist( num, den, cen=0 ):
     ans = num.Clone()
     ans.Divide( den )

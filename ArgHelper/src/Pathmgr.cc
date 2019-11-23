@@ -1,9 +1,9 @@
 // Get directly from Enoch
 // should modify later
 
-
 #include "ManagerUtils/ArgHelper/interface/Common.hpp"
 #include "ManagerUtils/ArgHelper/interface/Pathmgr.hpp"
+#include <boost/asio/ip/host_name.hpp>
 
 using namespace std;
 
@@ -26,6 +26,7 @@ namespace mgr{
         _python_dir( python_dir ),
         _datas_dir( datas_dir )
     {
+        _hostname = boost::asio::ip::host_name();
     }
 
     Pathmgr::~Pathmgr()
@@ -43,6 +44,12 @@ namespace mgr{
     Pathmgr::SubPackageDir() const
     {
         return SubPackagePath( _package_name, _sub_package_name );
+    }
+
+    string
+    Pathmgr::HostName()
+    {
+        return _hostname;
     }
 
     string
