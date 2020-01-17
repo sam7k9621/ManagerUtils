@@ -72,12 +72,13 @@ def Divide2DTeff( num, den, syst=0.01, cen=0 ):
 
             if deff != 0:
                 seff = neff / deff
-                serr = ErrorProp( neff, nerr, deff, derr )  + seff * syst
+                serr = math.sqrt( ErrorProp( neff, nerr, deff, derr )**2  + (seff * syst)**2 )
             else:
                 seff = cen
                 serr = cen
 
             ans.    SetBinContent( i, j, seff )
+            ans.    SetBinError  ( i, j, serr )
             ans_err.SetBinContent( i, j, serr )
 
     return (ans, ans_err)

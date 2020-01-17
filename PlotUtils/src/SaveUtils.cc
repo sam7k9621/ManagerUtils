@@ -32,7 +32,7 @@ namespace mgr{
 
     /******************************************************************************/
     void
-    SaveToROOT( TCanvas* c, const string& filename, const string& objname )
+    SaveToROOT( TObject* c, const string& filename, const string& objname )
     {
         CheckPath( filename );
         TFile* myfile = TFile::Open( filename.c_str(), "UPDATE" );
@@ -40,12 +40,12 @@ namespace mgr{
         delete myfile;
     }
 
-    void
-    SaveToROOT( TH1* h, const string& filename, const string& objname )
-    {
-        CheckPath( filename );
-        TFile* myfile = TFile::Open( filename.c_str(), "UPDATE" );
-        h->Write( objname.c_str(), TFile::kOverwrite );
-        delete myfile;
-    }
+ /*   void*/
+    //SaveToROOT( TH1* h, const string& filename, const string& objname )
+    //{
+        //CheckPath( filename );
+        //TFile* myfile = TFile::Open( filename.c_str(), "UPDATE" );
+        //h->Write( objname.c_str(), TFile::kOverwrite );
+        //delete myfile;
+    /*}*/
 };

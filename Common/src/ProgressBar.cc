@@ -30,7 +30,7 @@ namespace mgr{
         milliseconds duration = duration_cast<milliseconds>( t2 - t1 );
         milliseconds eta_duration;
     
-        int ratio = i / (entry / 100 );
+        int ratio = i / (double)entry * 100 ;
         if( ratio ){
             eta_duration = duration * ( 100 - ratio ) / ratio;
         }

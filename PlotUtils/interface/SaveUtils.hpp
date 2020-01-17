@@ -21,9 +21,10 @@ namespace mgr{
     /*******************************************************************************
     *   SaveToRoot - saving TCanvas to ROOT File
     *******************************************************************************/
-    void SaveToROOT( TCanvas*, const std::string&, const std::string& );
+    void SaveToROOT( TObject*, const std::string&, const std::string& );
+    //void SaveToROOT( TCanvas*, const std::string&, const std::string& );
 
-    void SaveToROOT( TH1*, const std::string&, const std::string&);
+    //void SaveToROOT( TH1*, const std::string&, const std::string&);
 }
 
 

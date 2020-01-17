@@ -1,5 +1,5 @@
 from ManagerUtils.PlotUtils.Constants import *
-from ROOT import TGaxis
+from ROOT import TGaxis, gPad
 def SetAxis( plot ):
     
     # Global settings from TGaxis
