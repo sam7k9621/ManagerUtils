@@ -1,10 +1,12 @@
 #include "ManagerUtils/ArgHelper/interface/Parsermgr.hpp"
 #include <boost/exception/diagnostic_information.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/multiprecision/cpp_dec_float.hpp>
 #include <iostream>
 
 namespace opt = boost::program_options;
 using namespace std;
+using Double = boost::multiprecision::cpp_dec_float_50;
 
 namespace mgr{
     Parsermgr::Parsermgr()
@@ -75,7 +77,7 @@ namespace mgr{
 
             if( ans == "" ){
                 try {
-                    ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
+                    ans = boost::lexical_cast<string>( Double( GetOption<double>( opt ) ) );
                 }
                 catch( ... ){
                 }
