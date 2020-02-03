@@ -107,7 +107,7 @@ namespace mgr{
 
             if( ans == "" ){
                 try {
-                    ans = boost::lexical_cast<string>( GetOption<double>( opt ) );
+                    ans = boost::lexical_cast<string>( Double( GetOption<double>( opt ) ) );
                 }
                 catch( ... ){
                 }
