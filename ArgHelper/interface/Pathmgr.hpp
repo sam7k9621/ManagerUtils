@@ -8,6 +8,7 @@ namespace mgr{
     class Pathmgr {
         public:
 
+            Pathmgr();
             Pathmgr(
                 const std::string& package,
                 const std::string& sub_package,

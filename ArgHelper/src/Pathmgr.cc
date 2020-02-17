@@ -11,6 +11,7 @@ namespace mgr{
     /*******************************************************************************
     *   Constructor and Destructor
     *******************************************************************************/
+    Pathmgr::Pathmgr(){}
     Pathmgr::Pathmgr(
         const std::string& package,
         const std::string& sub_package,

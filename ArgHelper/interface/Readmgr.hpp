@@ -10,6 +10,7 @@ namespace mgr{
     class Readmgr {
         public:
 
+            Readmgr();
             Readmgr( const std::string& );
 
             virtual ~Readmgr(){}

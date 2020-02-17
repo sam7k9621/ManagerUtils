@@ -5,6 +5,7 @@ using namespace std;
 using namespace edm;
 
 namespace mgr{
+    Readmgr::Readmgr(){}
     Readmgr::Readmgr( const string& file ):
         _file( readPSetsFrom( file ) )
     {}

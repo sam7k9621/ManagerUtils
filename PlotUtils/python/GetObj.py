@@ -1,5 +1,6 @@
 import sys
 import math
+from ManagerUtils.PlotUtils.Constants import *
 # /*******************************************************************************
 # *   Getting histogram graphically maximum point
 # *******************************************************************************/
@@ -128,6 +129,12 @@ def DivideGraph( num, den, cen=0 ):
 # /*******************************************************************************
 # *   TH1D summation functions
 # *******************************************************************************/
+def GetColor():
+    return next( colorlst )
+
+def GetMarker():
+    return next( markerlst )
+
 def SumHist( histlst ):
     hist = histlst[0].Clone()
     for h in histlst[1:]:
