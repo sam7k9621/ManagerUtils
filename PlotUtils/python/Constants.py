@@ -1,5 +1,4 @@
 import ROOT
-from itertools import cycle
 
 # /*******************************************************************************
 # *   Default canvas settings
@@ -60,6 +59,6 @@ Green   = ROOT.kGreen - 6
 Yellow  = ROOT.kYellow + 2
 Cyan    = ROOT.kCyan + 1
 Blue    = ROOT.kBlue + 2
-colorlst  = cycle( [ Gray, Magenta, Red, Orange, Azure, Green, Cyan, Yellow ] )
-markerlst = cycle( [ 22, 29, 39, 41, 47, 23, 5, 48] )
+colorlst  = [ Gray, Magenta, Red, Orange, Azure, Green, Cyan, Yellow ] 
+markerlst = [ 22, 29, 39, 41, 47, 23, 5, 48] 
 

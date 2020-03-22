@@ -6,7 +6,7 @@ from ManagerUtils.PlotUtils.Constants import *
 # *******************************************************************************/
 def GetHistYmax( hist ):
     ans = 0
-    for i in range( hist.GetNcells() ):
+    for i in range( 1, hist.GetNbinsX() + 1 ):
         bincont = abs( hist.GetBinContent( i ) )
         binerr  = abs( hist.GetBinError( i ) )
         ans = max( ans, bincont + binerr )
@@ -89,9 +89,22 @@ def DivideHist( num, den, cen=0 ):
     ans.Divide( den )
 
     for i in range( num.GetNcells() ):
-        if num.GetBinContent( i ) == 0 and den.GetBinContent( i ) == 0:
+        if num.GetBinContent( i ) == 0 or den.GetBinContent( i ) == 0:
             ans.SetBinContent( i, cen )
-    return ans;
+    return ans
+
+def GetErrRatioPlot( hist, up, dn, cen=1 ):
+    ans = hist.Clone()
+    nom = [ ( ( cen + x ) + ( cen - y ) ) / 2 for x, y in zip( up, dn ) ]
+    err = [ ( ( cen + x ) - ( cen - y ) ) / 2 for x, y in zip( up, dn ) ]
+    for i in range( hist.GetNcells() ):
+        ans.SetBinContent( i, nom[i] )
+        ans.SetBinError  ( i, err[i] )
+
+    ans.SetMarkerSize( 0 )
+    ans.SetFillColor( ROOT.kAzure - 9 )
+    ans.SetLineColor( ROOT.kAzure - 9 )
+    return ans
 
 def ErrorProp( x1, m1, x2, m2  ):
     return math.sqrt( m1**2 / x2**2 + m2**2 * x1**2 /x2**4 )
@@ -129,12 +142,6 @@ def DivideGraph( num, den, cen=0 ):
 # /*******************************************************************************
 # *   TH1D summation functions
 # *******************************************************************************/
-def GetColor():
-    return next( colorlst )
-
-def GetMarker():
-    return next( markerlst )
-
 def SumHist( histlst ):
     hist = histlst[0].Clone()
     for h in histlst[1:]:
