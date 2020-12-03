@@ -32,12 +32,15 @@ def SetSinglePad( c ):
     c.SetRightMargin( 1 - PLOT_X_MAX )
     c.SetBottomMargin( PLOT_Y_MIN )
     c.SetTopMargin( 1 - PLOT_Y_MAX )
+    c.Update()
+    # update after settings 
 
 def SetSinglePadWithPalette( c ): 
     c.SetTicks( 1, 1)
     c.SetLeftMargin( PLOT_X_MIN )
     c.SetBottomMargin( PLOT_Y_MIN )
     c.SetTopMargin( 1 - PLOT_Y_MAX )
+    c.Update()
 
 # /*******************************************************************************
 # *   New Legend settings

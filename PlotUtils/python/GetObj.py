@@ -1,6 +1,8 @@
 import sys
 import math
 from ManagerUtils.PlotUtils.Constants import *
+from array import array
+from ROOT import TGraphAsymmErrors
 # /*******************************************************************************
 # *   Getting histogram graphically maximum point
 # *******************************************************************************/
@@ -48,7 +50,7 @@ def GetGraphlstYmin( grlst ):
     ans = sys.maxint
 
     for gr in grlst:
-        ans = min( ans, GetGraphYmin( graph ) )
+        ans = min( ans, GetGraphYmin( gr ) )
     return ans
 
 # /*******************************************************************************
@@ -93,17 +95,21 @@ def DivideHist( num, den, cen=0 ):
             ans.SetBinContent( i, cen )
     return ans
 
-def GetErrRatioPlot( hist, up, dn, cen=1 ):
-    ans = hist.Clone()
-    nom = [ ( ( cen + x ) + ( cen - y ) ) / 2 for x, y in zip( up, dn ) ]
-    err = [ ( ( cen + x ) - ( cen - y ) ) / 2 for x, y in zip( up, dn ) ]
-    for i in range( hist.GetNcells() ):
-        ans.SetBinContent( i, nom[i] )
-        ans.SetBinError  ( i, err[i] )
+def GetErrRatioPlot( hist, up, dn, cen=False ):
+    
+    x, y     = array( 'd' ), array( 'd' )
+    exl, exh = array( 'd' ), array( 'd' )
+    eyl, eyh = array( 'd' ), array( 'd' )
 
-    ans.SetMarkerSize( 0 )
-    ans.SetFillColor( ROOT.kAzure - 9 )
-    ans.SetLineColor( ROOT.kAzure - 9 )
+    for i in range( hist.GetNcells() ):
+        x.append( hist.GetBinCenter( i ) )
+        y.append( hist.GetBinContent( i ) if cen else 1 )
+        exl.append( hist.GetBinWidth( i ) / 2. )
+        exh.append( hist.GetBinWidth( i ) / 2.)
+        eyl.append( dn[ i ] )
+        eyh.append( up[ i ] )
+
+    ans = TGraphAsymmErrors( hist.GetNcells(), x, y, exl, exh, eyl, eyh )
     return ans
 
 def ErrorProp( x1, m1, x2, m2  ):
@@ -147,3 +153,9 @@ def SumHist( histlst ):
     for h in histlst[1:]:
         hist.Add(h)
     return hist
+
+def GetColor():
+    return next( colorcycle )
+
+def GetMarker():
+    return next( markercycle )

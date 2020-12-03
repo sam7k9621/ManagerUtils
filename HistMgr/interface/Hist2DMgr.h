@@ -20,7 +20,7 @@ namespace mgr{
 
             TH2D*       Hist2D( const std::string& );
             const TH2D* Hist2D( const std::string& ) const;
-
+            void Scale2D( const double );
             std::vector<std::string> AvailableHist2DList() const;
 
             void AddHist2D(

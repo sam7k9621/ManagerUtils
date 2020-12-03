@@ -43,6 +43,14 @@ Hist2DMgr::AvailableHist2DList() const
 /*******************************************************************************
 *   TH2D declaration functions
 *******************************************************************************/
+void 
+Hist2DMgr::Scale2D( const double x )
+{
+    for( auto hist : _histmgr ){
+        hist->Scale( x );
+    }
+}
+
 void
 Hist2DMgr::AddHist2D(
     const std::string& label,
